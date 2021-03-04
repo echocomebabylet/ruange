@@ -393,7 +393,7 @@
 				    },fail() {
 						console.log(1)
 						console.log(1)
-						console.log(1)
+						
 						resolve('err')
 						}
 					});	
