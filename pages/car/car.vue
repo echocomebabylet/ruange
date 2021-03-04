@@ -290,6 +290,7 @@
 			}
 		},
 		onLoad(){
+			console.log('非常ok')
 			this.getdata()
 		},
 		methods: {
