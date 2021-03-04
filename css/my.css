@@ -1,0 +1,219 @@
+page{
+	background-color: #f2f2f2;
+}
+.nav .active{
+	opacity: 1;
+	transition: opacity 1s;
+}
+.nav{
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: flex;
+	justify-content: space-between;
+	padding: 30upx 40upx;
+	box-sizing: border-box;
+	align-items: center;
+	font-size: 36upx;
+	font-weight: bold;
+	background-color: white;
+	z-index: 100;
+}
+.nav text{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	opacity: 0;
+	transition: opacity 1s;
+}
+.nav image{
+	width: 50upx;
+	height: 50upx;
+}
+.nav view{
+	display: flex;
+}
+.nav .info-dot{
+	display: block;
+	width: 18upx;
+	height: 18upx;
+	border-radius: 50%;
+	position: absolute;
+	top: 10upx;
+	left: 40upx;
+	opacity: 1;
+	background-color: #ff6162;
+}
+
+/* 用户信息,登录 */
+.user{
+	background-color: white;
+	padding: 30upx 40upx;
+	box-sizing: border-box;
+	margin-top: 110upx;
+}
+.info{
+	display: flex;
+	font-size: 36upx;
+	font-weight: bold;
+	justify-content: space-between;
+}
+.info .head image{
+	width: 130upx;
+	height: 130upx;
+}
+.info .enter{
+	width: 15upx;
+	height: 24upx;
+	align-self: flex-end;
+	margin-bottom: 25upx;
+}
+.handle{
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	margin-top: 70upx;
+}
+.handle text{
+	display: block;
+	font-size: 30upx;
+	font-weight: bold;
+}
+.handle view{
+	text-align: center;
+}
+.handle image{
+	width: 90upx;
+	height: 106upx;
+}
+/* 我的订单 */
+.order{
+	background-color: white;
+	margin-top: 15upx;
+}
+.order .tit{
+	padding: 20upx 30upx;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	font-size: 30upx;
+	border-bottom: 1upx solid #F7F7F7;
+}
+.order image{
+	width: 15upx;
+	height: 26upx;
+	margin-left: 10upx;
+}
+.statue{
+	padding: 50upx 0;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	font-size: 25upx;
+	color: #848484;
+}
+.statue image{
+	width: 50upx;
+	height: 50upx;
+	display: block;
+	margin: auto;
+	margin-bottom: 20upx;
+}
+.statue view{
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	align-items: center;
+}
+.statue .num{
+	position: absolute;
+	top: -10upx;
+	right: -10upx;
+	width: 32upx;
+	height: 32upx;
+	line-height: 32upx;
+	text-align: center;
+	color: white;
+	background-color: #ff5556;
+	font-size: 20upx;
+	border-radius: 50%;
+}
+/* 我的设计 */
+.design{
+	background-color: white;
+	margin-top: 15upx;
+}
+.designer{
+	padding: 20upx 40upx;
+	box-sizing: border-box;
+	font-size: 30upx;
+	border-bottom: 1upx solid #F7F7F7;
+}
+.design-num{
+	display: flex;
+	justify-content: space-around;
+}
+.design-num view{
+	display: flex;
+	flex-direction: column;
+	padding: 30upx 0;
+	box-sizing: border-box;
+	text-align: center;
+	position: relative;
+	width: 50%;
+}
+.design-num view:nth-child(2n-1)::after{
+	content: '';
+	width: 4upx;
+	height: 104upx;
+	background-color: #f1f1f1;
+	position: absolute;
+	top: 50%;
+	right: 0;
+	transform: translateY(-50%);
+}
+/* 列表 */
+.list{
+	margin-top: 15upx;
+	background-color: white;
+}
+.list view{
+	display: flex;
+	align-items: center;
+	font-size: 30upx;
+}
+.list image{
+	width: 45upx;
+	height: 47upx;
+}
+.list .entry{
+	width: 15upx;
+	height: 25upx;
+}
+/* 设计师/品牌入驻 */
+.settled{
+	display: flex;
+	align-items: center;
+	padding: 30upx 40upx;
+	box-sizing: border-box;
+	justify-content: space-between;
+	background-color: white;
+	margin-top: 15upx;
+}
+.settled view{
+	display: flex;
+	align-items: center;
+	font-size: 30upx;
+}
+.settled image{
+	width: 45upx;
+	height: 47upx;
+}
+.settled .entry{
+	width: 15upx;
+	height: 25upx;
+}

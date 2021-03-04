@@ -1,0 +1,176 @@
+.cont{
+	background-color: #F2F2F2;
+}
+.local{
+	background-color: white;
+	padding: 40upx 30upx 0 30upx;
+	box-sizing: border-box;
+}
+.local .num{
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 28upx;
+	color: #a8a8a8;
+	padding: 0 15upx;
+	box-sizing: border-box;
+	margin-top: 15upx;
+}
+.local .num image{
+	width: 145upx;
+	height: 42upx;
+}
+.local .bg{
+	width: 100%;
+	height: 240upx;
+	margin-top: 20upx;
+}
+/* 体验家列表 */
+.home-list{
+	background-color: white;
+	margin-bottom: 15upx;
+	padding-top: 30upx;
+	box-sizing: border-box;
+}
+.location{
+	position: relative;
+}
+.location image{
+	width: 100%;
+	height: 380upx;
+}
+.location view{
+	/* width: 300upx; */
+	height: 60upx;
+	background-color: rgba(225,225,225,0.8);
+	display: flex;
+	align-items: center;
+	font-size: 20upx;
+	position: absolute;
+	top: 20upx;
+	right: 20upx;
+	padding: 0 15upx;
+	border-radius: 10upx;
+	box-sizing: border-box;
+	justify-content: space-between;
+}
+.location text{
+	margin-left: 5upx;
+}
+.intro{
+	padding: 35upx 30upx;
+	box-sizing: border-box;
+	border-bottom: 1upx solid #F7F7F7;
+}
+.info{
+	display: flex;
+	align-items: center;
+	padding-bottom: 25upx;
+	box-sizing: border-box;
+	border-bottom: 1upx dashed #F7F7F7;
+	justify-content: space-between;
+}
+.info image{
+	width: 80upx;
+	height: 80upx;
+}
+.info text{
+	display: block;
+	line-height: 47upx;
+	font-weight: bold;
+	font-size: 27upx;
+}
+.detail{
+	padding: 25upx 0;
+	box-sizing: border-box;
+	border-bottom: 1upx dashed #F7F7F7;
+}
+.tab{
+	display: block;
+	width: 120upx;
+	height: 40upx;
+	line-height: 40upx;
+	text-align: center;
+	font-size: 20upx;
+	color: #47cccc;
+	background-color: #f0fcfc;
+}
+.tab-tit{
+	width: 80%;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+	font-size: 30upx;
+}
+.tab-cont{
+	position: relative;
+	padding-top: 20upx;
+	margin-top: 20upx;
+	box-sizing: border-box;
+}
+	
+.tab-intro{
+	font-size: 24upx;
+	line-height: 34upx;
+	width: 100%;
+	text-overflow: -o-ellipsis-lastline;
+	overflow: hidden;
+	text-overflow: ellipsis; 
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	line-clamp: 3; 
+	-webkit-box-orient: vertical;
+}
+.tab-cont image{
+	width: 24upx;
+	height: 24upx;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.check{
+	font-size: 25upx;
+	color: #6282af;
+	display: block;
+	margin-top: 15upx;
+	font-weight: bold;
+}
+.order{
+	padding: 30upx 0 0 0;
+	box-sizing: border-box;
+	font-size: 23upx;
+	font-weight: bold;
+}
+.order view{
+	display: flex;
+	align-items: center;
+}
+.order image{
+	width: 26upx;
+	height: 26upx;
+	margin-right: 20upx;
+}
+.thank{
+	width: 70%;
+	overflow: hidden;
+	text-overflow:ellipsis;
+	white-space: nowrap;
+	display: block;
+	color: #b0b0b0;
+}
+.select1{
+	display: flex;
+	justify-content: space-around;
+}
+.select1 view{
+	display: flex;
+	align-items: center;
+	font-size: 25upx;
+	font-weight: bold;
+	margin: 30upx 0;
+}
+.select1 image{
+	width: 30upx;
+	height: 30upx;
+	margin-right: 20upx;
+}

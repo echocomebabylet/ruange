@@ -1,0 +1,102 @@
+page{
+	background-color: #F2F2F2;
+}
+.nav{
+	padding: 0 45upx;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 30upx;
+	height: 130upx;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	background-color: white;
+}
+.nav image{
+	width: 24upx;
+	height: 38upx;
+}
+.order-nav{
+	padding: 25upx 45upx;
+	box-sizing: border-box;
+	font-size: 26upx;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	background-color: white;
+	width: 100%;
+	position: fixed;
+	top: 130upx;
+	left: 0;
+	z-index: 1000;
+}
+.active{
+	color: #40CCCB;
+	position: relative;
+}
+.active::before{
+	content: '';
+	width: 100%;
+	height: 5upx;
+	background-color: #40CCCB;
+	position: absolute;
+	bottom: -25upx;
+	left: 0;
+}
+/* 全部订单 */
+/* 待付款 */
+.pay{
+	font-size: 24upx;
+	color: #a8a8a8;
+	margin-top: 20upx;
+}
+.pay-list{
+	padding: 35upx 45upx;
+	box-sizing: border-box;
+	display: flex;
+	align-items: center;
+	border-bottom: 1upx solid #F7F7F7;
+	font-size: 20upx;
+	background-color: white;
+}
+.pay-list image{
+	width: 190upx;
+	height: 190upx;
+	margin-right: 40upx;
+}
+.total{
+	padding: 30upx 45upx;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-weight: bold;
+	border-bottom: 1upx solid #F7F7F7;	
+	background-color: white;}
+.sure{
+	padding: 15upx 45upx;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	background-color: white;
+}
+.sure view{
+	width: 160upx;
+	height: 64upx;
+	line-height: 64upx;
+	text-align: center;
+	color: #b3b3b3;
+	border-radius: 10upx;
+	border: 1upx solid #F7F7F7;
+}
+/* 已取消 */
+.again{
+	background-color: #40CCCB;
+	border: none;
+	color: white !important;
+}

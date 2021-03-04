@@ -1,0 +1,110 @@
+page{
+	background-color: #F2F2F2;
+	padding-top: 220upx;
+	box-sizing: border-box;
+}
+.nav{
+	padding: 0 45upx;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	font-size: 30upx;
+	height: 130upx;
+	background-color: white;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+}
+.nav image{
+	width: 24upx;
+	height: 38upx;
+}
+.coupon-nav{
+	width: 100%;
+	padding: 30upx 0;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	font-size: 28upx;
+	font-weight: bold;
+	background-color: white;
+	position: fixed;
+	top: 130upx;
+	left: 0;
+	z-index: 1000;
+}
+.active{
+	position: relative;
+}
+.active::before{
+	content: '';
+	width: 50upx;
+	height: 5upx;
+	background-color: black;
+	position: absolute;
+	bottom: -30upx;
+	left: 50%;
+	transform: translateX(-50%);
+}
+/* 未使用 */
+.disuse,.used{
+	padding: 20upx 40upx;
+	box-sizing: border-box;
+	background-color: white;
+	margin-top: 20upx;
+}
+.exchange{
+	width: 100%;
+	padding: 20upx 40upx;
+	box-sizing: border-box;
+	border: 2upx solid #dddddd;
+	background-color: #f8f8f8;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.exchange input{
+	font-size: 30upx;
+}
+.exchange view,
+.useing{
+	width: 120upx;
+	height: 50upx;
+	line-height: 50upx;
+	text-align: center;
+	color: white;
+	background-color: black;
+	font-size: 22upx;
+}
+.coupon{
+	width: 100%;
+	padding: 30upx;
+	box-sizing: border-box;
+	border: 2upx solid #dddddd;
+	margin-top: 20upx;
+	position: relative;
+}
+.disable{
+	padding: 20upx 0 0;
+	box-sizing: border-box;
+	margin-top: 40upx;
+	border-top: 2upx solid #dddddd;
+	font-size: 24upx;
+	color: #a4a4a4;
+}
+/* 已使用 */
+.used{
+	color: #c5c5c5;
+}
+.used-img{
+	width: 112upx;
+	height: 112upx;
+	position: absolute;
+	top: 50%;
+	right: 40upx;
+	transform: translateY(-50%);
+}

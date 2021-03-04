@@ -1,0 +1,345 @@
+{
+	"easycom": {
+		"^u-(.*)": "@/uview-ui/components/u-$1/u-$1.vue"
+	},
+	"pages": [{
+			"path": "pages/home/home",
+			"style": {}
+		}    
+		,{
+            "path" : "pages/shop/shop",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/show/show",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/shop/shop",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/experience/experience",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/my/my",
+            "style" : {}
+        }
+        ,{
+            "path" : "components/recommend/recommend",
+            "style" : {}
+        }
+        ,{
+            "path" : "components/follow/follow",
+            "style" : {}
+        }
+        ,{
+            "path" : "components/experiencer/experiencer",
+            "style" : {}
+        }
+        ,{
+            "path" : "components/kind/kind",
+            "style" : {}
+        }
+        ,{
+            "path" : "components/space/space",
+            "style" : {}
+        }
+        ,{
+            "path" : "components/manner/manner",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/login/login",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/tellogin/tellogin",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/car/car",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/a/a",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/buildorder/buildorder",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/ordersubmit/ordersubmit",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/productdetail/productdetail",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/assess/assess",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/branddetail/branddetail",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/myfollow/myfollow",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/personaldata/personaldata",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/nickname/nickname",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/sign/sign",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/myorder/myorder",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/evaluate/evaluate",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/evaluatesuccess/evaluatesuccess",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/mycollect/mycollect",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/mycoupon/mycoupon",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/instructions/instructions",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/myhousetype/myhousetype",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/myhousetypedetail/myhousetypedetail",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/myhousetypesearch/myhousetypesearch",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/myhousetyperesult/myhousetyperesult",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/myplan/myplan",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/myappointment/myappointment",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/experiencebegin/experiencebegin",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/waitreview/waitreview",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/canceloriginal/canceloriginal",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/waitassess/waitassess",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/finishappointment/finishappointment",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/appointmentdetail/appointmentdetail",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/contactus/contactus",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/browsehistory/browsehistory",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/problemfeedback/problemfeedback",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/settlement/settlement",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/experiencedetail/experiencedetail",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/orderaddress/orderaddress",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/experienceassess/experienceassess",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/orderexperience/orderexperience",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/namecertification/namecertification",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/ordersuccess/ordersuccess",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/search/search",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/receivingaddress/receivingaddress",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/addingaddress/addingaddress",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/setup/setup",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/termsofservice/termsofservice",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/legalstatement/legalstatement",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/changepassword/changepassword",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/visitmanagement/visitmanagement",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/waitvisit/waitvisit",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/waitexamine/waitexamine",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/finishvisit/finishvisit",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/settime/settime",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/designeffect/designeffect",
+            "style": {
+				
+            }
+        }
+        ,{
+            "path" : "pages/myorderpaydetail/myorderpaydetail",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/myordersenddetail/myordersenddetail",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/myorderreceivedetail/myorderreceivedetail",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/myorderassessdetail/myorderassessdetail",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/myorderfinishdetail/myorderfinishdetail",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/chat/chat",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/searchresult/searchresult",
+            "style" : {}
+        }
+        ,{
+            "path" : "pages/searchimg/searchimg",
+            "style" : {}
+        }
+    ],
+	"globalStyle": {
+		"navigationBarTextStyle": "white",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#007AFF",
+		"backgroundColor": "#FFFFFF",
+		"navigationStyle":"custom",
+		"pageOrientation":"portrait"
+	},
+	"tabBar": {
+	    "color": "#9c9c9c",
+	    "selectedColor": "#3fcccb",
+	    "borderStyle": "black",
+	    "backgroundColor": "#ffffff",
+	    "list": [{
+	        "pagePath": "pages/home/home",
+	        "iconPath": "static/u31.png",
+	        "selectedIconPath": "static/u136.png",
+	        "text": "首页"
+	    }, {
+	        "pagePath": "pages/show/show",
+	        "iconPath": "static/u142.png",
+	        "selectedIconPath": "static/u37.png",
+	        "text": "SHOW"
+	    }, {
+	        "pagePath": "pages/shop/shop",
+	        "iconPath": "static/u134.png",
+	        "selectedIconPath": "static/u713.png",
+	        "text": "卖场"
+	    }, {
+	        "pagePath": "pages/experience/experience",
+	        "iconPath": "static/u137.png",
+	        "selectedIconPath": "static/u1170.png",
+	        "text": "体验"
+	    }, {
+	        "pagePath": "pages/my/my",
+	        "iconPath": "static/u138.png",
+	        "selectedIconPath": "static/u2369.png",
+	        "text": "我的"
+	    }
+		]
+	}
+}
