@@ -1,7 +1,9 @@
 <template>
 	<view>
 		<view class="nav">
-			<image src="../../static/u18.png"></image>
+			<view style="width: 50upx;height: 50upx;" @click="back">
+				<image src="../../static/u18.png"></image>
+			</view>
 			<view>
 				<text :class="{'active':isactive==1}" @click="changnav(1)">商品</text>
 				<text :class="{'active':isactive==2}" @click="changnav(2)">评论</text>
@@ -18,16 +20,16 @@
 		<scroll-view :scroll-y="true" :scroll-into-view="h" style="height: 2000upx;" :scroll-with-animation="true" @scroll="scroll" @scrolltolower="scrolltolower">
 			<!-- <uni-swiper-dot :info="info" :current="current" :mode="mode" :dotsStyles="{'bottom':20,'width':10,'selectedBackgroundColor':'#40cccc','backgroundColor':'rgba(225,225,225,0.5)'}"> -->
 				<swiper class="product-swiper title" circular="true" autoplay="true" @change="change" id="po1">
-					<swiper-item v-for="(item,index) in 5" :key="index">
-						<image src="../../static/u333.png"></image>
+					<swiper-item v-for="(item,index) in imglist" :key="index">
+						<image :src="getimgurl(item)"></image>
 					</swiper-item>		
 				</swiper>
 			<!-- </uni-swiper-dot> -->
 			<view class="price">
 				<view>
-					<text style="font-size: 26upx;">{{this.productdata.shopbrand.name}}</text>
-					<text style="font-size: 30upx;margin: 30upx 0;">{{this.productdata.product.name}}</text>
-					<text style="font-size: 42upx;">￥{{this.productdata.product.price}}<text style="color: white;">a</text><text style="font-size: 22upx;color: #c1c0c0;text-decoration: line-through;font-weight: normal;">￥{{this.productdata.product.orig_price}}</text></text>
+					<text style="font-size: 26upx;" v-if="goodsdata.shopbrand">{{goodsdata.shopbrand.name}}</text>
+					<text style="font-size: 30upx;margin: 30upx 0;" v-if="goodsdata.product">{{goodsdata.product.name}}</text>
+					<text style="font-size: 42upx;" v-if="goodsdata.product">￥{{goodsdata.product.price}}<text style="color: white;">a</text><text style="font-size: 22upx;color: #c1c0c0;text-decoration: line-through;font-weight: normal;">￥{{this.goodsdata.product.orig_price}}</text></text>
 				</view>
 				<view>
 					<image src="../../static/u569.png"></image>
@@ -46,7 +48,7 @@
 					<view style="margin-bottom: 80upx;" @click="model">
 						<text>款式</text>
 						<view>
-							<text>未选择</text>
+							<text>{{namelist}}</text>
 							<image src="../../static/u8.png"></image>
 						</view>
 					</view>
@@ -58,7 +60,7 @@
 						</view>
 					</view>
 				</view>
-				<view class="count">
+				<view class="count" @click="brand()">
 					<view style="display: flex;align-items: center;">
 						<image src="../../static/u4601.png" class="brand"></image>
 						<view style="display: flex;flex-direction: column;font-size: 28upx;">
@@ -101,50 +103,59 @@
 				<view class="showimg title" id="po2">
 					<text>评价晒图</text>
 					<view style="font-size: 22upx;">
-						<text style="color: #a2a2a2;">好评度<text style="color: #40CCCB;margin-left: 10upx;">100%</text></text>
+						<text style="color: #a2a2a2;">好评度<text style="color: #40CCCB;margin-left: 10upx;" v-if="goodsdata">{{this.goodsdata.user_praise}}%</text></text>
 						<image src="../../static/u8.png" class="enter"></image>
 					</view>
 				</view>
-				<view class="assess-list">
+				<view class="assess-list" v-for="(item,index) in goodsdata.comment" :key="index">
 					<view class="user">
 						<view>
-							<image src="../../static/u227.png" class="head"></image>
-							<text>秦凯欧</text>
+							<image :src="getimgurl(item.headurl)" class="head"></image>
+							<text>{{item.username}}</text>
 						</view>
-						<view class="star">
+						<view class="star" v-if="item.star==1">
+							<image src="../../static/u370.png"></image>
+							<image src="../../static/u373.png"></image>
+							<image src="../../static/u373.png"></image>
+							<image src="../../static/u373.png"></image>
+							<image src="../../static/u373.png"></image>
+						</view>
+						<view class="star" v-if="item.star==2">
 							<image src="../../static/u370.png"></image>
 							<image src="../../static/u370.png"></image>
 							<image src="../../static/u373.png"></image>
 							<image src="../../static/u373.png"></image>
 							<image src="../../static/u373.png"></image>
+						</view>
+						<view class="star" v-if="item.star==3">
+							<image src="../../static/u370.png"></image>
+							<image src="../../static/u370.png"></image>
+							<image src="../../static/u370.png"></image>
+							<image src="../../static/u373.png"></image>
+							<image src="../../static/u373.png"></image>
+						</view>
+						<view class="star" v-if="item.star==4">
+							<image src="../../static/u370.png"></image>
+							<image src="../../static/u370.png"></image>
+							<image src="../../static/u370.png"></image>
+							<image src="../../static/u370.png"></image>
+							<image src="../../static/u373.png"></image>
+						</view>
+						<view class="star" v-if="item.star==5">
+							<image src="../../static/u370.png"></image>
+							<image src="../../static/u370.png"></image>
+							<image src="../../static/u370.png"></image>
+							<image src="../../static/u370.png"></image>
+							<image src="../../static/u370.png"></image>
 						</view>
 					</view>
-					<view class="content">一开始量错家里尺寸了，买大了，联系客服佳佳换货， 服务态度很好</view>
+					<view class="content">{{item.content}}</view>
 					<view class="assessimg">
-						<image src="../../static/u396.png"></image>
-						<image src="../../static/u396.png"></image>
-						<image src="../../static/u396.png"></image>
-						<image src="../../static/u396.png"></image>
+						<image :src="getimgurl(items)" v-for="(items,index) in item.imglist" :key="index"></image>
 					</view>
-					<text style="font-size: 20upx;color: #a5a5a5;">2018-05-05</text>
+					<text style="font-size: 20upx;color: #a5a5a5;">{{item.time}}</text>
 				</view>
-				<view class="assess-list">
-					<view class="user">
-						<view>
-							<image src="../../static/u227.png" class="head"></image>
-							<text>秦凯欧</text>
-						</view>
-						<view class="star">
-							<image src="../../static/u370.png"></image>
-							<image src="../../static/u370.png"></image>
-							<image src="../../static/u373.png"></image>
-							<image src="../../static/u373.png"></image>
-							<image src="../../static/u373.png"></image>
-						</view>
-					</view>
-					<view class="content">一开始量错家里尺寸了，买大了，联系客服佳佳换货， 服务态度很好</view>
-					<text style="font-size: 20upx;color: #a5a5a5;">2018-05-05</text>
-				</view>
+				
 				<view class="allassess" @click="checkassess">
 					<view>查看全部3条评论</view>
 				</view>
@@ -152,7 +163,9 @@
 			<!-- 图文详情 -->
 			<view class="detail">
 				<view class="imgdetail title" id="po3">图文详情</view>
-				<image src="../../static/u352.png"></image>
+				<view style="margin: auto;width: 95%;">
+					<rich-text :nodes="htmlNodes"></rich-text>
+				</view>
 			</view>
 		</scroll-view>
 		<!-- 底部购物车 -->
@@ -165,7 +178,7 @@
 			</view>
 			<view class="add">
 				<image src="../../static/u576.png" @click="joincar"></image>
-				<image src="../../static/u577.png"></image>
+				<image src="../../static/u577.png" @click="nowjoincar"></image>
 			</view>
 		</view>
 		<!-- 收藏弹框 -->
@@ -377,38 +390,26 @@
 				</view>
 				<scroll-view :scroll-y="true" style="height: 1000upx;padding-top: 0;">
 					<view class="mintro">
-						<image src="../../static/u3122.png"></image>
+						<image :src="getimgurl(imgurls)"></image>
 						<view>
-							<text style="font-weight: bold;font-size: 28upx;">MUNA 木讷</text>
-							<text style="color: #9f9f9f;">北欧简约实木多功能餐桌</text>
-							<text style="color: #40CCCB;">￥3500.00</text>
+							<text style="font-weight: bold;font-size: 28upx;" v-if="goodsdata.product">{{goodsdata.product.shopbrand}}</text>
+							<text style="color: #9f9f9f;" v-if="goodsdata.product">{{goodsdata.product.name}}</text>
+							<text style="color: #40CCCB;">￥{{prices}}</text>
 						</view>
 					</view>
-					<view class="fashion">
+					<view class="fashion" v-for="(item,index) in goodsdata.main" :key="index">
 						<view style="justify-content: space-between;display: flex;align-items: center;font-size: 22upx;">
-							<text>款式</text>
-							<text style="color: #9f9f9f;">未选择</text>
+							<text>{{item.name}}</text>
+							<text style="color: #9f9f9f;">{{item.choice_name}}</text>
 						</view>
 						<view style="margin-top: 20upx;display: flex;align-items: center;">
-							<view :class="{'mactive':ismactive==1}" @click="mchange(1)">柚木</view>
-							<view :class="{'mactive':ismactive==2}" @click="mchange(2)">柚木</view>
-							<view :class="{'mactive':ismactive==3}" @click="mchange(3)">柚木</view>
-						</view>
-					</view>
-					<view class="fashion">
-						<view style="justify-content: space-between;display: flex;align-items: center;font-size: 22upx;">
-							<text>规格</text>
-							<text style="color: #9f9f9f;">未选择</text>
-						</view>
-						<view style="margin-top: 20upx;display: flex;align-items: center;flex-wrap: wrap;">
-							<view :class="{'mtactive':ismtactive==1}" @click="mtchange(1)">150cm长*105cm宽75cm高</view>
-							<view :class="{'mtactive':ismtactive==2}" @click="mtchange(2)">150cm长*105cm宽75cm高</view>
-							<view :class="{'mtactive':ismtactive==3}" @click="mtchange(3)">150cm长*105cm宽75cm高</view>
+							<view :class="items.activs" @click="mchange(index,indexs)" v-for="(items,indexs) in item.second" :key="indexs">{{items.name}}</view>
+							<!-- mactive -->
 						</view>
 					</view>
 					<view class="mnum">
 						<text>数量</text>
-						<u-number-box v-model="value" @change="valChange" :min="1" :max="5" bg-color="#ffffff"></u-number-box>
+						<u-number-box v-model="numval" @change="valChange" :min="1" :max="5" bg-color="#ffffff"></u-number-box>
 					</view>
 				</scroll-view>
 				<view class="sure" @click="ordernow">加入购物车</view>
@@ -419,6 +420,7 @@
 			<image src="../../static/u897.png"></image>
 			<text>添加成功，等你</text>
 		</view>
+		<u-toast ref="uToast" />
 	</view>
 </template>
 
@@ -427,10 +429,6 @@
 	export default {
 		data() {
 			return {
-				// 接口部分参数
-				pro_id:0,
-				productdata:[],
-				
 				isactive:1,
 				current:0,
 				h:'',
@@ -445,48 +443,53 @@
 				isofflineexperience:false,//线下体验
 				ismodel:false,//规格
 				ismactive:'',//款式选择
-				ismtactive:'',//规格选择
 				issuccessjoin:false,//购物车添加成功
-				
+				joincars:false,
+				nowjoincars:false,
+				goodsid:'',
+				goodsdata:[],
+				imglist:[],
+				imglists:[],
+				idlist:[],
+				namelist:'未选择',
+				pages:'',
+				cont:'',
+				prices:'',
+				imgurls:'',
+				htmlNodes:'',
+				chose_list:[],
+				name_list:[],
+				collectis:0,
+				id:'',
+				numval:1
 			}
 		},
 		onReady(){
 			this.getNodesInfo();
 		},
-		onLoad(options) {
-			options.id = 1
-			this.pro_id = options.id
-			this.get_prodata()
+		onLoad(options){
+			this.goodsid = options.id
+			this.getgoodstock(options.id)
+			
+			this.pages = options.urls
+			console.log(this.id)
+			this.getNodesInfo();
 		},
 		methods: {
-			
-			get_prodata(){
-				uni.request({
-					url:this.common.websiteUrl+"product_index_details",
-					header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
-					method:"post",
-					data:{
-						'id':this.pro_id
-					},
-					success: (res) => {
-						if(res.data.code==200){
-							this.productdata = res.data.data;
-						}else{
-							// 显示网络外太空
-							
-						}
-						console.log(res.data.data);
-						// 将请求到的数据存放放到data中
-						
-					},fail(err) {
-						//显示网络外太空
-					}
+			callback(Error){
+				 console.log("name",Error);
+				this.$refs.uToast.show({
+					title: Error,
+					type: 'default',
+					// url: '../tellogin/tellogin'
+				})
+				 
+			},
+			back(){
+				uni.switchTab({
+				    url:'/'+pages
 				});
 			},
-			
-			
-			
-			
 			coupon(){
 				// 优惠券显示
 				this.iscoupon = true;
@@ -538,11 +541,11 @@
 					this.toplist = rel
 				})
 			},
-			checkassess(){
-				// 查看全部评价
+			checkassess(id){
 				uni.navigateTo({
-				    url: '../assess/assess'
+					url: '../assess/assess?id='+this.goodsdata.product.id
 				});
+				// 查看全部评价
 			},
 			parameter(){
 				// 弹出参数框
@@ -554,22 +557,49 @@
 			},
 			collect(){
 				// 取消收藏
+				this.collectis = 1
 				this.iscollect = true;//取消收藏图标
 				this.iscollecting = false;//添加收藏框
 				this.isuncollecting = true;	//取消收藏框
 				setTimeout(()=>{
 					this.isuncollecting = false;
 				},2000)
+				console.log(this.id)
+				uni.request({
+					url:this.common.websiteUrl+"user_coll",
+					header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
+					method:"post",
+					data:{
+						'user_id':this.id,
+						'pid':this.goodsdata.product.id,
+						'type':1,
+						'coll_is':this.collectis
+					},
+					success: (res) => {}
+				});
 			},
 			uncollect(){
 				// 添加收藏
+				this.collectis = 0
 				this.iscollect = false;		//添加收藏图标
 				this.iscollecting = true;		//添加收藏框
 				this.isuncollecting = false;	//取消收藏框
 				setTimeout(()=>{
 					this.iscollecting = false;
 				},2000)
-				
+				console.log(this.id)
+				uni.request({
+					url:this.common.websiteUrl+"user_coll",
+					header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
+					method:"post",
+					data:{
+						'user_id':this.id,
+						'pid':this.goodsdata.product.id,
+						'type':1,
+						'coll_is':this.collectis
+					},
+					success: (res) => {}
+				});
 			},
 			offlineexperience(){
 				this.isofflineexperience =true;
@@ -587,26 +617,196 @@
 				// 关闭规格款式
 				this.ismodel =false
 			},
-			mchange(index){
-				this.ismactive = index;
+			mchange(index,index2){
+				for (var i = 0; i < this.goodsdata.main[index]['second'].length; i++) {
+					this.goodsdata.main[index]['second'][i].activs = ''
+				}
+				this.goodsdata.main[index]['second'][index2].activs = 'mactive'
+				this.goodsdata.main[index]['choice_name'] = this.goodsdata.main[index]['second'][index2].name
+				this.chose_list[index] = this.goodsdata.main[index]['second'][index2].id
+				this.name_list[index] = this.goodsdata.main[index]['second'][index2].name
+				this.idlist = this.chose_list.join(",")
+				this.namelist = this.name_list.join("-")
+				console.log(this.idlist)
+				if(this.chose_list.length == this.goodsdata.main.length){
+					uni.request({
+						url:this.common.websiteUrl+"product_index_para",
+						header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
+						method:"post",
+						data:{
+							'reals':this.idlist
+						},
+						success: (res) => {
+							this.prices = res.data.data.price
+							this.imgurls = res.data.data.img_url
+							console.log(res.data.data)
+						}
+					});
+				}
+				
+				
 			},
-			mtchange(index){
-				this.ismtactive = index;
+			valChange(e){
+				this.numval = e.value
+				console.log(this.numval)
 			},
 			joincar(){
 				// 加入购物车
-				this.ismodel=true
+				if(this.goodsdata.main.length > 0){
+					this.ismodel=true
+					this.joincars=true
+					this.nowjoincars=false
+				}else{
+					this.iscar = true
+					this.issuccessjoin =true
+					setTimeout(()=>{
+						this.issuccessjoin = false;
+					},2000)
+				}
+				console.log(this.goodsdata.product.id)
+				console.log(this.id)
+				uni.request({
+					url:this.common.websiteUrl+"user_cart_add",
+					header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
+					method:"post",
+					data:{
+						'user_id':this.id,
+						'pro_id':this.goodsdata.product.id,
+						'reals':this.idlist,
+						'pro_num':this.numval
+					},
+					success: (res) => {}
+				});
+			},
+			nowjoincar(){
+				// 立即下单
+				if(this.goodsdata.main.length > 0){
+					this.ismodel=true
+					this.nowjoincars=true
+					this.joincars=false
+				}else{
+					uni.navigateTo({
+						url:'../buildorder/buildorder'
+					})
+				}
 			},
 			ordernow(){
 				// 关闭规格款式,立即下单
-				this.ismodel =false;
-				this.iscar = true;
-				setTimeout(()=>{
-					this.issuccessjoin = true;
-				},100)
-				setTimeout(()=>{
-					this.issuccessjoin = false;
-				},2000)
+				console.log(this.goodsdata.product.id)
+				if(this.chose_list.length == this.goodsdata.main.length){
+					console.log(this.id)
+					console.log(this.goodsdata.product.id)
+					console.log(this.idlist)
+					console.log(this.numval)
+					if(this.joincars == true){
+						this.ismodel =false;
+						this.iscar = true;
+						setTimeout(()=>{
+							this.issuccessjoin = true;
+						},100)
+						setTimeout(()=>{
+							this.issuccessjoin = false;
+						},2000)
+						
+					}else if(this.nowjoincars == true){
+						uni.navigateTo({
+							url:'../buildorder/buildorder'
+						})
+					}else if(this.nowjoincars == false && this.joincars == false){
+						this.ismodel=false
+						this.iscar = true
+						this.issuccessjoin =true
+						setTimeout(()=>{
+							this.issuccessjoin = false;
+						},2000)
+					}
+					uni.request({
+						url:this.common.websiteUrl+"user_cart_add",
+						header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
+						method:"post",
+						data:{
+							'user_id':this.id,
+							'pro_id':this.goodsdata.product.id,
+							'reals':this.idlist,
+							'pro_num':this.numval
+						},
+						success: (res) => {
+							console.log('yanghang')
+						}
+					});
+				}else{
+					this.callback('请选择参数');
+				}
+				
+			},
+			getimgurl(image){
+				return"http://uniapp.ruange.com.cn/"+image
+			},
+			getgoodstock(id){
+				uni.request({
+					url:this.common.websiteUrl+"product_index_details",
+					header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
+					method:"post",
+					data:{
+						'id':id
+					},
+					success: (res) => {
+						console.log(res.data);
+						// 将请求到的数据存放放到data中
+						this.goodsdata = res.data.data;
+						this.imglist = res.data.data.product.pro_imglist.split("|")
+						for(var i = 0 ; i < res.data.data.comment.length ; i++){
+							this.goodsdata.comment[i].imglist = res.data.data.comment[i].imglist.split("|")
+							var nowdate = new Date(res.data.data.comment[i].time * 1000);
+							this.goodsdata.comment[i].time = nowdate.getFullYear()+'-'+nowdate.getMonth()+1+'-'+nowdate.getDate()
+						}
+						this.prices = res.data.data.product.price
+						this.imgurls = res.data.data.product.pro_thum_img
+						this.htmlNodes = res.data.data.product.content
+						var richtext= res.data.data.product.content;
+						const regex = new RegExp('<img', 'gi');
+						richtext= richtext.replace(regex, `<img style="max-width: 100%;"`);
+						
+						this.htmlNodes = richtext;
+						uni.getStorage({
+							key:'userinfo',
+							success:(res)=>{
+								console.log('获取到了')
+								console.log(res.data.id)
+								this.id = res.data.id
+								uni.request({
+									url:this.common.websiteUrl+"user_coll_see",
+									header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
+									method:"post",
+									data:{
+										'user_id':res.data.id,
+										'pid':this.goodsdata.product.id,
+										'type':1,
+									},
+									success: (res) => {
+										//this.collectis = res.data.code
+										if(res.data.code==1){
+											console.log('?')
+											this.iscollect = false
+										}else{
+											this.iscollect = true
+										}
+										console.log('设置')
+										// console.log('获取成功了')
+										// console.log(res.data)
+									}
+								});
+							},fail:()=>{
+								console.log(22222222)
+							}
+						})
+					}
+				});
+			},
+			brand(){
+				uni.navigateTo({
+					url:'../branddetail/branddetail?id='+this.goodsdata.shopbrand.id
+				})
 			}
 		},
 		components:{
