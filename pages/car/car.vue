@@ -5,59 +5,37 @@
 			<text>购物车</text>
 			<text style="color: white;">返回</text>
 		</view>
-		<view class="product-list">
+		<view class="product-list" v-for="(arr,index) in list" :key="index">
 			 <view class="uni-form-item uni-column" style="background-color: white;">
-				<checkbox-group name="checkbox1">
+				<checkbox-group name="checkbox1" >
 					<label>
-						<view>
-							<checkbox value="checkbox1" :checked="checked"/>
-							<text style="font-size: 30upx;font-weight: bold;margin-left: 20upx;">卧室</text>
+						<view @click="qx_space(index)">
+							<checkbox value="checkbox1" :checked="arr.checked"/>
+							<text style="font-size: 30upx;font-weight: bold;margin-left: 20upx;">{{arr.name}}</text>
 						</view>
 						<text style="font-size: 26upx;font-weight: bold;margin-left: 10upx;">￥2680.00</text>
 					</label>
 				</checkbox-group>
 			</view>
-			<view class="uni-form-item uni-column" style="margin-top: 20upx;background-color: white;">
-				<checkbox-group>
+			<view class="uni-form-item uni-column" style="margin-top: 20upx;background-color: white;" v-for="(items,indexs) in arr.list" :key="indexs">
+				<checkbox-group >
 					<label style="border-bottom: 1upx solid #F7F7F7;">
+						
 						<view style="display: flex;align-items: center;">
-							<checkbox value="checkbox1" :checked="checked"/>
+							<checkbox value="checkbox1" :checked="items.checked" @click="dx_son(index,indexs)"/>
 							<view class="info">
-								<text style="color: #626262;">知礼双人床</text>
-								<text>简约软包布艺靠背床</text>
-								<text style="margin-top: 40upx;">款式：原木色</text>
-								<text>规格：206.5cm长*209cm宽*103cm高</text>
+								<text style="color: #626262;">{{items.pro_brand_name}}</text>
+								<text style="margin-bottom: 40upx;">{{items.pro_name}}</text>
+								<text v-for="(item,index) in items.paralist" :key="index">{{item}}</text>
 							</view>
 						</view>
 						<view class="intro">
-							<image src="../../static/u677.png"></image>
+							<image :src="getimgurl(items.pro_img)"></image>
 						</view>
 					</label>
 					<view class="total">
-						<text style="font-size: 26upx;">单价<text style="color: #40CCCB;margin-left: 20upx;">￥2680.00</text></text>
-						<uni-number-box :min="0" :max="9"></uni-number-box>
-					</view>
-				</checkbox-group>
-			</view>
-			<view class="uni-form-item uni-column" style="margin-top: 20upx;background-color: white;">
-				<checkbox-group>
-					<label style="border-bottom: 1upx solid #F7F7F7;">
-						<view style="display: flex;align-items: center;">
-							<checkbox value="checkbox1" :checked="checked"/>
-							<view class="info">
-								<text style="color: #626262;">知礼双人床</text>
-								<text>简约软包布艺靠背床</text>
-								<text style="margin-top: 40upx;">款式：原木色</text>
-								<text>规格：206.5cm长*209cm宽*103cm高</text>
-							</view>
-						</view>
-						<view class="intro">
-							<image src="../../static/u677.png"></image>
-						</view>
-					</label>
-					<view class="total">
-						<text style="font-size: 26upx;">单价<text style="color: #40CCCB;margin-left: 20upx;">￥2680.00</text></text>
-						<uni-number-box :min="0" :max="9"></uni-number-box>
+						<text style="font-size: 26upx;">单价<text style="color: #40CCCB;margin-left: 20upx;">￥{{items.pro_price}}</text></text>
+						<uni-number-box :min="0" :max="9" v-model="items.pro_num"></uni-number-box>
 					</view>
 				</checkbox-group>
 			</view>
@@ -73,9 +51,9 @@
 			</view>
 			<view class="add">
 				<view class="uni-form-item uni-column">
-					<checkbox-group name="checkbox"  @change="selectedall()">
+					<checkbox-group name="checkbox" >
 						<label>
-							<view style="font-size: 30upx;color: #b4b4b4;">
+							<view style="font-size: 30upx;color: #b4b4b4;" @click="qx()">
 								<checkbox value="checkbox1" :checked="allchecked"/>
 								<text>全选</text>
 							</view>
@@ -305,20 +283,89 @@
 				isuse:1,
 				iscoupon:false,
 				id:'',
-				listdata:[]
+				list:[],
+				pronum:'',
+				proprice:'',
+				aount:''
 			}
 		},
 		onLoad(){
 			this.getdata()
 		},
 		methods: {
-			selectedall:function(){
-				 this.allchecked=!this.allchecked;
-				 if(this.allchecked){
-					 this.checked=true
-				 }else{
-					this.checked=false
-				 }
+			qx_space(key){
+				var status = false
+				if(this.list[key].checked == false){
+					status = true
+				}else{
+					status = false
+				}
+				this.list[key].checked = status
+				for (var i=0; i<this.list[key]['list'].length; i++) {
+					this.list[key]['list'][i].checked = status
+				}
+				setTimeout(()=>{
+					this.qx_jc()
+				},50)
+				console.log('看这里'+key)
+			},
+			dx_son(key,key1){
+				if(this.list[key]['list'][key1].checked == false){
+					this.list[key]['list'][key1].checked = true
+				}else{
+					this.list[key]['list'][key1].checked = false
+				}
+				var lens = 0
+				for (var i=0;i<this.list[key]['list'].length;i++) {
+					if(this.list[key]['list'][i].checked == true){
+						lens++
+					}
+					
+				}
+				if(this.list[key]['list'].length == lens){
+					this.list[key].checked = true
+				}else{
+					this.list[key].checked = false
+				}
+				setTimeout(()=>{
+					this.qx_jc()
+					
+				},50)
+				
+			},
+			qx_jc(){
+				var status = true
+				for (var i = 0; i < this.list.length; i++) {
+					var dat = this.list[i]
+					for (var is = 0; is < dat.list.length; is++) {
+						if(this.list[i]['list'][is].checked == false){
+							status = false;
+							break;
+						}
+					}
+				}
+				this.allchecked = status
+			},
+			
+			qx(){
+				var status = false;
+				if(this.allchecked == false){
+					status = true
+					this.allchecked = true
+				}else{
+					status = false;
+					this.allchecked = false
+				}
+				for (var i = 0; i < this.list.length; i++) {
+					var dat = this.list[i]
+					this.list[i].checked = status
+					for (var is = 0; is < dat.list.length; is++) {
+						this.list[i]['list'][is].checked = status
+					}
+				}
+			},
+			 getimgurl(image){
+			 	return"http://uniapp.ruange.com.cn/"+image
 			 },
 			 couponselect(index){
 				 this.isactive = index;
@@ -348,15 +395,20 @@
 				 				'user_id':res.data.id
 				 			},
 				 			success: (res) => {
-								// console.log(this.listdata)
-								Object.keys(res.data.data).forEach((item, index,key) => {
-								   console.log(item);
-								   console.log(index);
-								   this.list = key
-								   this.listdata = res.data.data[key]
-								   console.log(this.listdata);
-								   console.log(this.list);
-								})
+								console.log(res.data.data);
+								console.log(res);
+								this.list = res.data.data
+								for (var i = 0; i < this.list.length; i++) {
+									var dats= this.list[i]
+									for (var is = 0; is < dats.list.length; is++) {
+										this.pronum = dats.list[is].pro_num
+										this.proprice = dats.list[is].pro_price
+									}
+									this.aount += this.pronum*this.proprice
+								}
+								console.log(this.pronum)
+								console.log(this.proprice)
+								console.log(this.aount)
 				 			}
 				 		});
 				 	},fail:()=>{
