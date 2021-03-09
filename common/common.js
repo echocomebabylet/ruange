@@ -26,6 +26,7 @@ const getuserinfo = function(){
 const getimgurl = function(url){
 	return "http://uniapp.ruange.com.cn/"+url
 }
+
 export default {  
   websiteUrl,  
   now,  

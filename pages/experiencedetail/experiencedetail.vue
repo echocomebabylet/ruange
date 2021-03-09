@@ -217,6 +217,11 @@
 		
 		
 		methods: {
+			back(){
+				uni.navigateBack({
+				    delta: 1
+				});
+			},
 			nav(index){
 				this.isactive = index;
 				this.h1 = "po"+index;

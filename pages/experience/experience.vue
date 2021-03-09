@@ -20,9 +20,9 @@
 			<view style="font-size: 26upx;color:#b8b8b8;margin-left: 40upx;">真实体验过，才不会买错</view>
 			<!-- 推荐轮播 -->
 			<swiper previous-margin="80px" next-margin="80px" :autoplay="true" :circular="true" :current="currentIndex" @change="swierChange">
-				<swiper-item v-for="(item,i) in 5" :key="i">
+				<swiper-item v-for="(item,index) in home_recom" :key="item.id">
 					<view>
-						<image src="../../static/u1160.png"  class="slide-image" :class="currentIndex === i?'active':''"></image>
+						<image :src="common.getimgurl(item.coverimg)" @click="go_exper(item.id)" class="slide-image" :class="currentIndex === index?'active':''"></image>
 					</view>
 				</swiper-item>
 			</swiper>
@@ -357,7 +357,8 @@
 				lon:'',//经度
 				lat:'',//纬度
 				userinfo:[],//用户信息
-				home_num:0
+				home_num:0,//本地体验家数量
+				home_recom:[],//为你推荐6个体验家
 			}
 		},
 		onReady(){
@@ -370,6 +371,7 @@
 		},
 		onLoad() {
 			this.get_num()
+			this.get_recom()
 		},
 		
 		
@@ -391,10 +393,6 @@
 						resolve('suc')
 						// console.log(this.userinfo)
 				    },fail() {
-						console.log(1)
-						console.log(1)
-						console.log(1)
-						
 						resolve('err')
 						}
 					});	
@@ -440,7 +438,7 @@
 			async get_num(){
 				await this.get_local()
 				if(this.userinfo){
-					var data = {'city':1}
+					var data = {'city':this.userinfo.city}
 				}else{
 					var data = {'lon':this.lon,'lat':this.lat}
 				}
@@ -453,15 +451,42 @@
 						this.home_num = res.data.data
 					}
 				});
+				this.get_recom()
+			},
+			
+			
+			
+			get_recom(){
+				if(this.userinfo){
+					var data = {'city':this.userinfo.city}
+				}else{
+					var data = {'lon':this.lon,'lat':this.lat}
+				}
+				uni.request({
+					url:this.common.websiteUrl+"experhome_home_recom",
+					header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
+					method:"post",
+					data:data,
+					success: (res) => {
+						if(res.data.code==200){
+							this.home_recom = res.data.data
+						}else{
+							this.common.callback('暂无更多推荐')
+						}
+					}
+				});
 			},
 			
 			
 			
 			
-			
-			
-			
-			
+			go_exper(id){
+				uni.navigateTo({
+				    url: '../experiencedetail/experiencedetail?id='+id,
+					animationType: 'pop-in',
+					animationDuration: 200
+				});
+			},
 			
 			swierChange(e){
 				this.currentIndex = e.detail.current
