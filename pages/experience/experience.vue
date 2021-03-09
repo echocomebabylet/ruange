@@ -4,9 +4,16 @@
 			<view class="nav">
 				<view>
 					<text>体验</text>
-					<view style="align-items: center;">
-						<text style="font-weight: normal;font-size: 30upx;margin-left: 30upx;">长春</text>
-						<image src="../../static/u1149.png"></image>
+					<view style="align-items: center;margin-left: 20upx;">
+						<!-- <text style="font-weight: normal;font-size: 30upx;margin-left: 30upx;">长春</text>
+						<image src="../../static/u1149.png"></image> -->
+						<select style="border: none;outline: none;font-size: 30upx;padding-bottom: 10upx;">
+							<option>长春</option>
+							<option>长春</option>
+							<option>长春</option>
+							<option>长春</option>
+							<option>长春1</option>
+						</select>
 					</view>
 				</view>
 				<image src="../../static/u144.png"></image>
@@ -231,31 +238,31 @@
 		</scroll-view>
 		
 		<!-- 排序，位置，风格，筛序隐藏部分 -->
-		<view class="pop" v-if="istype">
-			<view class="car">
+		<view class="pop" v-if="istype" @click.stop="nothing">
+			<view class="car" @click.stop="cars">
 				<view>
 					<text>长春</text>
 					<image src="../../static/u1149.png" style="width: 20upx;height: 12upx;margin-left: 15upx;"></image>
 				</view>
-				<image src="../../static/u144.png"></image>
+				<image src="../../static/u144.png" @click="car"></image>
 			</view>
 			<view class="type-nav">
-				<view @click="typeselect(1)">
+				<view @click.stop="typeselect(1)">
 					<text :class="{'tactive':isTactive==1}">默认排序</text>
 					<image src="../../static/u1194.png" :style="{'display':isTactive==1?'none':'block'}"></image>
 					<image src="../../static/u1364.png" :style="{'display':isTactive==1?'block':'none'}"></image>
 				</view>
-				<view @click="typeselect(2)">
+				<view @click.stop="typeselect(2)">
 					<text :class="{'tactive':isTactive==2}">位置</text>
 					<image src="../../static/u1194.png" :style="{'display':isTactive==2?'none':'block'}"></image>
 					<image src="../../static/u1364.png" :style="{'display':isTactive==2?'block':'none'}"></image>
 				</view>
-				<view @click="typeselect(3)">
+				<view @click.stop="typeselect(3)">
 					<text :class="{'tactive':isTactive==3}">风格</text>
 					<image src="../../static/u1194.png" :style="{'display':isTactive==3?'none':'block'}"></image>
 					<image src="../../static/u1364.png" :style="{'display':isTactive==3?'block':'none'}"></image>
 				</view>
-				<view @click="typeselect(4)">
+				<view @click.stop="typeselect(4)">
 					<text :class="{'tactive':isTactive==4}">筛选</text>
 					<image src="../../static/u1198.png" style="width: 24upx;height: 26upx;" :style="{'display':isTactive==4?'none':'block'}"></image>
 					<image src="../../static/u1995.png" style="width: 24upx;height: 26upx;" :style="{'display':isTactive==4?'block':'none'}"></image>
@@ -263,17 +270,17 @@
 			</view>
 			<!-- 默认排序 -->
 			<view class="sort" v-if="isTactive==1">
-				<view @click="sortselect(1)">
+				<view @click.stop="sortselect(1)">
 					<image src="../../static/u1547.png" :style="{'display':isSactive==1?'none':'block'}"></image>
 					<image src="../../static/u1450.png" :style="{'display':isSactive==1?'block':'none'}"></image>
 					<text :class="{'sactive':isSactive==1}">默认排序</text>
 				</view>
-				<view @click="sortselect(2)">
+				<view @click.stop="sortselect(2)">
 					<image src="../../static/u1452.png" style="width: 20upx;margin-right: 24upx;height: 26upx;" :style="{'display':isSactive==2?'none':'block'}"></image>
 					<image src="../../static/u1549.png" style="width: 20upx;margin-right: 24upx;height: 26upx;" :style="{'display':isSactive==2?'block':'none'}"></image>
 					<text :class="{'sactive':isSactive==2}">距离最近</text>
 				</view>
-				<view @click="sortselect(3)">
+				<view @click.stop="sortselect(3)">
 					<image src="../../static/u1454.png" :style="{'display':isSactive==3?'none':'block'}"></image>
 					<image src="../../static/u1648.png" :style="{'display':isSactive==3?'block':'none'}"></image>
 					<text :class="{'sactive':isSactive==3}">人气最高</text>
@@ -282,55 +289,55 @@
 			<!-- 位置 -->
 			<view class="place" v-if="isTactive==2">
 				<scroll-view :scroll-y="true">
-					<text :class="{'pactive':isPactive==1}" @click="placeselect(1)">朝阳区</text>
-					<text :class="{'pactive':isPactive==2}" @click="placeselect(2)">南关区</text>
-					<text :class="{'pactive':isPactive==3}" @click="placeselect(3)">绿园区</text>
-					<text :class="{'pactive':isPactive==4}" @click="placeselect(4)">宽城区</text>
-					<text :class="{'pactive':isPactive==5}" @click="placeselect(5)">经济技术开发区</text>
-					<text :class="{'pactive':isPactive==6}" @click="placeselect(6)">高新区</text>
-					<text :class="{'pactive':isPactive==7}" @click="placeselect(7)">净月</text>
+					<text :class="{'pactive':isPactive==1}" @click.stop="placeselect(1)">朝阳区</text>
+					<text :class="{'pactive':isPactive==2}" @click.stop="placeselect(2)">南关区</text>
+					<text :class="{'pactive':isPactive==3}" @click.stop="placeselect(3)">绿园区</text>
+					<text :class="{'pactive':isPactive==4}" @click.stop="placeselect(4)">宽城区</text>
+					<text :class="{'pactive':isPactive==5}" @click.stop="placeselect(5)">经济技术开发区</text>
+					<text :class="{'pactive':isPactive==6}" @click.stop="placeselect(6)">高新区</text>
+					<text :class="{'pactive':isPactive==7}" @click.stop="placeselect(7)">净月</text>
 				</scroll-view>
 				<view>
 					<text style="width: 40%;color: #40cccb;">重置</text>
-					<text style="width: 60%;background-color: #40cccb;color: white;">确定</text>
+					<text style="width: 60%;background-color: #40cccb;color: white;" @click="sure">确定</text>
 				</view>
 			</view>
 			<!-- 风格 -->
 			<view class="manner" v-if="isTactive==3">
 				<scroll-view :scroll-y="true">
-					<text :class="{'mactive':isMactive==1}" @click="mannerselect(1)">北欧</text>
-					<text :class="{'mactive':isMactive==2}" @click="mannerselect(2)">现代</text>
-					<text :class="{'mactive':isMactive==3}" @click="mannerselect(3)">简美</text>
-					<text :class="{'mactive':isMactive==4}" @click="mannerselect(4)">新中式</text>
-					<text :class="{'mactive':isMactive==5}" @click="mannerselect(5)">日式</text>
-					<text :class="{'mactive':isMactive==6}" @click="mannerselect(6)">田园风</text>
-					<text :class="{'mactive':isMactive==7}" @click="mannerselect(7)">传统实木</text>
+					<text :class="{'mactive':isMactive==1}" @click.stop="mannerselect(1)">北欧</text>
+					<text :class="{'mactive':isMactive==2}" @click.stop="mannerselect(2)">现代</text>
+					<text :class="{'mactive':isMactive==3}" @click.stop="mannerselect(3)">简美</text>
+					<text :class="{'mactive':isMactive==4}" @click.stop="mannerselect(4)">新中式</text>
+					<text :class="{'mactive':isMactive==5}" @click.stop="mannerselect(5)">日式</text>
+					<text :class="{'mactive':isMactive==6}" @click.stop="mannerselect(6)">田园风</text>
+					<text :class="{'mactive':isMactive==7}" @click.stop="mannerselect(7)">传统实木</text>
 				</scroll-view>
 				<view>
 					<text style="width: 40%;color: #40cccb;">重置</text>
-					<text style="width: 60%;background-color: #40cccb;color: white;">确定</text>
+					<text style="width: 60%;background-color: #40cccb;color: white;" @click="sure">确定</text>
 				</view>
 			</view>
 			<!-- 筛选 -->
 			<view class="dress" v-if="isTactive==4">
 				<text class="ordering">可预约时间</text>
 				<view class="time">
-					<text :class="{'oactive':isOactive==1}" @click="orderselect(1)">工作日白天</text>
-					<text :class="{'oactive':isOactive==2}" @click="orderselect(2)">工作日晚上</text>
-					<text :class="{'oactive':isOactive==3}" @click="orderselect(3)">周末白天</text>
-					<text :class="{'oactive':isOactive==4}" @click="orderselect(4)">周末晚上</text>
+					<text :class="{'oactive':isOactive==1}" @click.stop="orderselect(1)">工作日白天</text>
+					<text :class="{'oactive':isOactive==2}" @click.stop="orderselect(2)">工作日晚上</text>
+					<text :class="{'oactive':isOactive==3}" @click.stop="orderselect(3)">周末白天</text>
+					<text :class="{'oactive':isOactive==4}" @click.stop="orderselect(4)">周末晚上</text>
 				</view>
 				<text class="ordering">户型面积</text>
 				<view class="time">
-					<text :class="{'nactive':isNactive==1}" @click="numselect(1)">60m²以下</text>
-					<text :class="{'nactive':isNactive==2}" @click="numselect(2)">60m²-90m²</text>
-					<text :class="{'nactive':isNactive==3}" @click="numselect(3)">90m²-120m²</text>
-					<text :class="{'nactive':isNactive==4}" @click="numselect(4)">120m²-150m²</text>					
-					<text :class="{'nactive':isNactive==5}" @click="numselect(5)">150m²以上</text>
+					<text :class="{'nactive':isNactive==1}" @click.stop="numselect(1)">60m²以下</text>
+					<text :class="{'nactive':isNactive==2}" @click.stop="numselect(2)">60m²-90m²</text>
+					<text :class="{'nactive':isNactive==3}" @click.stop="numselect(3)">90m²-120m²</text>
+					<text :class="{'nactive':isNactive==4}" @click.stop="numselect(4)">120m²-150m²</text>					
+					<text :class="{'nactive':isNactive==5}" @click.stop="numselect(5)">150m²以上</text>
 				</view>
 				<view class="sure">
 					<text style="width: 40%;color: #40cccb;">重置</text>
-					<text style="width: 60%;background-color: #40cccb;color: white;">确定</text>
+					<text style="width: 60%;background-color: #40cccb;color: white;" @click="sure">确定</text>
 				</view>
 			</view>
 		</view>
@@ -377,6 +384,9 @@
 		
 		
 		methods: {
+			nothing(){
+				this.istype = false
+			},
 			// 判断有没有权限好做事情
 			async requestAndroidPermission(permisionID) {
 			    var result = await permision.requestAndroidPermission(permisionID)
@@ -399,9 +409,15 @@
 				})
 			},
 			
+			car(){
+				uni.navigateTo({
+					url:'../car/car'
+				})
+			},
 			
-			
-			
+			sure(){
+				this.istype = false
+			},
 			
 		    async get_local(){
 				var aa = await this.get_userinfo()
