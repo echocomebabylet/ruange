@@ -10,18 +10,17 @@
 		<view class="search">
 			<view>
 				<image src="../../static/u293.png" style="width: 42upx;height: 42upx;margin-right: 20upx;"></image>
-				<input placeholder="搜索户型" style="width: 90%;font-size: 24upx;"/>
-				<image src="../../static/u323.png" style="width: 30upx;height: 30upx;"></image>
+				<input placeholder="搜索户型" style="width: 90%;font-size: 24upx;" :value="content" @input="searchresults" @confirm="searchresults"/>
+				<image src="../../static/u323.png" style="width: 30upx;height: 30upx;" @click="close"></image>
 			</view>
 		</view>
-		<view class="list" v-for="(item,index) in 5" :key="index" @click="myhousetypedetail">
-			<image src="../../static/u3242.png"></image>
+		<view class="list" v-for="(item,index) in datalist" :key="index" @click.stop="myhousetypedetail(index)">
+			<image :src="getimgurl(item.img_url)"></image>
 			<view style="display: flex;flex-direction: column;">
-				<text style="font-size: 32upx;margin-bottom: 20upx;">恒大嘉园107方</text>
-				<text style="margin-bottom: 10upx;">恒大嘉园|107方|107方户型</text>
-				<text>两室两厅</text>
-				<view v-if="isactive==false" @click="select">关联户型</view>
-				<view class="active" v-if="isactive==true" @click="select">已关联户型</view>
+				<text style="font-size: 32upx;margin-bottom: 20upx;">{{item.name}}{{item.measarea}}方</text>
+				<text style="margin-bottom: 10upx;">{{item.name}}|{{item.measarea}}方|{{item.measarea}}方户型</text>
+				<text>{{item.pattern}}</text>
+				<view :class="item.suibian==true?'active':''" @click.stop="select(index)">{{item.suibian==false?'关联户型':'已关联户型'}}</view>
 			</view>
 		</view>
 	</view>
@@ -31,23 +30,127 @@
 	export default {
 		data() {
 			return {
-				isactive:false
+				isactive:-1,
+				result:'',
+				page:1,
+				pagesize:10,
+				datalist:[],
+				id:'',
+				cont:1,
+				content:''
 			}
 		},
+		onLoad(options){
+			this.result = options.searchresult
+			this.getdata(options.searchresult)
+		},
+		onReachBottom() {
+			this.page = this.page+=1
+			console.log(this.page)
+			this.getdata()
+			this.cont=1
+		},
 		methods: {
-			select(){
-				this.isactive = !this.isactive
+			getimgurl(image){
+				return"http://uniapp.ruange.com.cn/"+image
+			},
+			
+			select(index){
+				console.log(this.id)
+				this.datalist[index].suibian = !this.datalist[index].suibian
+				if(this.datalist[index].suibian==true){
+					uni.request({
+						url:this.common.websiteUrl+"house_index_add",
+						header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
+						method:"post",
+						data:{
+							'user_id':this.id,
+							'hometype':this.datalist[index].id
+						},
+						success: (res) => {
+							console.log('关联成功')
+						}
+					});	
+				}else{
+					uni.request({
+						url:this.common.websiteUrl+"house_index_delhome",
+						header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
+						method:"post",
+						data:{
+							'user_id':this.id,
+							'hometype':this.datalist[index].id
+						},
+						success: (res) => {
+							console.log('关联取消')
+						}
+					});	
+				}
+				
+				
+			},
+			searchresults(e){
+				this.page = 1
+				this.getdata(e.detail.value)
+				console.log(e.detail.value)
+				this.cont=2
+				this.content = e.detail.value
+			},
+			close(){
+				this.content=''
+				this.getdata()
 			},
 			back(){
 				uni.navigateTo({
 				    url: '../myhousetypesearch/myhousetypesearch'
 				});
 			},
-			myhousetypedetail(){
+			myhousetypedetail(index){
 				uni.navigateTo({
-				    url: '../myhousetypedetail/myhousetypedetail'
+				    url: '../myhousetypedetail/myhousetypedetail?typeid='+this.datalist[index].id
 				});
-			}
+			},
+			getdata(data){
+				uni.getStorage({
+					key:'userinfo',
+					success:(res)=>{
+						console.log('进来了')
+						this.id=res.data.id
+						uni.request({
+							url:this.common.websiteUrl+"house_index_index",
+							header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
+							method:"post",
+							data:{
+								'search_value':data,
+								'page':this.page,
+								'pagesize':this.pagesize,
+								'user_id':this.id
+							},
+							success: (res) => {
+								if(res.data.code==200){
+									// console.log(res.data.data)
+									this.datalist = this.datalist.concat(res.data.data)
+									console.log(this.datalist)
+								}else{
+									if(this.cont==1){
+										this.callback('暂无更多户型')
+									}else{
+										this.callback('暂无更多户型')
+										this.datalist=[]	
+									}
+								}
+							}
+						});
+						
+					}
+				})
+				
+			},
+			callback(value){
+				uni.showToast({
+					title:value,
+					icon:'none'
+				})
+			},
 		}
 	}
 </script>

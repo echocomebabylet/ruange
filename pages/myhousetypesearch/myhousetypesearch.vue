@@ -9,7 +9,7 @@
 		</view>
 		<view class="search">
 			<image src="../../static/u293.png"></image>
-			<input placeholder="请输入您要搜索的内容" />
+			<input placeholder="请输入您要搜索的内容" @confirm="searchresult" :value="result"/>
 			<text>取消</text>
 		</view>
 		<view class="both">
@@ -36,8 +36,11 @@
 	export default {
 		data() {
 			return {
-				
+				result:''
 			}
+		},
+		onLoad(){
+			console.log(this.contlist)
 		},
 		methods: {
 			back(){
@@ -48,6 +51,13 @@
 			myhousetyperesult(){
 				uni.navigateTo({
 				    url: '../myhousetyperesult/myhousetyperesult'
+				});
+			},
+			searchresult(e){
+				this.result = e.detail.value
+				this.contlist = this.contlist.concat(this.result)
+				uni.navigateTo({
+				    url: '../myhousetyperesult/myhousetyperesult?searchresult='+this.result
 				});
 			}
 		}

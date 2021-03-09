@@ -11,12 +11,12 @@
 			<image src="../../static/u284.png"></image>
 			<text style="text-align: center;width: 100%;display: block;">您还没有关联的户型哦！</text>
 		</view>
-		<view class="list" v-if="isdisable==2" v-for="(item,index) in 5" :key="index" @longpress="logoTime">
-			<image src="../../static/u3242.png"></image>
+		<view class="list" v-if="isdisable==2" v-for="(item,index) in datalist" :key="index" @longpress="logoTime">
+			<image :src="getimgurl(item.img_url)"></image>
 			<view style="display: flex;flex-direction: column;">
-				<text style="font-size: 32upx;margin-bottom: 20upx;">恒大嘉园107方</text>
-				<text style="margin-bottom: 10upx;">恒大嘉园|107方|107方户型</text>
-				<text>两室两厅</text>
+				<text style="font-size: 32upx;margin-bottom: 20upx;">{{item.name}}{{item.measarea}}方</text>
+				<text style="margin-bottom: 10upx;">{{item.name}}|{{item.measarea}}方|{{item.measarea}}方户型</text>
+				<text>{{item.pattern}}</text>
 				<view>默认户型</view>
 			</view>
 			<!-- 删除 -->
@@ -32,11 +32,26 @@
 	export default {
 		data() {
 			return {
-				isdisable:2,
-				isdel:false
+				isdisable:1,
+				isdel:false,
+				id:'',
+				page:1,
+				pagesize:10,
+				datalist:[]
 			}
 		},
+		onLoad(){
+			this.getdata()
+		},
+		onReachBottom() {
+			this.page = this.page+=1
+			console.log(this.page)
+			this.getdata()
+		},
 		methods: {
+			getimgurl(image){
+				return"http://uniapp.ruange.com.cn/"+image
+			},
 			logoTime(){
 				this.isdel = true
 			},
@@ -49,7 +64,44 @@
 				uni.navigateTo({
 				    url: '../myhousetypesearch/myhousetypesearch'
 				});
-			}
+			},
+			callback(value){
+				uni.showToast({
+					title:value,
+					icon:'none'
+				})
+			},
+			getdata(){
+				uni.getStorage({
+					key:'userinfo',
+					success:(res)=>{
+						console.log('进来了')
+						this.id=res.data.id
+						uni.request({
+							url:this.common.websiteUrl+"house_index_myhometype",
+							header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
+							method:"post",
+							data:{
+								'page':this.page,
+								'pagesize':this.pagesize,
+								'user_id':this.id
+							},
+							success: (res) => {
+								if(res.data.code==200){
+									// console.log(res.data.data)
+									this.datalist = this.datalist.concat(res.data.data)
+									console.log(this.datalist)
+									this.isdisable=2
+								}else{
+									this.callback('暂无更多户型')
+								}
+							}
+						});
+						
+					}
+				})
+				
+			},
 		}
 	}
 </script>
