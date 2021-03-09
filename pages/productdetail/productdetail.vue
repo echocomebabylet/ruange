@@ -9,11 +9,11 @@
 				<text :class="{'active':isactive==2}" @click="changnav(2)">评论</text>
 				<text style="margin-right: 0;" :class="{'active':isactive==3}" @click="changnav(3)">详情</text>
 			</view>
-			<view>
+			<view @click="car">
 				<image src="../../static/u144.png" v-if="iscar==false"></image>
 				<view v-if="iscar==true" style="position: relative;">
 					<image src="../../static/u328.png"></image>
-					<text class="selectnum">1</text>
+					<text class="selectnum">{{len}}</text>
 				</view>
 			</view>
 		</view>
@@ -461,7 +461,9 @@
 				name_list:[],
 				collectis:0,
 				id:'',
-				numval:1
+				numval:1,
+				list:[],
+				len:0
 			}
 		},
 		onReady(){
@@ -489,6 +491,12 @@
 				uni.switchTab({
 				    url:'/'+pages
 				});
+			},
+			car(){
+				uni.navigateTo({
+					url:'../car/car'
+				})
+				console.log(1)
 			},
 			coupon(){
 				// 优惠券显示
@@ -528,6 +536,27 @@
 				setTimeout(()=>{
 					this.isactive=3
 				},10)
+			},
+			getdata(){
+				uni.request({
+					url:this.common.websiteUrl+"user_cart_index",
+					header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
+					method:"post",
+					data:{
+						'user_id':this.id
+					},
+					success: (res) => {
+						console.log(res.data.data);
+						console.log(res);
+						this.list = res.data.data
+						for (var i =0 ;i < this.list.length ; i++) {
+							var dat = this.list[i]
+							this.len += dat.list.length
+						}
+						console.log(this.len)
+										
+					}
+				});
 			},
 			getNodesInfo(){
 				const query = uni.createSelectorQuery().in(this);
@@ -662,21 +691,24 @@
 					setTimeout(()=>{
 						this.issuccessjoin = false;
 					},2000)
+					uni.request({
+						url:this.common.websiteUrl+"user_cart_add",
+						header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
+						method:"post",
+						data:{
+							'user_id':this.id,
+							'pro_id':this.goodsdata.product.id,
+							'reals':this.idlist,
+							'pro_num':this.numval
+						},
+						success: (res) => {
+						}
+					});
+					this.getdata()
 				}
 				console.log(this.goodsdata.product.id)
 				console.log(this.id)
-				uni.request({
-					url:this.common.websiteUrl+"user_cart_add",
-					header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
-					method:"post",
-					data:{
-						'user_id':this.id,
-						'pro_id':this.goodsdata.product.id,
-						'reals':this.idlist,
-						'pro_num':this.numval
-					},
-					success: (res) => {}
-				});
+				
 			},
 			nowjoincar(){
 				// 立即下单
@@ -720,6 +752,7 @@
 							this.issuccessjoin = false;
 						},2000)
 					}
+					this.getdata()
 					uni.request({
 						url:this.common.websiteUrl+"user_cart_add",
 						header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
@@ -754,12 +787,16 @@
 						console.log(res.data);
 						// 将请求到的数据存放放到data中
 						this.goodsdata = res.data.data;
+						// return
 						this.imglist = res.data.data.product.pro_imglist.split("|")
-						for(var i = 0 ; i < res.data.data.comment.length ; i++){
-							this.goodsdata.comment[i].imglist = res.data.data.comment[i].imglist.split("|")
-							var nowdate = new Date(res.data.data.comment[i].time * 1000);
-							this.goodsdata.comment[i].time = nowdate.getFullYear()+'-'+nowdate.getMonth()+1+'-'+nowdate.getDate()
+						if(res.data.data.comment){
+							for(var i = 0 ; i < res.data.data.comment.length ; i++){
+								this.goodsdata.comment[i].imglist = res.data.data.comment[i].imglist.split("|")
+								var nowdate = new Date(res.data.data.comment[i].time * 1000);
+								this.goodsdata.comment[i].time = nowdate.getFullYear()+'-'+nowdate.getMonth()+1+'-'+nowdate.getDate()
+							}
 						}
+						
 						this.prices = res.data.data.product.price
 						this.imgurls = res.data.data.product.pro_thum_img
 						this.htmlNodes = res.data.data.product.content

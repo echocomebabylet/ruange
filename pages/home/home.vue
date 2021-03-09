@@ -8,7 +8,7 @@
 					<text :class="{'active':isActive==1}" @click="select(1)">推荐</text>
 					<text :class="{'active':isActive==2}" @click="select(2)">体验家</text>
 				</view>
-				<image src="../../static/u144.png" style="height: 48upx;width: 48upx;"></image>
+				<image src="../../static/u144.png" style="height: 48upx;width: 48upx;" @click="car"></image>
 			</view>
 			<view class="search">
 				<text></text>
@@ -148,6 +148,12 @@
 						this.scenedata = res.data.data;
 					}
 				});
+			},
+			car(){
+				uni.navigateTo({
+					url:'../car/car'
+				})
+				console.log(1)
 			}
 		}
 	}

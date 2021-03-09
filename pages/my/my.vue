@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view>0
 		<view class="nav">
 			<image src="../../static/u2179.png"></image>
 			<text :class="{'active':isactive}">我的</text>

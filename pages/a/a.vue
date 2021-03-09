@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<u-swipe-action :show="item.show" :index="index" 
+		<u-swipe-action :show="item.show" :index="index+'&'" 
 			v-for="(item, index) in list" :key="item.id" 
 			@click="click" @open="open"
 			:options="options"
@@ -56,6 +56,7 @@
 		},
 		methods: {
 			click(index, index1) {
+				console.log({index,index1})
 				// if(index1 == 1) {
 					this.list.splice(index, 1);
 					this.$u.toast(`已删除`);

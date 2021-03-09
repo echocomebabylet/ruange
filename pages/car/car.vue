@@ -1,7 +1,7 @@
 <template>
 	<view>
 		<view class="nav">
-			<image src="../../static/u18.png"></image>
+			<image src="../../static/u18.png" @click="back"></image>
 			<text>购物车</text>
 			<text style="color: white;">返回</text>
 		</view>
@@ -13,31 +13,37 @@
 							<checkbox value="checkbox1" :checked="arr.checked"/>
 							<text style="font-size: 30upx;font-weight: bold;margin-left: 20upx;">{{arr.name}}</text>
 						</view>
-						<text style="font-size: 26upx;font-weight: bold;margin-left: 10upx;">￥2680.00</text>
+						<text style="font-size: 26upx;font-weight: bold;margin-left: 10upx;">￥{{arr.price}}</text>
 					</label>
 				</checkbox-group>
 			</view>
-			<view class="uni-form-item uni-column" style="margin-top: 20upx;background-color: white;" v-for="(items,indexs) in arr.list" :key="indexs">
-				<checkbox-group >
-					<label style="border-bottom: 1upx solid #F7F7F7;">
-						
-						<view style="display: flex;align-items: center;">
-							<checkbox value="checkbox1" :checked="items.checked" @click="dx_son(index,indexs)"/>
-							<view class="info">
-								<text style="color: #626262;">{{items.pro_brand_name}}</text>
-								<text style="margin-bottom: 40upx;">{{items.pro_name}}</text>
-								<text v-for="(item,index) in items.paralist" :key="index">{{item}}</text>
+			<view class="uni-form-item uni-column" style="margin-top: 20upx;background-color: white;">
+				<u-swipe-action :show="items.show" :index="index+'&'+indexs"
+					v-for="(items, indexs) in arr.list" :key="items.id" 
+					@click="click" @open="open(index+'&'+indexs)"
+					:options="options"
+				>
+					<checkbox-group >
+						<label style="border-bottom: 1upx solid #F7F7F7;">
+							
+							<view style="display: flex;align-items: center;">
+								<checkbox value="checkbox1" :checked="items.checked" @click="dx_son(index,indexs)"/>
+								<view class="info">
+									<text style="color: #626262;">{{items.pro_brand_name}}</text>
+									<text style="margin-bottom: 40upx;">{{items.pro_name}}</text>
+									<text v-for="(item,index) in items.paralist" :key="index">{{item}}</text>
+								</view>
 							</view>
+							<view class="intro">
+								<image :src="getimgurl(items.pro_img)"></image>
+							</view>
+						</label>
+						<view class="total">
+							<text style="font-size: 26upx;">单价<text style="color: #40CCCB;margin-left: 20upx;">￥{{items.pro_price}}</text></text>
+							<u-number-box :min="0" :max="111119"  v-model="items.pro_num" @change="jiajian"></u-number-box>
 						</view>
-						<view class="intro">
-							<image :src="getimgurl(items.pro_img)"></image>
-						</view>
-					</label>
-					<view class="total">
-						<text style="font-size: 26upx;">单价<text style="color: #40CCCB;margin-left: 20upx;">￥{{items.pro_price}}</text></text>
-						<uni-number-box :min="0" :max="9" v-model="items.pro_num"></uni-number-box>
-					</view>
-				</checkbox-group>
+					</checkbox-group>
+				</u-swipe-action>
 			</view>
 		</view>
 		
@@ -63,9 +69,9 @@
 				<view style="display: flex;">
 					<view class="money">
 						<text>合计</text>
-						<text style="font-size: 25upx;color: #40CCCB;margin-top: 10upx;">￥2860.00</text>
+						<text style="font-size: 25upx;color: #40CCCB;margin-top: 10upx;">￥{{aount}}</text>
 					</view>
-					<view class="amount">领券结算(4)</view>
+					<view class="amount">领券结算({{lennums}})</view>
 				</view>
 			</view>
 		</view>
@@ -284,9 +290,23 @@
 				iscoupon:false,
 				id:'',
 				list:[],
-				pronum:'',
-				proprice:'',
-				aount:''
+				pronum:0,
+				proprice:0,
+				aount:0,
+				lennums:0,
+				disabled: false,
+				btnWidth: 180,
+				show: true,
+				listdata:[],
+				options: [
+				
+					{
+						text: '删除',
+						style: {
+							backgroundColor: '#dd524d'
+						}
+					}
+				]
 			}
 		},
 		onLoad(){
@@ -294,6 +314,54 @@
 			this.getdata()
 		},
 		methods: {
+			click(index,indexs) {
+				console.log({index,indexs})
+				// list
+				const arrIndex = index.split('&')
+				console.log({list:this.list})
+				// this.list[arrIndex[0]]是list分组的数据  客厅 卧室
+				console.log(this.list[arrIndex[0]].list[arrIndex[1]])
+				this.list[arrIndex[0]].list.splice(arrIndex[1], 1);
+				this.$u.toast(`已删除`);
+				uni.request({
+					url:this.common.websiteUrl+"user_cart_del",
+					header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
+					method:"post",
+					data:{
+						'cart_id':this.list[arrIndex[0]].list[arrIndex[1]].id
+					},
+					success: (res) => {
+						console.log(111111)
+						uni.redirectTo({
+						    url: '../car/car'
+						});
+					}
+				});
+			},
+			open(index) {
+				const arrIndex = index.split('&')
+				console.log({list:this.list})
+				console.log(index)
+				console.log(arrIndex)
+				// this.list[arrIndex[0]]是list分组的数据  客厅 卧室
+				console.log(this.list[arrIndex[0]].list[arrIndex[1]])
+				console.log(this.list[arrIndex[0]].list)
+				this.list[arrIndex[0]].list[arrIndex[1]].show = true;
+				var a = this.list[arrIndex[0]].list
+				a.map((val, idx) => {
+					if(arrIndex[1] != idx) this.list[arrIndex[0]].list[idx].show = false;
+				});
+			},
+			back(){
+				uni.switchTab({
+					url:'/pages/home/home'
+				})
+			},
+			jiajian(e){
+				setTimeout(()=>{
+					this.price_js()
+				},50)
+			},
 			qx_space(key){
 				var status = false
 				if(this.list[key].checked == false){
@@ -305,10 +373,28 @@
 				for (var i=0; i<this.list[key]['list'].length; i++) {
 					this.list[key]['list'][i].checked = status
 				}
+				
 				setTimeout(()=>{
 					this.qx_jc()
+					this.price_js()
 				},50)
 				console.log('看这里'+key)
+			},
+			price_js(){
+				var price = 0
+				for (var i = 0; i < this.list.length; i++) {
+					var space_price = 0
+					var dat = this.list[i]
+					for (var is = 0; is < dat.list.length; is++) {
+						var dats = dat.list[is]
+						if(dats.checked == true){
+							space_price += dats.pro_price*dats.pro_num
+							price += dats.pro_price*dats.pro_num
+						}
+					}
+					this.list[i].price = space_price
+				}
+				this.aount = price
 			},
 			dx_son(key,key1){
 				if(this.list[key]['list'][key1].checked == false){
@@ -330,21 +416,25 @@
 				}
 				setTimeout(()=>{
 					this.qx_jc()
-					
+					this.price_js()
 				},50)
 				
 			},
 			qx_jc(){
 				var status = true
+				var lennum = 0
 				for (var i = 0; i < this.list.length; i++) {
 					var dat = this.list[i]
 					for (var is = 0; is < dat.list.length; is++) {
 						if(this.list[i]['list'][is].checked == false){
 							status = false;
-							break;
+						}else{
+							lennum++
 						}
 					}
+					
 				}
+				this.lennums = lennum
 				this.allchecked = status
 			},
 			
@@ -364,6 +454,10 @@
 						this.list[i]['list'][is].checked = status
 					}
 				}
+				setTimeout(()=>{
+					
+					this.price_js()
+				},50)
 			},
 			 getimgurl(image){
 			 	return"http://uniapp.ruange.com.cn/"+image
@@ -399,17 +493,12 @@
 								console.log(res.data.data);
 								console.log(res);
 								this.list = res.data.data
-								for (var i = 0; i < this.list.length; i++) {
-									var dats= this.list[i]
-									for (var is = 0; is < dats.list.length; is++) {
-										this.pronum = dats.list[is].pro_num
-										this.proprice = dats.list[is].pro_price
-									}
-									this.aount += this.pronum*this.proprice
-								}
-								console.log(this.pronum)
-								console.log(this.proprice)
-								console.log(this.aount)
+								Object.keys(res.data.data).forEach((key) => {
+								   console.log(key);
+								   console.log(res.data.data[key].list);
+								   console.log(res.data.data[key]);
+								   this.listdata = res.data.data[key].list
+								})
 				 			}
 				 		});
 				 	},fail:()=>{
