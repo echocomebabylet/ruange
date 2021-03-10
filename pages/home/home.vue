@@ -29,7 +29,7 @@
 			</swiper-item>
 			<swiper-item>
 				<scroll-view :scroll-y="true" style="height: 100%;">
-					<experiencer></experiencer>
+					<experiencer :experienceinfo="experiencedata" :homeinfo="homenum"></experiencer>
 				</scroll-view>
 			</swiper-item>
 		</swiper>				
@@ -46,12 +46,17 @@
 			return {
 				isActive:1,
 				i:1,
+				userinfo:[],
 				data:[],
 				homedata:[],
 				goodsdata:[],
 				productdata:[],
 				scenedata:[],
-				pages:[]
+				experiencedata:[],
+				homenum:[],
+				pages:[],
+				lon:'',
+				lat:''
 			}
 		},
 		components:{
@@ -65,6 +70,7 @@
 			this.goodsData();
 			this.productData();
 			this.sceneData();
+			this.experienceData();
 			// this.pages = getCurrentPages()
 			// console.log(this.pages)
 			// var urls = this.pages[this.pages.length-1].__page__.route
@@ -96,7 +102,7 @@
 			homeData(){
 				console.log('执行请求')
 				uni.request({
-					url:this.common.websiteUrl+"Base_get_space",
+					url:this.common.websiteUrl+"base_get_space",
 					header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
 					method:"post",
 					data:{},
@@ -110,7 +116,7 @@
 			goodsData(){
 				console.log('执行请求')
 				uni.request({
-					url:this.common.websiteUrl+"Product_index_spot",
+					url:this.common.websiteUrl+"product_index_spot",
 					header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
 					method:"post",
 					data:{},
@@ -124,7 +130,7 @@
 			productData(){
 				console.log('执行请求')
 				uni.request({
-					url:this.common.websiteUrl+"Product_index_recommend",
+					url:this.common.websiteUrl+"product_index_recommend",
 					header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
 					method:"post",
 					data:{},
@@ -138,7 +144,7 @@
 			sceneData(){
 				console.log('执行请求')
 				uni.request({
-					url:this.common.websiteUrl+"Product_index_spacepro",
+					url:this.common.websiteUrl+"product_index_spacepro",
 					header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
 					method:"post",
 					data:{},
@@ -146,6 +152,85 @@
 						console.log(res.data);
 						// 将请求到的数据存放放到data中
 						this.scenedata = res.data.data;
+					}
+				});
+			},
+			async requestAndroidPermission(permisionID) {
+			    var result = await permision.requestAndroidPermission(permisionID)
+				return result
+			},
+			get_userinfo(){
+				return new Promise((resolve,reject)=>{
+					uni.getStorage({
+				    key: 'userinfo',
+				    success:(res)=>{
+						console.log('获取到了')
+						this.userinfo = res.data
+						console.log(this.userinfo)
+						resolve('suc')
+						// console.log(this.userinfo)
+				    },fail() {
+						resolve('err')
+						}
+					});	
+				})
+			},
+			
+			async get_local(){
+				var aa = await this.get_userinfo()
+				if(this.userinfo && this.userinfo.city>0){
+					// 满足条件
+				}else{
+					var is = this.requestAndroidPermission('android.permission.ACCESS_FINE_LOCATION')
+					if(is==-1){
+						// 完犊子了，永久不让用位置信息了
+						return this.common.callback('您已禁止获取位置信息,部分功能可能无法展示哦')
+					}
+					if(is==1){
+						// 获取到了
+						uni.getLocation({
+							type: 'wgs84',
+							geocode:true,//设置该参数为true可直接获取经纬度及城市信息
+							success: function (res) {
+								this.lon = res.longitude
+								this.lat = res.latitude
+								console.log('已设置经纬度'+this.lon+','+this.lat)
+							},
+							fail: function () {
+								this.common.callback('获取地址失败，将导致部分功能不可用')
+							}
+						});
+					}else if(is==0){
+						// 用户不允许，调用到他允许为止
+						this.requestAndroidPermission('android.permission.ACCESS_FINE_LOCATION')
+					}
+					
+				}	
+			},
+			
+			async experienceData(){
+				await this.get_local()
+				if(this.userinfo){
+					var data = {'city':this.userinfo.city}
+				}else{
+					var data = {'lon':this.lon,'lat':this.lat}
+				}
+				uni.request({
+					url:this.common.websiteUrl+"experhome_home_index",
+					header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
+					method:"post",
+					data:data,
+					success: (res) => {
+						this.experiencedata = res.data.data
+					}
+				});
+				uni.request({
+					url:this.common.websiteUrl+"experhome_home_num",
+					header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
+					method:"post",
+					data:data,
+					success: (res) => {
+						this.homenum = res.data.data
 					}
 				});
 			},
