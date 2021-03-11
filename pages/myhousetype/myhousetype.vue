@@ -17,7 +17,7 @@
 				<text style="font-size: 32upx;margin-bottom: 20upx;">{{item.name}}{{item.measarea}}方</text>
 				<text style="margin-bottom: 10upx;">{{item.name}}|{{item.measarea}}方|{{item.measarea}}方户型</text>
 				<text>{{item.pattern}}</text>
-				<view>默认户型</view>
+				<view @click.stop="def(index)" :class="item.status==1?'defactive':''">默认户型</view>
 			</view>
 			<!-- 删除 -->
 			<view class="del" v-if="isdel">
@@ -51,6 +51,23 @@
 		methods: {
 			getimgurl(image){
 				return"http://uniapp.ruange.com.cn/"+image
+			},
+			def(index){
+				this.datalist[index].status=1
+				uni.redirectTo({
+					url:'../myhousetype/myhousetype'
+				})
+				uni.request({
+					url:this.common.websiteUrl+"house_index_setdefhome",
+					header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
+					method:"post",
+					data:{
+						'id':this.datalist[index].id,
+						'user_id':this.id
+					},
+					success: (res) => {
+					}
+				});
 			},
 			logoTime(){
 				this.isdel = true
@@ -167,11 +184,16 @@ page{
 	line-height: 50upx;
 	text-align: center;
 	font-size: 22upx;
-	color: white;
-	background-color: #40CCCB;
+	border: 1px solid #A0A0A0;
+	color: #A0A0A0;
 	border-radius: 5upx;
 	margin-top: 40upx;
 	align-self: flex-end;
+}
+.list .defactive{
+	background-color: #40CCCB;
+	color: white;
+	border: none;
 }
 /* 删除 */
 .del{
