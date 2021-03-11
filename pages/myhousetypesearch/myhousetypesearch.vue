@@ -40,7 +40,6 @@
 			}
 		},
 		onLoad(){
-			console.log(this.contlist)
 		},
 		methods: {
 			back(){
@@ -55,7 +54,6 @@
 			},
 			searchresult(e){
 				this.result = e.detail.value
-				this.contlist = this.contlist.concat(this.result)
 				uni.navigateTo({
 				    url: '../myhousetyperesult/myhousetyperesult?searchresult='+this.result
 				});
