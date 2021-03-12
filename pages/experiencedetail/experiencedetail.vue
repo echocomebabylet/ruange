@@ -31,7 +31,7 @@
 		<scroll-view :scroll-y="sh" :scroll-into-view="h1" :style="{height:h3-h2-h+'px'}" :scroll-with-animation="true" @scroll="scroll" @scrolltolower="scrolltolower">
 			<!-- 空间信息 -->
 			<view style="position: relative;">
-				<swiper class="swiper6 tit" next-margin="20rpx" style="height: 760upx;" id="po1">
+				<swiper class="swiper6 tit" next-margin="20rpx" style="height: 500upx;" id="po1">
 					<swiper-item>
 						<view style="margin-right: 20upx;">
 							<view style="position: relative;">
@@ -41,12 +41,7 @@
 									<view class="dot"></view>
 								</view>
 							</view>
-							<text class="subject">塔塔家是强迫症患者的收纳福音</text>
-							<text class="intro1">从2017年开始设计从2017年开始设计从2017年开始设计从2017年开始设计从2017年开始设计从2017年开始设计从2017年开始设计从2017年开始设计</text>
-							<view style="display: flex;align-items: center;justify-content: center;">
-								<text style="color: #a6a6a6;font-size: 22upx;">更多</text>
-								<image src="../../static/u1087.png" style="width: 25upx;height: 14upx;"></image>
-							</view>
+							
 						</view>
 					</swiper-item>
 					<swiper-item>
@@ -58,12 +53,6 @@
 									<view class="dot"></view>
 								</view>
 							</view>
-							<text class="subject">塔塔家是强迫症患者的收纳福音</text>
-							<text class="intro1">从2017年开始设计从2017年开始设计从2017年开始设计从2017年开始设计从2017年开始设计从2017年开始设计从2017年开始设计从2017年开始设计</text>
-							<view style="display: flex;align-items: center;justify-content: center;">
-								<text style="color: #a6a6a6;font-size: 22upx;">更多</text>
-								<image src="../../static/u1087.png" style="width: 25upx;height: 14upx;"></image>
-							</view>
 						</view>
 					</swiper-item>
 					<swiper-item>
@@ -74,16 +63,18 @@
 									<view class="sign">黑胡桃木温润茶几</view>
 									<view class="dot"></view>
 								</view>
-							</view>
-							<text class="subject">塔塔家是强迫症患者的收纳福音</text>
-							<text class="intro1">从2017年开始设计从2017年开始设计从2017年开始设计从2017年开始设计从2017年开始设计从2017年开始设计从2017年开始设计从2017年开始设计</text>
-							<view style="display: flex;align-items: center;justify-content: center;">
-								<text style="color: #a6a6a6;font-size: 22upx;">更多</text>
-								<image src="../../static/u1087.png" style="width: 25upx;height: 14upx;"></image>
 							</view>
 						</view>
 					</swiper-item>
 				</swiper>
+				<view style="background-color: white;padding: 20upx;box-sizing: border-box;">
+					<text class="subject">塔塔家是强迫症患者的收纳福音</text>
+					<text class="intro1">从2017年开始设计从2017年开始设计从2017年开始设计从2017年开始设计从2017年开始设计从2017年开始设计从2017年开始设计从2017年开始设计</text>
+					<view style="display: flex;align-items: center;justify-content: center;margin: 20upx 0;">
+						<text style="color: #a6a6a6;font-size: 22upx;">更多</text>
+						<image src="../../static/u1087.png" style="width: 25upx;height: 14upx;"></image>
+					</view>
+				</view>
 				<view class="check" @click="check">
 					<text style="margin: 20upx 0;">{{homelist.imgnum}}</text>
 					<text>查看全部</text>

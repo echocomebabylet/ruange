@@ -74,7 +74,6 @@ page{
 /* 空间信息 */
 .swiper6{
 	width: 100%;
-	margin-bottom: 20upx;
 	background-color: white;
 	padding-left: 25upx;
 	box-sizing: border-box;
@@ -88,12 +87,12 @@ page{
 	font-size: 30upx;
 	margin-top: 50upx;
 }
-.swiper6 .subject{
+.subject{
 	display: block;
 	font-size: 30upx;
-	margin: 30upx 0;
+	margin: 10upx 0 20upx 0;
 }
-.swiper6 /deep/ .intro1{
+.intro1{
 	font-size: 20upx;
 	color: #b6b6b6;
 	width:100%;
