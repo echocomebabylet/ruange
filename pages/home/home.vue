@@ -71,6 +71,7 @@
 		},
 		
 		methods: {
+			
 			select(type) {
 				this.isActive = type;
 				this.i = this.isActive;
@@ -136,6 +137,7 @@
 				});
 			},
 			sceneData(){
+				
 				console.log('执行请求')
 				uni.request({
 					url:this.common.websiteUrl+"Product_index_spacepro",

@@ -6,17 +6,17 @@
 			</view>
 			<text>体验家空间</text>
 			<view style="display: flex;align-items: center;">
-				<image src="../../static/u39.png" v-if="iscollect==true" @click="uncollect" style="width: 38upx;height: 38upx;margin-right: 20upx;"></image>
-				<image src="../../static/u86.png" v-if="iscollect==false" @click="collect" style="width: 38upx;height: 38upx;margin-right: 20upx;"></image>
+				<image src="../../static/u39.png" v-if="iscollect==0" @click="collect" style="width: 38upx;height: 38upx;margin-right: 20upx;"></image>
+				<image src="../../static/u86.png" v-if="iscollect==1" @click="collect" style="width: 38upx;height: 38upx;margin-right: 20upx;"></image>
 				<image src="../../static/u72.png" style="width: 38upx;height: 38upx;"></image>
 			</view>
 		</view>
 		<view class="intro">
-			<image src="../../static/u92.png" class="head"></image>
+			<image :src="this.common.getimgurl(homelist.headimg)" class="head"></image>
 			<view style="display: flex;flex-direction: column;">
-				<text style="color: black;">bella</text>
-				<text>现代·一居室loft·60m²·21人体验过</text>
-				<text>80后，互联网</text>
+				<text style="color: black;">{{homelist.name}}</text>
+				<text>{{homelist.style_name}}·{{homelist.layout}}居室·{{homelist.measure}}m²·{{homelist.expernum}}人体验过</text>
+				<text>{{homelist.labels}}</text>
 			</view>
 			<view style="display: flex;flex-direction: column;align-items: center;margin-left: 40upx;">
 				<image src="../../static/u1078.png" class="shareimg"></image>
@@ -85,24 +85,24 @@
 					</swiper-item>
 				</swiper>
 				<view class="check" @click="check">
-					<text style="margin: 20upx 0;">14</text>
+					<text style="margin: 20upx 0;">{{homelist.imgnum}}</text>
 					<text>查看全部</text>
 				</view>
 			</view>
 			<!-- 商品清单 -->
 			<view class="product-list tit" id="po2">
 				<view style="font-size: 30upx;margin: 40upx 25upx;">商品清单</view>
-				<view class="info" v-for="(item,index) in 3" :key="index">
-					<image src="../../static/u92.png"></image>
+				<view class="info" v-for="(item,index) in homelist.prolist" :key="index">
+					<image :src="getimgurl(item.pro_thum_img)"></image>
 					<view style="width: 55%;border-bottom: 1upx solid #F7F7F7;">
 						<view style="display: flex;flex-direction: column;">
-							<text style="font-size: 24upx;font-weight: bold;margin-bottom: 30upx;">餐桌-伊维尔餐桌</text>
-							<text style="font-size: 18upx;">520*540*180；棉麻混纺；深咖色</text>
+							<text style="font-size: 24upx;font-weight: bold;margin-bottom: 30upx;">{{item.name}}</text>
+							<text style="font-size: 18upx;">{{item.path}}</text>
 						</view>
-						<text style="font-size: 20upx;font-weight: bold;">数量*1</text>
+						<text style="font-size: 20upx;font-weight: bold;">数量*{{item.num}}</text>
 					</view>
 				</view>
-				<view class="total">共34件商品，合计买入价131200元</view>
+				<view class="total">共{{homelist.pronum}}件商品，合计买入价{{homelist.proprice}}元</view>
 			</view>
 			<!-- 体验评价 -->
 			<view class="assess tit" id="po3">
@@ -137,7 +137,7 @@
 		<view class="footer">
 			<view style="display: flex;align-items: center;" @click="address">
 				<image src="../../static/u1126.png" style="width: 27upx;height: 27upx;"></image>
-				<text style="font-size: 22upx;margin: 0 20upx;">北京·周口市</text>
+				<text style="font-size: 22upx;margin: 0 20upx;">{{homelist.citys}}</text>
 				<image src="../../static/u8.png" style="width: 10upx;height: 18upx;"></image>
 			</view>
 			<view class="ordering">在线预约</view>
@@ -188,10 +188,14 @@
 				h2:'',
 				h3:'',
 				phoneHeight:'',
-				iscollect:true,//收藏图标
+				iscollect:0,//收藏图标
 				iscollecting:false,//收藏框
 				isuncollecting:false,//取消收藏框
 				ischeck:false,//查看 全部图片
+				userinfo:[],
+				id:0,//体验家id
+				user_id:0,
+				homelist:[],//体验家内容
 			}
 		},
 		onReady(){
@@ -207,6 +211,19 @@
 				}
 			});
 		},
+		onLoad(options) {
+			options.id=5
+			this.id = options.id
+			// console.log(options)
+			uni.getStorage({
+				key: 'userinfo',
+				success:(res)=>{
+					this.userinfo = res.data
+					this.user_id = res.data.id
+				}
+			});	
+			this.get_defs()
+		},
 		onPageScroll(Object){
 			if(Object.scrollTop >= this.h){
 				this.sh = true
@@ -217,6 +234,32 @@
 		
 		
 		methods: {
+			getimgurl(image){
+				return"http://uniapp.ruange.com.cn/"+image
+			},
+			get_defs(){
+				let that = this
+				uni.request({
+					url:that.common.websiteUrl+"experhome_home_homedef",
+					header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
+					method:"post",
+					data:{
+							'user_id':that.user_id,
+							'id':that.id
+						},
+					success: (res) => {
+						if(res.data.code==200){
+							that.homelist =res.data.data
+							that.iscollect = res.data.data.coll_is
+						}else{
+							that.common.network()
+						}
+						console.log(res.data.data)
+					},fail() {
+						that.common.network()
+					}
+				});
+			},
 			back(){
 				uni.navigateBack({
 				    delta: 1
@@ -227,24 +270,55 @@
 				this.h1 = "po"+index;
 			},
 			collect(){
-				// 取消收藏
-				this.iscollect = true;//取消收藏图标
-				this.iscollecting = false;//添加收藏框
-				this.isuncollecting = true;	//取消收藏框
-				setTimeout(()=>{
-					this.isuncollecting = false;
-				},2000)
+				// 收藏
+				let that =this
+				uni.getStorage({
+					key: 'userinfo',
+					success:(res)=>{
+						uni.request({
+							url:that.common.websiteUrl+"user_coll",
+							header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
+							method:"post",
+							data:{
+									'user_id':that.user_id,
+									'pid':that.id,
+									'type':3,
+									'coll_is':that.iscollect
+								},
+							success: (res) => {
+								if(res.data.code==200){
+									if(that.iscollect == 1){
+										// 取消收藏框
+										that.isuncollecting = true
+										that.iscollect = 0
+										setTimeout(() => {
+											that.isuncollecting = false
+										}, 1000);
+									}else{
+										// 收藏框
+										that.iscollecting = true
+										that.iscollect = 1
+										setTimeout(() => {
+											that.iscollecting = false
+										}, 1000);
+									}
+								}else{
+									that.common.network()
+								}
+								console.log(res.data.data)
+							},fail() {
+								that.common.network()
+							}
+						});
+					},fail() {
+						uni.navigateTo({
+							url:'../login/login'
+						})
+					}
+				});	
 			},
-			uncollect(){
-				// 添加收藏
-				this.iscollect = false;		//添加收藏图标
-				this.iscollecting = true;		//添加收藏框
-				this.isuncollecting = false;	//取消收藏框
-				setTimeout(()=>{
-					this.iscollecting = false;
-				},2000)
 				
-			},
+			
 			check(){
 				// 查看全部图片
 				this.ischeck = true
