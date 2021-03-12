@@ -11,17 +11,17 @@
 			<image src="../../static/u284.png"></image>
 			<text style="text-align: center;width: 100%;display: block;">您还没有关联的户型哦！</text>
 		</view>
-		<view class="list" v-if="isdisable==2" v-for="(item,index) in datalist" :key="index" @longpress="logoTime">
+		<view class="list" v-if="isdisable==2" v-for="(item,index) in datalist" :key="index" @longpress="logoTime(index)">
 			<image :src="getimgurl(item.img_url)"></image>
 			<view style="display: flex;flex-direction: column;">
 				<text style="font-size: 32upx;margin-bottom: 20upx;">{{item.name}}{{item.measarea}}方</text>
 				<text style="margin-bottom: 10upx;">{{item.name}}|{{item.measarea}}方|{{item.measarea}}方户型</text>
 				<text>{{item.pattern}}</text>
-				<view>默认户型</view>
+				<view @click.stop="def(index)" :class="item.status==1?'defactive':''">默认户型</view>
 			</view>
 			<!-- 删除 -->
-			<view class="del" v-if="isdel">
-				<view>删除</view>
+			<view class="del" v-if="item.del_is">
+				<view @click="delitem(index)">删除</view>
 			</view>
 		</view>
 		<view class="add" @click="addhousetype">新增户型</view>
@@ -33,7 +33,6 @@
 		data() {
 			return {
 				isdisable:1,
-				isdel:false,
 				id:'',
 				page:1,
 				pagesize:10,
@@ -52,8 +51,49 @@
 			getimgurl(image){
 				return"http://uniapp.ruange.com.cn/"+image
 			},
-			logoTime(){
-				this.isdel = true
+			def(index){
+				this.datalist[index].status=1
+				uni.redirectTo({
+					url:'../myhousetype/myhousetype'
+				})
+				uni.request({
+					url:this.common.websiteUrl+"house_index_setdefhome",
+					header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
+					method:"post",
+					data:{
+						'id':this.datalist[index].id,
+						'user_id':this.id
+					},
+					success: (res) => {
+					}
+				});
+			},
+			delitem(index){
+				
+				uni.request({
+					url:this.common.websiteUrl+"house_index_delhome",
+					header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
+					method:"post",
+					data:{
+						'id':this.datalist[index].hometype,
+						'user_id':this.id
+					},
+					success: (res) => {
+						console.log(res)
+						console.log(res.data.msg)
+						this.datalist.splice(index, 1);
+						this.$u.toast(`已删除`);
+						uni.redirectTo({
+							url:'../myhousetype/myhousetype'
+						})
+					}
+				});
+			},
+			logoTime(index){
+				this.datalist[index].del_is = true
+				this.datalist.map((val, idx) => {
+					if(index != idx) this.datalist[idx].del_is = false;
+				})
 			},
 			back(){
 				uni.switchTab({
@@ -167,11 +207,16 @@ page{
 	line-height: 50upx;
 	text-align: center;
 	font-size: 22upx;
-	color: white;
-	background-color: #40CCCB;
+	border: 1px solid #A0A0A0;
+	color: #A0A0A0;
 	border-radius: 5upx;
 	margin-top: 40upx;
 	align-self: flex-end;
+}
+.list .defactive{
+	background-color: #40CCCB;
+	color: white;
+	border: none;
 }
 /* 删除 */
 .del{
@@ -189,7 +234,7 @@ page{
 	line-height: 120upx !important;
 	text-align: center;
 	font-size: 24upx !important;
-	color: white;
+	color: white !important;
 	background-color: #40CCCB;
 	border-radius: 50% !important;
 	position: absolute;
