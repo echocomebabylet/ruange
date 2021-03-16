@@ -30,55 +30,40 @@
 		</view>
 		<scroll-view :scroll-y="sh" :scroll-into-view="h1" :style="{height:h3-h2-h+'px'}" :scroll-with-animation="true" @scroll="scroll" @scrolltolower="scrolltolower">
 			<!-- 空间信息 -->
-			<view style="position: relative;">
-				<swiper class="swiper6 tit" next-margin="20rpx" style="height: 500upx;" id="po1">
-					<swiper-item>
-						<view style="margin-right: 20upx;">
-							<view style="position: relative;">
-								<image src="../../static/u160.jpg"></image>
-								<view style="position: absolute;top: 50%;left: 50%;">
-									<view class="sign">黑胡桃木温润茶几</view>
-									<view class="dot"></view>
+			<view>
+				<view style="position: relative;">
+					<swiper class="swiper6 tit" next-margin="20rpx" style="height: 500upx;" id="po1">
+						<swiper-item v-for="(item,index) in homelist.imglist">
+							<view style="margin-right: 20upx;">
+								<view style="position: relative;">
+									<image :src="getimgurl(item.img_url)"></image>
+									<view @click="gopro(items.pro_id)" style="position: absolute;" :style="{top:items.pro_y+'%',left: items.pro_x+'%'}"   v-for="(items,indexs) in item.labels">
+										<view class="sign">{{items.proname}}{{items.pro_y}}</view>
+										<view class="dot"></view>
+									</view>
+									
 								</view>
+								
 							</view>
-							
-						</view>
-					</swiper-item>
-					<swiper-item>
-						<view style="margin-right: 20upx;">
-							<view style="position: relative;">
-								<image src="../../static/u160.jpg"></image>
-								<view style="position: absolute;top: 50%;left: 50%;">
-									<view class="sign">黑胡桃木温润茶几</view>
-									<view class="dot"></view>
-								</view>
-							</view>
-						</view>
-					</swiper-item>
-					<swiper-item>
-						<view style="margin-right: 20upx;">
-							<view style="position: relative;">
-								<image src="../../static/u160.jpg"></image>
-								<view style="position: absolute;top: 50%;left: 50%;">
-									<view class="sign">黑胡桃木温润茶几</view>
-									<view class="dot"></view>
-								</view>
-							</view>
-						</view>
-					</swiper-item>
-				</swiper>
-				<view style="background-color: white;padding: 20upx;box-sizing: border-box;">
-					<text class="subject">塔塔家是强迫症患者的收纳福音</text>
-					<text class="intro1">从2017年开始设计从2017年开始设计从2017年开始设计从2017年开始设计从2017年开始设计从2017年开始设计从2017年开始设计从2017年开始设计</text>
-					<view style="display: flex;align-items: center;justify-content: center;margin: 20upx 0;">
-						<text style="color: #a6a6a6;font-size: 22upx;">更多</text>
-						<image src="../../static/u1087.png" style="width: 25upx;height: 14upx;"></image>
+						</swiper-item>
+						
+					</swiper>
+					<view class="check" @click="check">
+						<text style="margin: 20upx 0;">{{homelist.imgnum}}</text>
+						<text>查看全部</text>
 					</view>
 				</view>
-				<view class="check" @click="check">
-					<text style="margin: 20upx 0;">{{homelist.imgnum}}</text>
-					<text>查看全部</text>
+				<view style="background-color: white;padding: 20upx;box-sizing: border-box;">
+					<text class="subject">{{homelist.title}}</text>
+					<u-read-more  ref="uReadMore" :toggle="true" show-height="200" color="#000" close-text="更多">
+							<rich-text :nodes="homelist.content"></rich-text>
+					</u-read-more>
+					<!-- <view style="display: flex;align-items: center;justify-content: center;margin: 20upx 0;">
+						<text style="color: #a6a6a6;font-size: 22upx;">更多</text>
+						<image src="../../static/u1087.png" style="width: 25upx;height: 14upx;"></image>
+					</view> -->
 				</view>
+				
 			</view>
 			<!-- 商品清单 -->
 			<view class="product-list tit" id="po2">
@@ -134,12 +119,12 @@
 			<view class="ordering">在线预约</view>
 		</view>
 		<!-- 收藏弹框 -->
-		<view class="collect" :class="[iscollecting==false ? 'collect':'collecting']">
+		<view class="collect" v-if="iscollecting">
 			<image src="../../static/u84.png"></image>
 			<text>+1</text>
 		</view>
 		<!-- 取消收藏 -->
-		<view class="uncollect" :class="[isuncollecting==false ? 'uncollect':'uncollecting']">
+		<view class="uncollect" v-if="isuncollecting">
 			<image src="../../static/u84.png"></image>
 			<text>-1</text>
 		</view>
@@ -149,15 +134,15 @@
 				<view style="width: 50upx;height: 40upx;" @click="checkback">
 					<image src="../../static/u1313.png" style="width: 20upx;height: 30upx;"></image>
 				</view>
-				<text>4/14</text>
+				<text>{{huadong}}/{{homelist.imgnum}}</text>
 				<text></text>
 			</view>
-			<swiper>
-				<swiper-item v-for="(item,index) in 5" :key="index">
+			<swiper  @change="huadongs" >
+				<swiper-item :current="index" v-for="(item,index) in homelist.imglist" :key="index">
 					<view style="position: relative;">
-						<image src="../../static/u160.jpg"></image>
+						<image :src="getimgurl(item.img_url)"></image>
 						<view style="position: absolute;top: 50%;left: 50%;">
-							<view class="sign">黑胡桃木温润茶几</view>
+							<view class="sign"></view>
 							<view class="dot"></view>
 						</view>
 					</view>
@@ -179,6 +164,7 @@
 				h2:'',
 				h3:'',
 				phoneHeight:'',
+				huadong:1,
 				iscollect:0,//收藏图标
 				iscollecting:false,//收藏框
 				isuncollecting:false,//取消收藏框
@@ -214,6 +200,7 @@
 				}
 			});	
 			this.get_defs()
+		
 		},
 		onPageScroll(Object){
 			if(Object.scrollTop >= this.h){
@@ -226,7 +213,12 @@
 		
 		methods: {
 			getimgurl(image){
-				return"http://uniapp.ruange.com.cn/"+image
+				return this.common.websiteUrl+image
+			},
+			huadongs(e){
+				var c = e.detail.current
+				this.huadong = c + 1
+				console.log(e)
 			},
 			get_defs(){
 				let that = this
@@ -242,6 +234,9 @@
 						if(res.data.code==200){
 							that.homelist =res.data.data
 							that.iscollect = res.data.data.coll_is
+							this.$nextTick(() => {
+								this.$refs.uReadMore.init();
+							})
 						}else{
 							that.common.network()
 						}
@@ -321,6 +316,12 @@
 			address(){
 				uni.navigateTo({
 				    url: '../orderaddress/orderaddress'
+				});
+			},
+			gopro(id){
+				// return console.log('处罚')
+				uni.navigateTo({
+				    url: '../productdetail/productdetail?id='+id
 				});
 			},
 			allassess(){

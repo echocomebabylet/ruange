@@ -110,6 +110,13 @@
 				</view>
 				<image src="../../static/u85.png" class="entry"></image>
 			</view>
+			<view style="padding: 30upx 40upx;box-sizing: border-box;justify-content: space-between;border-bottom: 1upx solid #F7F7F7;" @click="appointment">
+				<view>
+					<image src="../../static/u30.png" style="margin-right: 20upx;"></image>
+					<text>体验家管理</text>
+				</view>
+				<image src="../../static/u85.png" class="entry"></image>
+			</view>
 			<view style="padding: 30upx 40upx;box-sizing: border-box;justify-content: space-between;border-bottom: 1upx solid #F7F7F7;" @click="chat">
 				<view>
 					<image src="../../static/u241.png" style="margin-right: 20upx;"></image>
@@ -181,6 +188,7 @@
 			}
 		},
 		onLoad(){
+			
 		},
 		onShow(){
 			

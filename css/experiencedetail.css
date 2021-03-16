@@ -96,20 +96,20 @@ page{
 	font-size: 20upx;
 	color: #b6b6b6;
 	width:100%;
-	text-overflow: -o-ellipsis-lastline; 
+	/* text-overflow: -o-ellipsis-lastline; 
 	overflow: hidden;
 	text-overflow: ellipsis; 
 	display: -webkit-box;
 	-webkit-line-clamp: 4;
 	line-clamp: 4; 
 	-webkit-box-orient: vertical;
-	white-space: normal;
+	white-space: normal; */
 }
 .check{
 	position: absolute;
 	top: 50%;
 	right: 0;
-	transform: translateY(-130%);
+	transform: translateY(-50%);
 	width: 124upx;
 	height: 124upx;
 	display: flex;
@@ -258,8 +258,6 @@ page{
 	border-radius: 10upx;
 	z-index: 1000;
 	display: flex;
-	opacity: 0;
-	transition: opacity 1s;
 	flex-direction: column;
 	align-items: center;
 	font-size: 26upx;
@@ -267,10 +265,6 @@ page{
 	top: 50%;
 	left: 50%;
 	transform: translateX(-50%) translateY(-50%);
-}
-.collecting,.uncollecting{
-	opacity: 1;
-	transition: opacity 1s; 
 }
 .collect image,
 .uncollect image{
