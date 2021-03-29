@@ -77,16 +77,26 @@
 			}
 		},
 		onLoad() {
-			uni.getStorage({
-				key:'userinfo',
-				success:(res)=>{
-					this.userinfo = res.data
-				}
-			})
+			
 			this.getdata()
 		},
 		methods: {
-			getdata(){
+			getuserinfo(){
+				return new Promise((resolve, reject) => {
+					uni.getStorage({
+						key:'userinfo',
+						success:(res)=>{
+							this.userinfo = res.data
+							resolve('suc');
+						},fail() {
+							resolve('err');
+						}
+					})
+				})
+				
+			},
+			async getdata(){
+				await this.getuserinfo()
 				let _self = this
 				console.log(_self.userinfo.id)
 				uni.request({
