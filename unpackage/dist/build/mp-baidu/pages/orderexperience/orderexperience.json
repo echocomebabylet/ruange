@@ -1,0 +1,7 @@
+{
+  "component": true,
+  "usingComponents": {
+    "u-calendar": "/uview-ui/components/u-calendar/u-calendar",
+    "uni-number-box": "/components/uni-number-box/uni-number-box"
+  }
+}

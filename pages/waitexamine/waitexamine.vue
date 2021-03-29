@@ -4,33 +4,33 @@
 			<view style="width: 40upx;height: 40upx;" @click="back">
 				<image src="../../static/u164.png"></image>
 			</view>
-			<text>等待来访</text>
+			<text>等待审核</text>
 			<text style="color: white;">返回</text>
 		</view>
-		<view class="list" v-for="(item,index) in 5" :key="index">
+		<view class="list" v-for="(item,index) in datalist" :key="index">
 			<view style="display: flex;justify-content: space-between;padding: 35upx 10upx;box-sizing: border-box;border-bottom: 1upx solid #F7F7F7;">
 				<view style="display: flex;align-items: center;">
-					<image src="../../static/u1160.png" style="width: 85upx;height: 85upx;border-radius: 50%;"></image>
+					<image :src="getimgurl(item.userimg)" style="width: 85upx;height: 85upx;border-radius: 50%;"></image>
 					<view style="display: flex;flex-direction: column;margin-left: 20upx;">
-						<text style="font-weight: bold;">可乐妈</text>
-						<text style="margin-top: 10upx;">在：杭州·杨柳郡</text>
+						<text style="font-weight: bold;">{{item.name}}</text>
+						<text style="margin-top: 10upx;">在：{{item.city_name}}</text>
 					</view>
 				</view>
 			</view>
 			<view style="padding: 35upx 10upx;box-sizing: border-box;">
 				<view style="margin-bottom: 20upx;display: flex;align-items: center;">
 					<image src="../../static/u711.png" style="width: 20upx;height: 20upx;margin-right: 20upx;"></image>
-					<text>09月11日 18:00~20:00</text>
+					<text>{{item.maketime}}</text>
 				</view>
 				
 				<view style="display: flex;align-items: center;justify-content: space-between;">
 					<view style="display: flex;align-items: center;margin-bottom: 15upx;">
 						<image src="../../static/u7132.png" style="width: 20upx;height: 20upx;margin-right: 20upx;" ></image>
-						<text>1人</text>
+						<text>{{item.makenum}}人</text>
 					</view>
 					<view style="display: flex;align-items: center;">
-						<view class="contact">联系客服</view>
-						<view class="btn" @click="pass">通过</view>
+						<view class="contact" @click="call_phone(item.service)">联系客服</view>
+						<view class="btn" @click="pass(index)">通过</view>
 					</view>
 				</view>
 			</view>
@@ -39,10 +39,10 @@
 		<view class="tip" v-if="isactive==true">
 			<view class="cont">
 				<text style="font-size: 38upx;">提示</text>
-				<input placeholder="请输入开门暗号"/>
+				<input placeholder="请输入开门暗号" v-model="datacode" />
 				<view style="display: flex;align-items: center;font-size: 30upx;margin-top: 40upx;">
 					<view style="width: 50%;color: #40CCCB;height: 80upx;line-height: 80upx;text-align: center;" @click="off">取消</view>
-					<view style="width: 50%;color: white;height: 80upx;line-height: 80upx;text-align: center;background-color: #40CCCB;border-radius: 10upx;" @click="off">确定</view>
+					<view style="width: 50%;color: white;height: 80upx;line-height: 80upx;text-align: center;background-color: #40CCCB;border-radius: 10upx;" @click="qr">确定</view>
 				</view>
 			</view>
 		</view>
@@ -53,20 +53,95 @@
 	export default {
 		data() {
 			return {
-				isactive:false
+				isactive:false,
+				userinfo:[],
+				page:1,
+				pagesize:6,
+				datalist:[],
+				dataindex:0,
+				datacode:'',
+				click_is:true,
+				index:0
 			}
 		},
+		onLoad() {
+			uni.getStorage({
+				key:'userinfo',
+				success:(res)=>{
+					this.userinfo = res.data
+				}
+			})
+			this.getdata()
+		},
 		methods: {
+			getdata(){
+				let _self = this
+				console.log(_self.userinfo.id)
+				uni.request({
+					url:_self.common.websiteUrl+"experhome_owners_seewait",
+					header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
+					method:"post",
+					data:{'user_id':_self.userinfo.id,'page':_self.page,'pagesize':_self.pagesize},
+					success: (res) => {
+						if(res.data.code==200){
+							_self.datalist = _self.datalist.concat(res.data.data);
+						}else{
+							_self.click_is = false
+							_self.common.callback('暂无更多')
+						}
+					}
+				});
+				
+			},
+			qr(){
+				let _self = this
+				uni.request({
+					url:this.common.websiteUrl+"experhome_owners_confcode",
+					header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
+					method:"post",
+					data:{'id':_self.dataindex,'opencode':_self.datacode},
+					success: (res) => {
+						if(res.data.code==200){
+							_self.common.callback('设置成功')
+							let da = _self.datalist
+							da.splice(_self.index, 1)
+							_self.datalist = da;
+							_self.off()
+						}else{
+							_self.common.network()
+						}
+					}
+				});
+			},
+			onReachBottom() {
+				let _self = this
+				if(_self.click_is==true){
+					_self.page = _self.page+1
+					_self.getdata()
+				}
+				
+			},
+	
 			back(){
 				uni.navigateTo({
 				    url: '../visitmanagement/visitmanagement'
 				});
 			},
-			pass(){
+			getimgurl(image){
+				return this.common.websiteUrl+image
+			},
+			pass(index){
+				this.index = index
+				this.dataindex = this.datalist[index].id
 				this.isactive = true
 			},
 			off(){
 				this.isactive = false
+			},
+			call_phone(phone){
+				uni.makePhoneCall({
+				    phoneNumber: phone
+				});
 			}
 		}
 	}

@@ -9,21 +9,21 @@
 		</view>
 		<!-- 等待体验 -->
 		<view class="wait">
-			<text style="font-size: 38upx;font-weight: bold;">等待体验(4)</text>
-			<view v-if="iswait==2" @click="experiencebegin" style="font-size: 30upx;">
+			<text style="font-size: 38upx;font-weight: bold;" v-if="datalist.wait_exper">等待体验({{datalist.wait_exper.length}})</text>
+			<view v-if="!datalist.wait_exper"   style="font-size: 30upx;">
 				<text style="margin: 50upx 0 30upx;display: block;">今日没有已预约的体验</text>
 				<view style="display: flex;align-items: center;">
 					<text style="margin-right: 20upx;color: #40CCCB;">现在就去</text>
 					<image src="../../static/u112.png" style="width: 46upx;height: 46upx;"></image>
 				</view>
 			</view>
-			<view v-if="iswait==1" v-for="(item,index) in 4" :key="index" style="display: flex;justify-content: space-between;padding: 30upx 0;box-sizing: border-box;border-bottom: 1upx solid #F7F7F7;">
+			<view v-if="datalist.wait_exper" @click="waitreview(item.id)" v-for="(item,index) in datalist.wait_exper" :key="index" style="display: flex;justify-content: space-between;padding: 30upx 0;box-sizing: border-box;border-bottom: 1upx solid #F7F7F7;">
 				<view style="display: flex;">
-					<image src="../../static/u1160.png" style="width: 84upx;height: 84upx;border-radius: 50%;"></image>
+					<image :src="getimgurl(item.userimg)" style="width: 84upx;height: 84upx;border-radius: 50%;"></image>
 					<view style="display: flex;flex-direction: column;margin-left: 20upx;font-size: 24upx;">
-						<text style="font-size: 28upx;">08月11日 18:00~21:00</text>
-						<text style="margin: 20upx 0;">于新亮</text>
-						<text>长春市-万科翡翠公园</text>
+						<text style="font-size: 28upx;">{{item.maketime}}</text>
+						<text style="margin: 20upx 0;">{{item.name}}</text>
+						<text>{{item.address}}</text>
 					</view>
 				</view>
 				<image src="../../static/u8.png" style="width: 12upx;height: 22upx;align-self: center;"></image>
@@ -31,14 +31,14 @@
 		</view>
 		<!-- 等待审核 -->
 		<view class="wait">
-			<text style="font-size: 38upx;font-weight: bold;">等待审核(4)</text>
-			<view v-if="iswait==2" v-for="(item,index) in 4" :key="index" @click="waitreview" style="display: flex;justify-content: space-between;padding: 30upx 0;box-sizing: border-box;border-bottom: 1upx solid #F7F7F7;">
+			<text style="font-size: 38upx;font-weight: bold;" v-if="datalist.wait">等待审核({{datalist.wait.length}})</text>
+			<view v-for="(item,index) in datalist.wait" :key="index" @click="waitreview(item.id)" style="display: flex;justify-content: space-between;padding: 30upx 0;box-sizing: border-box;border-bottom: 1upx solid #F7F7F7;">
 				<view style="display: flex;">
-					<image src="../../static/u1160.png" style="width: 84upx;height: 84upx;border-radius: 50%;"></image>
+					<image :src="getimgurl(item.userimg)" style="width: 84upx;height: 84upx;border-radius: 50%;"></image>
 					<view style="display: flex;flex-direction: column;margin-left: 20upx;font-size: 24upx;">
-						<text style="font-size: 28upx;">08月11日 18:00~21:00</text>
-						<text style="margin: 20upx 0;">于新亮</text>
-						<text>长春市-万科翡翠公园</text>
+						<text style="font-size: 28upx;">{{item.maketime}}</text>
+						<text style="margin: 20upx 0;">{{item.name}}</text>
+						<text>{{item.address}}</text>
 					</view>
 				</view>
 				<image src="../../static/u8.png" style="width: 12upx;height: 22upx;align-self: center;"></image>
@@ -46,14 +46,14 @@
 		</view>
 		<!-- 等待评价 -->
 		<view class="wait">
-			<text style="font-size: 38upx;font-weight: bold;">等待评价(4)</text>
-			<view v-if="iswait==1"  v-for="(item,index) in 4" :key="index" @click="assess" style="display: flex;justify-content: space-between;padding: 30upx 0;box-sizing: border-box;border-bottom: 1upx solid #F7F7F7;">
+			<text style="font-size: 38upx;font-weight: bold;" v-if="datalist.wait_eval">等待评价({{datalist.wait_eval.length}})</text>
+			<view v-for="(item,index) in datalist.wait_eval" :key="index" @click="waitreview(item.id)" style="display: flex;justify-content: space-between;padding: 30upx 0;box-sizing: border-box;border-bottom: 1upx solid #F7F7F7;">
 				<view style="display: flex;">
-					<image src="../../static/u1160.png" style="width: 84upx;height: 84upx;border-radius: 50%;"></image>
+					<image :src="getimgurl(item.userimg)" style="width: 84upx;height: 84upx;border-radius: 50%;"></image>
 					<view style="display: flex;flex-direction: column;margin-left: 20upx;font-size: 24upx;">
-						<text style="font-size: 28upx;">08月11日 18:00~21:00</text>
-						<text style="margin: 20upx 0;">于新亮</text>
-						<text>长春市-万科翡翠公园</text>
+						<text style="font-size: 28upx;">{{item.maketime}}</text>
+						<text style="margin: 20upx 0;">{{item.name}}</text>
+						<text>{{item.address}}</text>
 					</view>
 				</view>
 				<image src="../../static/u8.png" style="width: 12upx;height: 22upx;align-self: center;"></image>
@@ -61,7 +61,7 @@
 		</view>
 		<!-- 已结束的预约 -->
 		<view class="wait" @click="finishappointment">
-			<text style="font-size: 38upx;font-weight: bold;">已结束的预约(4)</text>
+			<text style="font-size: 38upx;font-weight: bold;">已结束的预约({{datalist.wait_over}})</text>
 		</view>
 	</view>
 </template>
@@ -70,23 +70,56 @@
 	export default {
 		data() {
 			return {
-				iswait:1
+				iswait:1,
+				userinfo:[],
+				datalist:[],
+				
 			}
 		},
+		onLoad() {
+			uni.getStorage({
+				key:'userinfo',
+				success:(res)=>{
+					this.userinfo = res.data
+				}
+			})
+			this.getdata()
+		},
 		methods: {
+			getdata(){
+				let _self = this
+				console.log(_self.userinfo.id)
+				uni.request({
+					url:_self.common.websiteUrl+"experhome_custormers_index",
+					header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
+					method:"post",
+					data:{'user_id':_self.userinfo.id,},
+					success: (res) => {
+						if(res.data.code==200){
+							_self.datalist =res.data.data;
+						}else{
+							_self.common.callback('暂无更多')
+						}
+					}
+				});
+				console.log(this.userinfo.id)
+			},
 			assess(){
 				uni.navigateTo({
 				    url: '../waitassess/waitassess'
 				});
+			},
+			getimgurl(image){
+				return this.common.websiteUrl+image
 			},
 			experiencebegin(){
 				uni.navigateTo({
 				    url: '../experiencebegin/experiencebegin'
 				});
 			},
-			waitreview(){
+			waitreview(id){
 				uni.navigateTo({
-				    url: '../waitreview/waitreview'
+				    url: '../waitreview/waitreview?id='+id
 				});
 			},
 			finishappointment(){

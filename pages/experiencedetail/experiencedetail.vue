@@ -85,28 +85,28 @@
 				<view class="title" @click="allassess">
 					<text style="font-size: 30upx;font-weight: bold;">体验评价</text>
 					<view style="display: flex;align-items: center;">
-						<text style="font-size: 22upx;color: #bebebe;">好评度<text style="color: #40CCCB;margin-left: 15upx;">100%</text></text>
+						<text style="font-size: 22upx;color: #bebebe;">好评度<text style="color: #40CCCB;margin-left: 15upx;">{{commentsval.comments_praise}}</text></text>
 						<image src="../../static/u8.png"></image>
 					</view>
 				</view>
-				<view class="cont" v-for="(item,index) in 3" :key="index">
+				<view class="cont" v-for="(item,index) in commentsval.comments" :key="index">
 					<view style="display: flex;justify-content: space-between;align-items: center;">
 						<view class="head">
-							<image src="../../static/u2167.jpg"></image>
-							<text>秦凯欧</text>
+							<image :src="getimgurl(item.headurl)"></image>
+							<text>{{item.username}}</text>
 						</view>
 						<view class="star">
-							<image src="../../static/u370.png"></image>
-							<image src="../../static/u370.png"></image>
-							<image src="../../static/u370.png"></image>
-							<image src="../../static/u373.png"></image>
-							<image src="../../static/u373.png"></image>
+							<image :src="item.stars>=1?'../../static/u370.png':'../../static/u373.png'"></image>
+							<image :src="item.stars>=2?'../../static/u370.png':'../../static/u373.png'"></image>
+							<image :src="item.stars>=3?'../../static/u370.png':'../../static/u373.png'"></image>
+							<image :src="item.stars>=4?'../../static/u370.png':'../../static/u373.png'"></image>
+							<image :src="item.stars>=5?'../../static/u370.png':'../../static/u373.png'"></image>
 						</view>
 					</view>
-					<view style="margin-top: 20upx;">我开始家里尺寸量错了，我开始家里尺寸量错了我开始家里尺寸量错了我开始家里尺寸量错了</view>
-					<view style="margin-top: 15upx;color: #bebebe;">2018-07-01</view>
+					<view style="margin-top: 20upx;">{{item.evaluate}}</view>
+					<view style="margin-top: 15upx;color: #bebebe;">{{item.maketime}}</view>
 				</view>
-				<view class="all" @click="allassess">查看全部18条评论</view>
+				<view class="all" @click="allassess">查看全部{{commentsval.comments_num}}条评论</view>
 			</view>
 		</scroll-view>
 		<!-- 底部 -->
@@ -116,7 +116,7 @@
 				<text style="font-size: 22upx;margin: 0 20upx;">{{homelist.citys}}</text>
 				<image src="../../static/u8.png" style="width: 10upx;height: 18upx;"></image>
 			</view>
-			<view class="ordering">在线预约</view>
+			<view class="ordering" @click="makeapp">在线预约</view>
 		</view>
 		<!-- 收藏弹框 -->
 		<view class="collect" v-if="iscollecting">
@@ -173,6 +173,7 @@
 				id:0,//体验家id
 				user_id:0,
 				homelist:[],//体验家内容
+				commentsval:[],//评论内容
 			}
 		},
 		onReady(){
@@ -200,7 +201,7 @@
 				}
 			});	
 			this.get_defs()
-		
+			this.comments()
 		},
 		onPageScroll(Object){
 			if(Object.scrollTop >= this.h){
@@ -239,6 +240,26 @@
 							})
 						}else{
 							that.common.network()
+						}
+						console.log(res.data.data)
+					},fail() {
+						that.common.network()
+					}
+				});
+			},
+			comments(){
+				let  that = this
+				uni.request({
+					url:that.common.websiteUrl+"experhome_owners_comments",
+					header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
+					method:"post",
+					data:{
+							'exper_id':that.id,
+							// 'id':that.id
+						},
+					success: (res) => {
+						if(res.data.code==200){
+							that.commentsval =res.data.data
 						}
 						console.log(res.data.data)
 					},fail() {
@@ -318,6 +339,11 @@
 				    url: '../orderaddress/orderaddress'
 				});
 			},
+			makeapp(){
+				uni.navigateTo({
+				    url: '../orderexperience/orderexperience?id='+this.id
+				});
+			},
 			gopro(id){
 				// return console.log('处罚')
 				uni.navigateTo({
@@ -326,7 +352,7 @@
 			},
 			allassess(){
 				uni.navigateTo({
-				    url: '../experienceassess/experienceassess'
+				    url: '../experienceassess/experienceassess?id='+this.id
 				});
 			},
 			scrolltolower(){

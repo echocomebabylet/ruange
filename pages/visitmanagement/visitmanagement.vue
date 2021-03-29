@@ -8,15 +8,15 @@
 			<text style="font-size: 25upx;">管理</text>
 		</view>
 		<view class="wait" @click="waitvisit">
-			<text style="font-size: 38upx;font-weight: bold;">等待访问(4)</text>
+			<text style="font-size: 38upx;font-weight: bold;">等待访问({{datalist.exper}})</text>
 			
 		</view>
 		<view class="wait" @click="waitexamine">
-			<text style="font-size: 38upx;font-weight: bold;">待我审核(4)</text>
+			<text style="font-size: 38upx;font-weight: bold;">待我审核({{datalist.wait}})</text>
 			
 		</view>
 		<view class="wait" @click="finishvisit">
-			<text style="font-size: 38upx;font-weight: bold;">已结束(4)</text>
+			<text style="font-size: 38upx;font-weight: bold;">已结束({{datalist.over}})</text>
 		
 		</view>
 		<view class="wait" @click="settime">
@@ -29,10 +29,30 @@
 	export default {
 		data() {
 			return {
-				iswait:1
+				iswait:1,
+				datalist:[]
 			}
 		},
+		onLoad() {
+			uni.getStorage({
+				key:'userinfo',
+				success:(res)=>{
+					this.getdata(res.data.id)
+				}
+			})
+		},
 		methods: {
+			getdata(user_id){
+				uni.request({
+					url:this.common.websiteUrl+"experhome_owners_index",
+					header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
+					method:"post",
+					data:{'user_id':user_id},
+					success: (res) => {
+						this.datalist = res.data.data;
+					}
+				});
+			},
 			settime(){
 				uni.navigateTo({
 				    url: '../settime/settime'

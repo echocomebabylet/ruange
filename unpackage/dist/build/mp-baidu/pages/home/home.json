@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "follow": "/components/follow/follow",
+    "recommend": "/components/recommend/recommend",
+    "experiencer": "/components/experiencer/experiencer"
+  }
+}

@@ -48,18 +48,21 @@
 			<view style="padding: 25upx 0;box-sizing: border-box;border-top: 1upx solid #F7F7F7;border-bottom: 1upx solid #F7F7F7;margin-bottom: 20upx;text-align: center;">
 				<text style="font-size: #28upx;color: #959595;font-weight: bold;" :class="{'active':isactive==1}" @click="time(1)">上午</text>
 				<text style="font-size: #28upx;color: #959595;font-weight: bold;margin-left: 40upx;" :class="{'active':isactive==2}" @click="time(2)">下午</text>
+				<text style="font-size: #28upx;color: #959595;font-weight: bold;margin-left: 40upx;" :class="{'active':isactive==3}" @click="time(3)">晚上</text>
+				
 			</view>
 			<view style="display: flex;align-items: center;" v-if="isactive==1">
-				<view class="timeactive" :class="{'timeactiving':istimeactive==1}" @click="timeactive(1)">08:00</view>
-				<view class="timeactive" :class="{'timeactiving':istimeactive==2}" @click="timeactive(2)">09:00</view>
-				<view class="timeactive" :class="{'timeactiving':istimeactive==3}" @click="timeactive(3)">10:00</view>
-				<view class="timeactive" :class="{'timeactiving':istimeactive==4}" @click="timeactive(4)">11:00</view>
+				<view class="timeactive" v-if="timelist.morning.length>1"  v-for="(item,index) in timelist.morning" :class="{'timeactiving':istimeactive==index}" @click="timeactive(index)">{{item}}</view>
+				<view class="timeactive" v-if="timelist.morning.length<=1"  v-for="(item,index) in timelist.morning" style="color: #9FA3A8;">预约已满</view>
 			</view>
 			<view style="display: flex;align-items: center;" v-if="isactive==2">
-				<view class="timeactive" :class="{'timeactiving':istimeactive==1}" @click="timeactive(1)">13:00</view>
-				<view class="timeactive" :class="{'timeactiving':istimeactive==2}" @click="timeactive(2)">14:00</view>
-				<view class="timeactive" :class="{'timeactiving':istimeactive==3}" @click="timeactive(3)">15:00</view>
-				<view class="timeactive" :class="{'timeactiving':istimeactive==4}" @click="timeactive(4)">16:00</view>
+				<view class="timeactive" v-if="timelist.after.length>1" v-for="(item,index) in timelist.after" :class="{'timeactiving':istimeactives==index}" @click="timeactives(index)">{{item}}</view>
+				<view class="timeactive" v-if="timelist.after.length<=1"  v-for="(item,index) in timelist.after" style="color: #9FA3A8;">预约已满</view>
+				
+			</view>
+			<view style="display: flex;align-items: center;" v-if="isactive==3">
+				<view class="timeactive" v-if="timelist.night.length>1" v-for="(item,index) in timelist.night" :class="{'timeactiving':istimeactivess==index}" @click="timeactivess(index)">{{item}}</view>
+				<view class="timeactive" v-if="timelist.night.length<=1"  v-for="(item,index) in timelist.night" style="color: #9FA3A8;">预约已满</view>
 			</view>
 			<view class="u-calendar__bottom">
 				<view class="u-calendar__bottom__choose">
@@ -240,12 +243,18 @@
 			toolTip: {
 				type: String,
 				default: '选择日期'
+			},
+			exper_id:{
+				type: Number,
+				default: 0
 			}
 		},
 		data() {
 			return {
 				isactive:1,
-				istimeactive:1,
+				istimeactive:-1,
+				istimeactives:-1,
+				istimeactivess:-1,
 				// 星期几,值为1-7
 				weekday: 1, 
 				weekdayArr:[],
@@ -269,7 +278,9 @@
 				isStart: true,
 				min: null,
 				max: null,
-				weekDayZh: ['日', '一', '二', '三', '四', '五', '六']
+				weekDayZh: ['日', '一', '二', '三', '四', '五', '六'],
+				timelist:[],
+				choicetime:''
 			};
 		},
 		computed: {
@@ -289,12 +300,40 @@
 		created() {
 			this.init()
 		},
+		
 		methods: {
+			getdata(time){
+				let that = this
+				uni.request({
+					url:that.common.websiteUrl+"experhome_owners_seetime",
+					header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
+					method:"post",
+					data:{
+							'exper_id':that.exper_id,
+							'nowtime':time
+						},
+					success: (res) => {
+						that.timelist = res.data.data
+						console.log(res.data.data)
+					},fail() {
+						that.common.network()
+					}
+				});
+			},
 			time(index){
 				this.isactive=index
 			},
 			timeactive(index){
 				this.istimeactive=index
+				this.choicetime = this.timelist['morning'][index]
+			},
+			timeactives(index){
+				this.istimeactives=index
+				this.choicetime = this.timelist['after'][index]
+			},
+			timeactivess(index){
+				this.istimeactivess=index
+				this.choicetime = this.timelist['night'][index]
 			},
 			getColor(index, type) {
 				let color = type == 1 ? '' : this.color;
@@ -443,10 +482,17 @@
 						}
 					}
 				}
+				let tims = this.year+'-'+this.month+'-'+this.day
+				this.getdata(tims)
+				// console.log()
+				// console.log(this.exper_id)
+				// console.log('嘿嘿')
 			},
 			close() {
 				// 修改通过v-model绑定的父组件变量的值为false，从而隐藏日历弹窗
 				this.$emit('input', false);
+				
+				
 			},
 			getWeekText(date) {
 				date = new Date(`${date.replace(/\-/g, '/')} 00:00:00`);
@@ -454,6 +500,12 @@
 				return '星期' + ['日', '一', '二', '三', '四', '五', '六'][week];
 			},
 			btnFix(show) {
+				console.log(this.choicetime)
+				if(this.choicetime=='' || this.choicetime=='约满'){
+					return this.common.callback('请选择具体时间')
+				}
+				let times = this.year+'-'+this.month+'-'+this.day+' '+this.choicetime
+				this.$emit('aoligei', times);
 				if (!show) {
 					this.close();
 				}

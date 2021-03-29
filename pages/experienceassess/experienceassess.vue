@@ -4,32 +4,32 @@
 			<view style="width: 50upx;height: 40upx;" @click="back">
 				<image src="../../static/u18.png"></image>
 			</view>
-			<text>评价(17)</text>
+			<text>评价({{datalist.comments_num}})</text>
 			<text style="color: white;">回</text>
 		</view>
 		<view class="assess">
 			<view style="display: flex;align-items: center;">
 				<image src="../../static/u321.png" style="width: 30upx;height: 24upx;"></image>
-				<text style="font-size: 27upx;margin-left: 20upx;">17条评论</text>
+				<text style="font-size: 27upx;margin-left: 20upx;">{{datalist.comments_num}}条评论</text>
 			</view>
-			<text style="font-size: 22upx;color: #afafaf;">好评度<text style="color: #40CCCB;margin-left: 20upx;">100%</text></text>
+			<text style="font-size: 22upx;color: #afafaf;">好评度<text style="color: #40CCCB;margin-left: 20upx;">{{datalist.comments_praise}}</text></text>
 		</view>
-		<view class="cont" v-for="(item,index) in 14" :key="index">
+		<view class="cont" v-for="(item,index) in datalist.comments" :key="index">
 			<view style="display: flex;justify-content: space-between;align-items: center;">
 				<view class="head">
-					<image src="../../static/u2167.jpg"></image>
-					<text>秦凯欧</text>
+					<image :src="getimgurl(item.headurl)"></image>
+					<text>{{item.username}}</text>
 				</view>
 				<view class="star">
-					<image src="../../static/u370.png"></image>
-					<image src="../../static/u370.png"></image>
-					<image src="../../static/u370.png"></image>
-					<image src="../../static/u373.png"></image>
-					<image src="../../static/u373.png"></image>
+					<image :src="item.stars>=1?'../../static/u370.png':'../../static/u373.png'"></image>
+					<image :src="item.stars>=2?'../../static/u370.png':'../../static/u373.png'"></image>
+					<image :src="item.stars>=3?'../../static/u370.png':'../../static/u373.png'"></image>
+					<image :src="item.stars>=4?'../../static/u370.png':'../../static/u373.png'"></image>
+					<image :src="item.stars>=5?'../../static/u370.png':'../../static/u373.png'"></image>
 				</view>
 			</view>
-			<view style="margin-top: 20upx;">我开始家里尺寸量错了，我开始家里尺寸量错了我开始家里尺寸量错了我开始家里尺寸量错了</view>
-			<view style="margin-top: 15upx;color: #bebebe;">2018-07-01</view>
+			<view style="margin-top: 20upx;">{{item.evaluate}}</view>
+			<view style="margin-top: 15upx;color: #bebebe;">{{item.maketime}}</view>
 		</view>
 	</view>
 </template>
@@ -38,14 +38,59 @@
 	export default {
 		data() {
 			return {
-				
+				id:0,
+				datalist:[],
+				page:1,
+				pagesize:10,
+				click_is:true
 			}
 		},
+		onLoad(options) {
+			this.id = options.id
+			this.getdata()
+		},
 		methods: {
+			getdata(){
+				let  that = this
+				uni.request({
+					url:that.common.websiteUrl+"experhome_owners_commentslist",
+					header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
+					method:"post",
+					data:{
+							'exper_id':that.id,
+							'page':that.page,
+							'pagesize':that.pagesize
+							// 'id':that.id
+						},
+					success: (res) => {
+						if(res.data.code==200){
+							that.datalist =res.data.data
+						}else{
+							that.click_is = false
+						}
+						console.log(res.data.data)
+					},fail() {
+						that.click_is = false
+						that.common.network()
+					}
+				});
+				console.log('评论')
+			},
+			onReachBottom() {
+				let _self = this
+				if(_self.click_is==true){
+					_self.page = _self.page+1
+					_self.getdata()
+				}
+				
+			},
 			back(){
 				uni.navigateTo({
 				    url: '../experiencedetail/experiencedetail'
 				});
+			},
+			getimgurl(image){
+				return this.common.websiteUrl+image
 			},
 		}
 	}

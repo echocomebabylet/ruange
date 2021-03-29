@@ -110,7 +110,7 @@
 				</view>
 				<image src="../../static/u85.png" class="entry"></image>
 			</view>
-			<view style="padding: 30upx 40upx;box-sizing: border-box;justify-content: space-between;border-bottom: 1upx solid #F7F7F7;" @click="appointment">
+			<view @click="go_newwin('../visitmanagement/visitmanagement')" style="padding: 30upx 40upx;box-sizing: border-box;justify-content: space-between;border-bottom: 1upx solid #F7F7F7;">
 				<view>
 					<image src="../../static/u30.png" style="margin-right: 20upx;"></image>
 					<text>体验家管理</text>
@@ -208,6 +208,7 @@
 			plus.screen.lockOrientation("portrait-primary");
 		},
 		methods: {
+			
 			question(){
 				uni.navigateTo({
 				    url: '../problemfeedback/problemfeedback'
@@ -287,7 +288,23 @@
 				uni.navigateTo({
 					url: '../contactus/contactus'
 				});
-			}
+			},
+			go_newwin(url){
+				console.log(url)
+				uni.getStorage({
+					key:'userinfo',
+					success:(res)=>{
+						console.log(res)
+						uni.navigateTo({
+							url: url
+						});
+					},fail() {
+						uni.navigateTo({
+							url: '../login/login'
+						});
+					}
+				})
+			},
 		}
 	}
 </script>

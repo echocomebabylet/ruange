@@ -1,0 +1,8 @@
+{
+  "component": true,
+  "usingComponents": {
+    "u-select": "/uview-ui/components/u-select/u-select",
+    "u-switch": "/uview-ui/components/u-switch/u-switch",
+    "u-toast": "/uview-ui/components/u-toast/u-toast"
+  }
+}
