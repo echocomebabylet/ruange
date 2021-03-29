@@ -18,14 +18,14 @@
 			<text :class="datalist.status>=1 ? 'active':''">拜访</text>
 			<text :class="datalist.status>=2 ? 'active':''">评价</text>
 		</view>
-		<view class="page-body" style="position: relative;">
+		<view class="page-body">
 			<view class="page-section page-section-gap">
-				<map style="width: 100%;" :style="{'height':phoneHeight+'px'}" :latitude="datalist.lat" :longitude="datalist.lon" :markers="covers">
+				<map style="width: 100%;position: relative;" :style="{'height':phoneHeight+'px'}" :latitude="datalist.lat" :longitude="datalist.lon" :markers="covers">
 					<cover-image class="img" src="../../static/u92.png"></cover-image>
 				</map>
 			</view>
 		</view>
-		<view class="info">
+		<view class="info" style="position: relative;">
 			<view>
 				<text style="font-size: 33upx;font-weight: bold;" v-if="datalist.experdata">{{datalist.experdata.name}}</text>
 				<view style="display: flex;align-items: center;margin: 10upx 0 20upx">
@@ -55,15 +55,6 @@
 		</view>
 		<view style="padding: 0 30upx;box-sizing: border-box;font-size: 30upx;color: #bdbdbd;" v-if="datalist.status==4">
 			<text style="display: block;border-top: 1upx solid #F7F7F7;width: 100%;padding-top: 20upx;box-sizing: border-box;" >用户已取消预约</text>
-		</view>
-		<view class="wait"  v-if="iswait==true">
-			<view class="cont">
-				<view style="padding: 50upx;box-sizing: border-box;text-align: center;">体验家可能没看到你的预约，要不在等等？</view>
-				<view style="display: flex;align-items: center;border-top: 1upx solid #F7F7F7;">
-					<text style="display: block;width: 50%;text-align: center;border-right: 1upx solid #F7F7F7;padding: 26upx 0;box-sizing: border-box;" @click="wait">再等等</text>
-					<text style="display: block;width: 50%;text-align: center;color: #40CCCB;padding: 26upx 0;box-sizing: border-box;" @click="canceling">仍然取消</text>
-				</view>
-			</view>
 		</view>
 		
 		<view style="padding: 0 30upx;box-sizing: border-box;font-size: 30upx;color: #bdbdbd;">
@@ -294,15 +285,12 @@
 			close(){
 				this.isstar = false
 			},
+			
 			cancel(){
-				this.iswait = true
-			},
-			wait(){
-				this.iswait = false
-			},
-			canceling(){
 				uni.navigateTo({
-				    url: '../canceloriginal/canceloriginal?id='+this.id
+				    url: '../cancelappointment/cancelappointment?id='+this.id,
+					animationType: 'fade-in',
+					animationDuration: 200
 				});
 			},
 			back(){
@@ -453,7 +441,7 @@
 	width: 70%;
 	background-color: white;
 	border-radius: 20upx;
-	position: absolute;
+	position: fixed;
 	top: 50%;
 	left: 50%;
 	transform: translateX(-50%) translateY(-50%);

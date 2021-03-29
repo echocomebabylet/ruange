@@ -300,11 +300,23 @@
             "path" : "pages/searchimg/searchimg",
             "style" : {}
         }
+        ,{
+            "path" : "pages/cancelappointment/cancelappointment",
+            "style" : {
+				"background":"transparent"
+			}
+        }
+        ,{
+            "path" : "pages/calendar/calendar",
+            "style" : {
+				"background":"transparent"
+			}
+        }
     ],
 	"globalStyle": {
-		"navigationBarTextStyle": "white",
+		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
-		"navigationBarBackgroundColor": "#007AFF",
+		"navigationBarBackgroundColor": "#fff",
 		"backgroundColor": "#FFFFFF",
 		"navigationStyle":"custom",
 		"pageOrientation":"portrait"

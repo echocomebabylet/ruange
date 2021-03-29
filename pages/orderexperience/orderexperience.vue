@@ -18,13 +18,12 @@
 				</view>
 			</view>
 		</view>
-		<view style="padding: 35upx 30upx;box-sizing: border-box;border-bottom: 1upx solid #F7F7F7;font-size: 28upx;display: flex;justify-content: space-between;align-items: center;" @click="show = true">
+		<view style="padding: 35upx 30upx;box-sizing: border-box;border-bottom: 1upx solid #F7F7F7;font-size: 28upx;display: flex;justify-content: space-between;align-items: center;" @click="showtime">
 			<text>选择时间</text>
 			<view style="display: flex;align-items: center;">
 				<text style="color: #bbbbbb;">{{choicetime}}</text>
 				<image src="../../static/u8.png" style="width: 10upx;height: 20upx;margin-left: 10upx;"></image>
 			</view>
-			<u-calendar v-model="show" :min-date="todaytime" max-date="3120-09-09" :mode="mode" :exper_id="exper_id" @aoligei='aoligei'></u-calendar>
 		</view>
 		<view style="padding: 35upx 30upx;box-sizing: border-box;border-bottom: 1upx solid #F7F7F7;font-size: 28upx;display: flex;justify-content: space-between;align-items: center;">
 			<text>体验方式</text>
@@ -280,6 +279,13 @@
 			
 				
 				
+			},
+			showtime(){
+				uni.navigateTo({
+				    url: '../calendar/calendar?id='+this.exper_id,
+					animationType: 'fade-in',
+					animationDuration: 200
+				});
 			},
 			names(){
 				uni.navigateTo({

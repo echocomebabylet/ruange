@@ -490,7 +490,11 @@
 			},
 			close() {
 				// 修改通过v-model绑定的父组件变量的值为false，从而隐藏日历弹窗
-				this.$emit('input', false);
+				uni.navigateBack({
+				    url: '../orderexperience/orderexperience',
+					animationType: 'none',
+					animationDuration: 200
+				});
 				
 				
 			},
