@@ -117,6 +117,7 @@
 				</view>
 				<image src="../../static/u85.png" class="entry"></image>
 			</view>
+			
 			<view style="padding: 30upx 40upx;box-sizing: border-box;justify-content: space-between;border-bottom: 1upx solid #F7F7F7;" @click="chat">
 				<view>
 					<image src="../../static/u241.png" style="margin-right: 20upx;"></image>
@@ -188,7 +189,7 @@
 			}
 		},
 		onLoad(){
-			
+			this.getRegisterID()
 		},
 		onShow(){
 			
@@ -208,7 +209,32 @@
 			plus.screen.lockOrientation("portrait-primary");
 		},
 		methods: {
-			
+			test_jg(){
+				
+				const jyJPush = uni.requireNativePlugin('JY-JPush');
+				jyJPush.setJYJPushAlias({
+					userAlias: 'testAlias'
+					}, result=> {
+						console.log(result)
+					//  设置成功或者失败，都会通过这个result回调返回数据；数据格式保持极光返回的安卓/iOS数据一致
+					//  注：若没有返回任何数据，考虑是否初始化完成
+					uni.showToast({
+						icon:'none',
+						title: JSON.stringify(result)
+					})
+				});
+			},
+			getRegisterID() {
+				console.log('获取RegisterID');
+				const jyJPush = uni.requireNativePlugin('JY-JPush');
+				jyJPush.getRegistrationID(result => {
+					console.log(result)
+					uni.showToast({
+						icon: 'none',
+						title: JSON.stringify(result)
+					})
+				});
+			},
 			question(){
 				uni.navigateTo({
 				    url: '../problemfeedback/problemfeedback'

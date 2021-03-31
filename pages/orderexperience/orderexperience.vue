@@ -108,10 +108,30 @@
 				choicetime:'请选择'
 			}
 		},
-		onShow() {
+		onShow(options) {
+			uni.getStorage({
+				key:'choice_time',
+				success:(res)=>{
+					console.log(res.data)
+					this.choicetime = res.data
+					setTimeout(()=>{
+						uni.removeStorage({
+						    key: 'choice_time',
+						    success: function (res) {
+						        console.log('success');
+						    }
+						});
+					},1000000)
+					
+				},fail() {
+					this.choicetime = '请选择'
+				}
+			})
 			console.log('嘿嘿')
 		},
 		onLoad(options) {
+			
+			console.log(options)
 			options.id = 5
 			this.exper_id = options.id
 			this.getTime()

@@ -48,12 +48,7 @@
 			this.getdata()
 		},
 		onReachBottom() {
-			let _self = this
-			if(_self.click_is==true){
-				_self.page = _self.page+1
-				_self.getdata()
-			}
-			
+			             
 		},
 		methods: {
 			getuserinfo(){

@@ -490,8 +490,17 @@
 			},
 			close() {
 				// 修改通过v-model绑定的父组件变量的值为false，从而隐藏日历弹窗
+				let times = this.year+'-'+this.month+'-'+this.day+'-'+this.choicetime
+				if(this.choicetime){
+					uni.setStorage({
+						key:'choice_time',
+						data:times,
+						success:()=>{}
+					});
+				}
+				
 				uni.navigateBack({
-				    url: '../orderexperience/orderexperience',
+				    url: '../orderexperience/orderexperience?times='+times,
 					animationType: 'none',
 					animationDuration: 200
 				});
@@ -509,7 +518,7 @@
 					return this.common.callback('请选择具体时间')
 				}
 				let times = this.year+'-'+this.month+'-'+this.day+' '+this.choicetime
-				this.$emit('aoligei', times);
+				// this.$emit('aoligei', times);
 				if (!show) {
 					this.close();
 				}

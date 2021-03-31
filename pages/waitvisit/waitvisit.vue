@@ -63,9 +63,24 @@
 			this.getdata()
 		},
 		methods: {
+			get_userinfo(){
+				return new Promise((resolve,reject)=>{
+					uni.getStorage({
+						key: 'userinfo',
+						success:(res)=>{
+							this.userinfo = res.data
+							resolve('suc')
+						},fail() {
+							resolve('err')
+						}
+					});	
+					
+				})
+			},
 			// 获取数据列表
-			getdata(){
+			async getdata(){
 				let _self = this
+				await _self.get_userinfo()
 				uni.request({
 					url:_self.common.websiteUrl+"experhome_owners_waitvisit",
 					header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},

@@ -74,8 +74,23 @@
 			this.getdata()
 		},
 		methods: {
-			getdata(){
+			get_userinfo(){
+				return new Promise((resolve,reject)=>{
+					uni.getStorage({
+						key: 'userinfo',
+						success:(res)=>{
+							this.userinfo = res.data
+							resolve('suc')
+						},fail() {
+							resolve('err')
+						}
+					});	
+					
+				})
+			},
+			async getdata(){
 				let _self = this
+				await _self.get_userinfo()
 				console.log(_self.userinfo.id)
 				uni.request({
 					url:_self.common.websiteUrl+"experhome_owners_seewait",
