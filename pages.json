@@ -312,10 +312,6 @@
 				"background":"transparent"
 			}
         }
-        ,{
-            "path" : "pages/b/b",
-            "style" : {}
-        }
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",

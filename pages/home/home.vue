@@ -2,18 +2,20 @@
 	<view style="display: flex;flex-direction: column;height: 100%;">
 		<view class="nav">
 			<view class="nav-list">
-				<image src="../../static/u152.png"></image>
+				<image src="../../static/saoyisao_icon@2x.png"></image>
 				<view style="display: flex;align-items: center;">
 					<text :class="{'active':isActive==0}" @click="select(0)">关注</text>
 					<text :class="{'active':isActive==1}" @click="select(1)">推荐</text>
 					<text :class="{'active':isActive==2}" @click="select(2)">体验家</text>
 				</view>
-				<image src="../../static/u144.png" style="height: 48upx;width: 48upx;" @click="car"></image>
+				<image src="../../static/gouwuchu_icon@2x.png" style="height: 48upx;width: 54upx;" @click="car"></image>
 			</view>
 			<view class="search">
-				<text></text>
-				<text>上传图片，识别找家具</text>
-				<image src="../../static/u150.png"></image>
+				<view style="display: flex;align-items: center;">
+					<image src="../../static/sousuo_icon@2x.png" style="width: 30upx;height: 30upx;margin-right: 10upx;"></image>
+					<text>上传图片，识别找家具</text>
+				</view>
+				<image src="../../static/zhaopianshibie_icon@2x.png"></image>
 			</view>
 		</view>
 		<swiper style="flex: 1;" :current="i" @change="selectpage">
@@ -265,27 +267,28 @@
 		font-weight: bold;
 	}
 	.nav-list text{
-		margin-right: 40upx;
+		margin-right: 80upx;
+		z-index: 1000;
 	}
 	.nav-list .active{
-		color: #3ecbcb;
 		position: relative;
 	}
 	.nav-list .active::after{
 		content: '';
 		width: 100%;
-		height: 4upx;
-		background-color: #3ecbcb;
+		height: 10upx;
+		background: linear-gradient(to right, rgb(62,203,203) , white);
 		position: absolute;
-		bottom: -26upx;
-		left: 0;
+		bottom: -3upx;
+		left: -10upx;
+		z-index: -1;
 	}
 	.nav-list text:last-child{
 		margin-right: 0;
 	}
 	.nav-list image{
-		width: 33upx;
-		height: 37upx;
+		width: 48upx;
+		height: 46upx;
 	}
 	.search{
 		display: flex;

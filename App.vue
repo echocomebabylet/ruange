@@ -20,6 +20,10 @@ export default {
 	font-family: uniicons;
 	src: url('/static/uni.ttf');
 }
+@font-face {
+	font-family: 'pingfang';
+	src: url(./static/PingFangMedium.ttf);
+}
 body{
 	-webkit-text-size-adjust : 100% ;
 	 -moz-text-size-adjust : 100% ;
