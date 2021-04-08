@@ -1,6 +1,6 @@
 <template>
 	<view class="cont">
-		<scroll-view :scroll-y="sheight" class="style-list" :style="{height:theight+'px'}">
+		<scroll-view scroll-y="true" class="style-list" :style="{height:theight+'px'}">
 			<text>北欧</text>
 			<text>北欧</text>
 			<text>北欧</text>
@@ -47,6 +47,8 @@
 .style-list{
 	height: 1150upx;
 	width: 100%;
+	padding: 0 30upx;
+	box-sizing: border-box;
 }
 .style-list text{
 	display: block;
@@ -55,9 +57,8 @@
 	width: 100%;
 	padding-left: 120upx;
 	box-sizing: border-box;
-	font-size: 34upx;
-	color: #727272;
-	border-bottom: 1upx solid #F7F7F7;
+	font-size: 30upx;
 	font-weight: bold;
+	border-bottom: 1upx solid #eeeeee;
 }
 </style>

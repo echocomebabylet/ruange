@@ -24,7 +24,7 @@
 				<text :class="{'active':isActive==3}" @click="change(3)">空间</text>
 			</view>
 		</view>
-		<kind v-if="isActive==1" :sheight="sh" :theight="h2-h1-h+12" :mheight="h2-h1-h-100"></kind>
+		<kind v-if="isActive==1" :sheight="sh" :theight="h2-h1-h+5" :mheight="h2-h1-h-130"></kind>
 		<manner v-if="isActive==2" :sheight="sh" :theight="h2-h1-h"></manner>
 		<space v-if="isActive==3" :sheight="sh" :theight="h2-h1-h"></space>
 	</view>
