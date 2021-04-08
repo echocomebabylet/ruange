@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<view class="p">
+		<view>
 			<view class="nav">
 				<view class="local">
 					<text>长春</text>
@@ -8,26 +8,12 @@
 				</view>
 				<view class="search">
 					<view>
-						<image src="../../static/u1251.png" style="margin: 0 10upx 0 15upx;"></image>
+						<image src="../../static/sousuo_icon@2x.png" style="margin: 0 10upx 0 20upx;"></image>
 						<input placeholder="搜索品类/单品/风格" />
 					</view>
-					<image src="../../static/u1261.png" style="height: 40upx;margin-right: 15upx;width: 40upx;"></image>
+					<image src="../../static/zhaopianshibie_icon@2x.png" style="height: 40upx;margin-right: 20upx;width: 44upx;"></image>
 				</view>
-				<image src="../../static/u109.png" class="info"></image>
-			</view>
-			<view class="kind">
-				<text>沙发</text>
-				<text>茶几</text>
-				<text>床</text>
-				<text>书桌</text>
-				<text>现代</text>
-				<text>电视柜</text>
-				<text>北欧</text>
-				<text>餐桌</text>
-				<view class="photo">
-					<image src="../../static/u1272.png"></image>
-					<text style="align-self: center;width: 100%;">上传图片，识别找家具</text>
-				</view>
+				<image src="../../static/xiaoxi_icon@2x.png" class="info"></image>
 			</view>
 		</view>
 		<!-- 菜单列表 -->
@@ -38,9 +24,9 @@
 				<text :class="{'active':isActive==3}" @click="change(3)">空间</text>
 			</view>
 		</view>
-		<kind v-if="isActive==1" :sheight="sh" :theight="h2-h1"></kind>
-		<manner v-if="isActive==2" :sheight="sh" :theight="h2-h1"></manner>
-		<space v-if="isActive==3" :sheight="sh" :theight="h2-h1"></space>
+		<kind v-if="isActive==1" :sheight="sh" :theight="h2-h1-h+12" :mheight="h2-h1-h-100"></kind>
+		<manner v-if="isActive==2" :sheight="sh" :theight="h2-h1-h"></manner>
+		<space v-if="isActive==3" :sheight="sh" :theight="h2-h1-h"></space>
 	</view>
 </template>
 
@@ -80,7 +66,7 @@
 				this.isActive = index
 			},
 			getNodesInfo(){
-				let info1 = uni.createSelectorQuery().select(".p");
+				let info1 = uni.createSelectorQuery().select(".nav");
 				info1.boundingClientRect().exec((res)=>{
 					this.h = res[0].height;
 				})
@@ -100,12 +86,8 @@
 </script>
 
 <style>
-.p{
-	background-image: url(../../static/u100.png);
-	background-size: 100% 100%;
-}
 .nav{
-	padding: 15upx 30upx;
+	padding: 30upx;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -114,8 +96,7 @@
 .local{
 	display: flex;
 	align-items: center;
-	font-size: 25upx;
-	color: white;
+	font-size: 28upx;
 }
 .local image{
 	width: 20upx;
@@ -125,7 +106,7 @@
 .search{
 	width: 70%;
 	height: 70upx;
-	background-color: white;
+	background-color: #f8f8f8;
 	border-radius: 50upx;
 	display: flex;
 	justify-content: space-between;
@@ -144,51 +125,8 @@
 	height: 30upx;
 }
 .info{
-	width: 40upx;
-	height: 32upx;
-}
-.kind{
-	height: 240upx;
-	color: white;
-	font-size: 25upx;
-	display: flex;
-	justify-content: space-around;
-	flex-wrap: wrap;
-	padding: 40upx 0 100upx 0;
-	box-sizing: border-box;
-	position: relative;
-}
-.kind text{
-	display: block;
-	width: 25%;
-	height: 40upx;
-	text-align: center;
-}
-.photo{
-	width: 90%;
-	padding: 35upx 0;
-	box-sizing: border-box;
-	display: flex;
-	flex-direction: column;
-	font-size: 25upx;
-	position: absolute;
-	bottom: -50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-10%);
-	background-color: white;
-	color: black;
-	border-radius: 5upx;
-	box-shadow: 0upx 8upx 5upx 0upx rgba(0,0,0,0.3);
-}
-.photo image{
-	width: 66upx;
-	height: 60upx;
-	margin: auto;
-	margin-bottom: 20upx;
-	display: block;
-}
-.menu{
-	margin-top: 120upx;
+	width: 46upx;
+	height: 46upx;
 }
 .menu .tit{
 	display: flex;
@@ -201,16 +139,18 @@
 	box-sizing: border-box;
 	text-align: center;
 	font-size: 25upx;
+	color: #aaaaaa;
 }
 .menu .active{
 	font-weight: bold;
 	position: relative;	
+	color: #40CCCB;
 }
 .menu .active::before{
 	content: '';
 	width: 52upx;
 	height: 4upx;
-	background-color: black;
+	background-color: #40CCCB;
 	position: absolute;
 	bottom: 0;
 	left: 50%;
