@@ -134,7 +134,9 @@
 						  		success: (res) => {
 						  			
 						  			console.log(res.data);
-						  			
+						  			uni.sendSocketMessage({
+						  			    data: '{"type":"binduid","data":"'+res.data.id+'"}'
+						  			});
 						  			// 将请求到的数据存放放到data中
 						  			uni.setStorage({
 						  				key:'userinfo',
