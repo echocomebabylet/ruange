@@ -57,8 +57,8 @@
         },
         "nativePlugins" : {
             "JY-JPush" : {
-                "android_appkey" : "uniruange",
-                "android_channel" : "2c571b4ab7f65d20f0457ed7",
+                "android_appkey" : "2c571b4ab7f65d20f0457ed7",
+                "android_channel" : "android",
                 "ios_appkey" : "",
                 "ios_channel" : "",
                 "__plugin_info__" : {

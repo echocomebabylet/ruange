@@ -123,6 +123,9 @@
 					  }else{
 						console.log(this.codedata)
 						  if(this.datas == this.codedata){
+							  uni.showLoading({
+							  	title: '正在加载...'
+							  })
 						  	uni.request({
 						  		url:helper.websiteUrl+"user_phonelogin",
 						  		header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
@@ -138,6 +141,7 @@
 						  				data:res.data.data,
 						  				success:()=>{}
 						  			});
+									this.set_alias()
 						  			this.$refs.uToast.show({
 						  				title: '登录成功',
 						  				type: 'default',
@@ -158,6 +162,9 @@
 				
 				
 					
+			},
+			set_alias(){
+				
 			}
 		}
 	}
