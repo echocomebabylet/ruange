@@ -132,11 +132,12 @@
 						  		method:"post",
 						  		data:{'phone':this.phonedata},
 						  		success: (res) => {
-						  			
 						  			console.log(res.data);
+									// 发送到im系统绑定本人uid
 						  			uni.sendSocketMessage({
-						  			    data: '{"type":"binduid","data":"'+res.data.id+'"}'
+						  			    data: '{"type":"binduid","data":"'+res.data.data.id+'"}'
 						  			});
+									
 						  			// 将请求到的数据存放放到data中
 						  			uni.setStorage({
 						  				key:'userinfo',
@@ -166,7 +167,15 @@
 					
 			},
 			set_alias(){
-				
+				jyJPush.setJYJPushAlias({
+					userAlias: 'testAlias22'
+				}, result => {
+					console.log(JSON.stringify(result));
+					uni.showToast({
+						icon: 'none',
+						title: JSON.stringify(result)
+					})
+				});
 			}
 		}
 	}
