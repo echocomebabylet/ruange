@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<view class="aline"></view>
 		<view class="nav">
 			<view style="width: 40upx;height: 40upx;" @click="back">
 				<image src="../../static/u164.png"></image>
@@ -7,6 +8,7 @@
 			<text>我的方案</text>
 			<text style="color: white;">返</text>
 		</view>
+		<view style="height: 230upx;"></view>
 		<view  class="disable" v-if="isdisable==1">
 			<image src="../../static/u284.png"></image>
 			<text style="text-align: center;width: 100%;display: block;">您还没有方案哦！</text>
@@ -43,8 +45,16 @@
 </script>
 
 <style>
+.aline{
+	 height: var(--status-bar-height);
+	  width: 100%;
+	  z-index: 100;
+	  background-color: white;
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+}
 page{
-	padding-top: 200upx;
 	box-sizing: border-box;
 }
 .nav{
@@ -58,7 +68,7 @@ page{
 	background-color: white;
 	width: 100%;
 	position: fixed;
-	top: 0;
+	top: var(--status-bar-height);
 	left: 0;
 	z-index: 1000;
 	border-bottom: 1upx solid #F7F7F7;
@@ -83,7 +93,7 @@ page{
 }
 .list{
 	width: 90%;
-	box-shadow: 0 0 5upx 5upx rgba(0,0,0,0.2);
+	box-shadow: 0 0 10upx 5upx rgba(0,0,0,0.05);
 	border-radius: 30upx;
 	margin: auto;
 	margin-bottom: 40upx;

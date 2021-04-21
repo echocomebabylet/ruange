@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<view class="aline"></view>
 		<view class="nav">
 			<view style="width: 40upx;height: 40upx;" @click="back">
 				<image src="../../static/u164.png"></image>
@@ -7,6 +8,7 @@
 			<text>评价成功</text>
 			<text style="color: white;">返</text>
 		</view>
+		<view style="height: 130upx;"></view>
 		<view class="cont">
 			<image src="../../static/u1260.png"></image>
 			<text style="font-size: 28upx;margin: 20upx 0;">评价成功，感谢您！</text>
@@ -34,9 +36,17 @@
 </script>
 
 <style>
+.aline{
+	 height: var(--status-bar-height);
+	  width: 100%;
+	  z-index: 100;
+	  background-color: white;
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+}
 page{
 	background-color: #F2F2F2;
-	padding-top: 130upx;
 	box-sizing: border-box;
 }
 .nav{
@@ -50,7 +60,7 @@ page{
 	background-color: white;
 	width: 100%;
 	position: fixed;
-	top: 0;
+	top: var(--status-bar-height);
 	left: 0;
 	border-bottom: 1upx solid #F7F7F7;
 	z-index: 1000;

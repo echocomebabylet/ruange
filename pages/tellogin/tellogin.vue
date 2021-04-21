@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<view class="aline"></view>
 		<view class="nav">
 			<view style="width: 45upx;height: 45upx;margin-right: 20rpx;" @click="back">
 				<image src="../../static/u18.png"></image>
@@ -182,6 +183,10 @@
 </script>
 
 <style>
+.aline{
+	 height: var(--status-bar-height);
+	  width: 100%;
+}
 .nav{
 	display: flex;
 	align-items: center;

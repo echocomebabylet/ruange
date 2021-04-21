@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<view class="aline"></view>
 		<view class="appointment">
 			<view style="display: flex;align-items: center;justify-content: space-between;padding: 30upx 35upx;box-sizing: border-box;">
 				<view style="width: 50upx;height: 40upx;" @click="appointmentback">
@@ -60,6 +61,11 @@
 </script>
 
 <style>
+.aline{
+	 height: var(--status-bar-height);
+	  width: 100%;
+	  background-color: white;
+}
 .appointment{
 	font-weight: bold;
 	font-size: 30upx;

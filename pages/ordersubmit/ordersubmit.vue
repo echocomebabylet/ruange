@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<view class="aline"></view>
 		<view class="nav">
 			<text></text>
 			<text>订单提交成功</text>
@@ -34,6 +35,11 @@
 </script>
 
 <style>
+.aline{
+	 height: var(--status-bar-height);
+	  width: 100%;
+	  background-color: white;
+}
 page{
 	background-color: #F2F2F2;
 }

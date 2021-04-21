@@ -1,0 +1,34 @@
+
+.appointment{
+	font-weight: bold;
+	font-size: 30rpx;
+}
+cover-view{
+	width: 50%;
+	height: 90rpx;
+	background-color: white;
+	-webkit-box-shadow: 5rpx 5rpx 10rpx 0 rgba(0,0,0,0.4);
+	        box-shadow: 5rpx 5rpx 10rpx 0 rgba(0,0,0,0.4);
+	position:absolute;
+	top: 35%;
+	left: 50%;
+	-webkit-transform: translateX(-50%);
+	        transform: translateX(-50%);
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	padding: 0 40rpx;
+	font-size: 30rpx;
+	font-weight: normal;
+}
+cover-view image{
+	width: 60rpx;
+	height: 60rpx;
+}
+

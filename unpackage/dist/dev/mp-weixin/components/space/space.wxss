@@ -1,0 +1,49 @@
+
+.space-list {
+	height: 1150rpx;
+	width: 100%;
+}
+.uni-collapse-cell {
+	padding: 0 50rpx 0 100rpx;
+	color: #727272;
+}
+.img {
+	width: 16rpx;
+	height: 24rpx;
+}
+.dress{
+	background-color: white;
+}
+.ordering{
+	display: block;
+	width: 100%;
+	padding: 30rpx 0 30rpx 40rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	font-size: 30rpx;
+	font-weight: bold;
+}
+.dress .time{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	        flex-wrap: wrap;
+}
+.dress .time text{
+	width: 150rpx;
+	height: 60rpx;
+	background-color: #f3f5f4;
+	font-size: 22rpx;
+	text-align: center;
+	line-height: 60rpx;
+	border-radius: 15rpx;
+	margin-left: 30rpx;
+	margin-bottom: 30rpx;
+	font-weight: bold;
+}
+.oactive,.nactive{
+	background-color: #40CCCB !important;
+	color: white;
+}
+

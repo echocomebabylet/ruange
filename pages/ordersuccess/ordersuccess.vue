@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<view class="aline"></view>
 		<view class="nav">
 			<view style="width: 50upx;height: 40upx;" @click="back">
 				<image src="../../static/u18.png"></image>
@@ -62,6 +63,11 @@
 </script>
 
 <style>
+.aline{
+	 height: var(--status-bar-height);
+	  width: 100%;
+	  background-color: white;
+}
 page{
 	background-color: #f2f2f2;
 }

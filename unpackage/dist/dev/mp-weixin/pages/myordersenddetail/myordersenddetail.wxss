@@ -1,0 +1,76 @@
+
+page{
+	background-color: #F2F2F2;
+	padding-top: 130rpx;
+	padding-bottom: 130rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.nav{
+	padding: 0 45rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	font-size: 30rpx;
+	height: 130rpx;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+	background-color: white;
+}
+.nav image{
+	width: 24rpx;
+	height: 38rpx;
+}
+.pay{
+	font-size: 24rpx;
+	color: #a8a8a8;
+	margin-top: 20rpx;
+}
+.pay-list{
+	padding: 35rpx 45rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	border-bottom: 1rpx solid #F7F7F7;
+	font-size: 20rpx;
+	background-color: white;
+}
+.pay-list image{
+	width: 190rpx;
+	height: 190rpx;
+	margin-right: 40rpx;
+}
+.total{
+	padding: 30rpx 45rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	font-weight: bold;
+	border-bottom: 1rpx solid #F7F7F7;	
+	background-color: white;
+}
+

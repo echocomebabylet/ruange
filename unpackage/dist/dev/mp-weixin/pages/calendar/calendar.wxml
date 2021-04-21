@@ -1,0 +1,1 @@
+<view><u-calendar bind:input="__e" vue-id="4e2f4d80-1" min-date="{{todaytime}}" max-date="3120-09-09" mode="{{mode}}" exper_id="{{exper_id}}" value="{{show}}" data-event-opts="{{[['^input',[['__set_model',['','show','$event',[]]]]]]}}" bind:__l="__l"></u-calendar></view>

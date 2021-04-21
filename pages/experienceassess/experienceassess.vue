@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<view class="aline"></view>
 		<view class="nav">
 			<view style="width: 50upx;height: 40upx;" @click="back">
 				<image src="../../static/u18.png"></image>
@@ -14,6 +15,7 @@
 			</view>
 			<text style="font-size: 22upx;color: #afafaf;">好评度<text style="color: #40CCCB;margin-left: 20upx;">{{datalist.comments_praise}}</text></text>
 		</view>
+		<view style="height: 270upx"></view>
 		<view class="cont" v-for="(item,index) in datalist.comments" :key="index">
 			<view style="display: flex;justify-content: space-between;align-items: center;">
 				<view class="head">
@@ -97,8 +99,16 @@
 </script>
 
 <style>
+.aline{
+	 height: var(--status-bar-height);
+	  width: 100%;
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+	  background-color: white;
+	  z-index: 100;
+}
 page{
-	padding-top: 220upx;
 	box-sizing: border-box;
 }
 .nav{
@@ -113,7 +123,7 @@ page{
 	background-color: white;
 	width: 100%;
 	position: fixed;
-	top: 0;
+	top: var(--status-bar-height);
 	left: 0;
 	z-index: 1000;
 }
@@ -128,7 +138,7 @@ page{
 	padding: 22upx 70upx;
 	box-sizing: border-box;
 	position: fixed;
-	top: 130upx;
+	top: 200upx;
 	left: 0;
 	background-color: white;
 	z-index: 1000;

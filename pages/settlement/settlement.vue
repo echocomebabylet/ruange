@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<view class="aline"></view>
 		<view class="nav">
 			<view style="width: 40upx;height: 40upx;" @click="back">
 				<image src="../../static/u164.png"></image>
@@ -7,6 +8,7 @@
 			<text>软阁孵化室-认证入驻软阁</text>
 			<text style="color: white;">返</text>
 		</view>
+		<view style="height: 180upx;"></view>
 		<view class="list">
 			<view class="photo" @click="photo" :style="isphoto==true?'background:#40cccb':'background:#fff'">
 				<image v-if="isphoto==true" src="../../static/u306.png" style="margin: 60upx auto 0;"></image>
@@ -231,8 +233,16 @@
 </script>
 
 <style>
+.aline{
+	 height: var(--status-bar-height);
+	  width: 100%;
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+	  z-index: 100;
+	  background-color: white;
+}
 page{
-	padding-top: 150upx;
 	padding-bottom: 120upx;
 	background-color: #F2F2F2;
 	box-sizing: border-box;
@@ -248,7 +258,7 @@ page{
 	background-color: white;
 	width: 100%;
 	position: fixed;
-	top: 0;
+	top: var(--status-bar-height);
 	left: 0;
 	z-index: 1000;
 }

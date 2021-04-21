@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<view class="aline"></view>
 		<view class="nav">
 			<view style="width: 40upx;height: 40upx;" @click="back">
 				<image src="../../static/u164.png"></image>
@@ -7,6 +8,7 @@
 			<text>已结束的预约</text>
 			<text style="color: white;">返回</text>
 		</view>
+		<view style="height: 160upx;"></view>
 		<view class="list" v-for="(item,index) in datalist" :key="index" @click="appointmentdetail(item.id)">
 			<view style="display: flex;justify-content: space-between;padding: 35upx 10upx;box-sizing: border-box;border-bottom: 1upx solid #F7F7F7;">
 				<view style="display: flex;align-items: center;">
@@ -107,9 +109,17 @@
 </script>
 
 <style>
+.aline{
+	 height: var(--status-bar-height);
+	  width: 100%;
+	  z-index: 100;
+	  position: fixed;
+	top: 0;
+	left: 0;
+	background-color: white;
+}
 page{
 	background-color: #f2f2f2;
-	padding-top: 130upx;
 	box-sizing: border-box;
 }
 .nav{
@@ -123,7 +133,7 @@ page{
 	background-color: white;
 	width: 100%;
 	position: fixed;
-	top: 0;
+	top: var(--status-bar-height);
 	left: 0;
 	z-index: 1000;
 }

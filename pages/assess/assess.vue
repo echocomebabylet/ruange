@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<view class="aline"></view>
 		<view class="nav">
 			<view style="width: 50upx;height: 50upx;" @click="pageback">
 				<image src="../../static/u18.png"></image>
@@ -116,9 +117,17 @@
 </script>
 
 <style>
+.aline{
+	 height: var(--status-bar-height);
+	  width: 100%;
+	  background-color: white !important;
+	  z-index: 100;
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+}
 page {
 	background-color: #F2F2F2;
-	padding-top: 120upx;
 	box-sizing: border-box;
 }
 
@@ -132,7 +141,7 @@ page {
 	padding: 0 30upx;
 	box-sizing: border-box;
 	position: fixed;
-	top: 0;
+	top: var(--status-bar-height);
 	left: 0;
 	font-size: 30upx;
 	z-index: 100;
@@ -143,7 +152,7 @@ page {
 	height: 50upx;
 }
 .assess-list{
-	padding: 30upx;
+	padding: 40upx 30upx 30upx;
 	box-sizing: border-box;
 	border-top: 1upx solid #F7F7F7;
 	background-color: white;

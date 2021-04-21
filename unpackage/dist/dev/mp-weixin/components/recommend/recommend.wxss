@@ -1,0 +1,413 @@
+
+.swiper{
+	background-color: white;
+	padding: 20rpx 30rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	width: 100%;
+	height: 175px;
+}
+.swiper swiper-item{
+	width: 100%;
+}
+.swiper image{
+	width: 100%;
+	height: 100%;
+}
+.dot{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: space-around;
+	        justify-content: space-around;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	background-color: white;
+	padding: 20rpx 30rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.dot view{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	font-size: 22rpx;
+	color: #616161;
+}
+.dot image{
+	width: 28rpx;
+	height: 28rpx;
+	margin-right: 12rpx;
+}
+.ad{
+	background-color: white;
+	padding: 40rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	font-size: 25rpx;
+}
+.ad view{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	font-weight: bold;
+}
+.ad image{
+	width: 75rpx;
+	height: 72rpx;
+	margin-bottom: 15rpx;
+}
+
+/* 家空间 */
+.space{
+	background-color: white;
+	padding: 20rpx 30rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.house{
+	padding: 30rpx 0;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-shadow: 0 0 5rpx 5rpx rgba(0,0,0,0.03);
+	        box-shadow: 0 0 5rpx 5rpx rgba(0,0,0,0.03);
+	border-radius: 20rpx;
+}
+.house view{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	font-size: 25rpx;
+	width: 33.3%;
+	border-right: 1rpx solid #F2F2F2;
+}
+.house view:last-child{
+	border-right: none;
+}
+.tit{
+	font-size: 33rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	font-weight: bold;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+}
+.more{
+	width: 15rpx;
+	height: 20rpx;
+}
+.check{
+	font-size: 24rpx;
+	color: #a8a8a8;
+	font-weight: normal;
+	margin-right: 10rpx;
+}
+.type{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	margin-top: 33rpx;
+}
+.type image{
+	width: 50%;
+	height: 130rpx;
+}
+.room image{
+	width: 100%;
+	height: 140rpx;
+	margin-bottom: 10rpx;
+}
+.room .bor{
+	width: 50%;
+	margin: 10px 0;
+}
+.room .bor:nth-child(2n-1){
+	border-right: 1px solid #F2F2F2;
+}
+.room view{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: space-around;
+	        justify-content: space-around;
+	height: 100%;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-flex-wrap: wrap;
+	        flex-wrap: wrap;
+}
+.design-ad{
+	width: 100%;
+	height: 140rpx;
+	display: block;
+}
+
+/* 现货推荐 */
+.now{
+	padding: 0 30rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.swiper2{
+	width: 100%;
+	margin-bottom: 20rpx;
+}
+.swiper2 image{
+	height: 225rpx;
+	width: 90%;
+	display: block;
+	margin: auto;
+}
+.swiper2 view{
+	-webkit-box-shadow: 0 0 5rpx 3rpx rgba(0,0,0,0.05);
+	        box-shadow: 0 0 5rpx 3rpx rgba(0,0,0,0.05);
+	border-radius: 30rpx;
+	padding-bottom: 10rpx;
+	overflow: hidden;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	margin-top: 10rpx;
+	margin-left: 10rpx;
+}
+.swiper2 swiper-item{
+	margin-top: 30rpx;
+}
+.swiper2 .subject{
+	font-size: 30rpx;
+	display: block;
+	margin: 20rpx 20rpx 0;
+	color: #030303;
+	font-weight: 700;
+}
+.swiper2 .intro{
+	font-size: 20rpx;
+	color: #666666;
+	display: block;
+	margin: 0 20rpx 15rpx;
+}
+.swiper2 .price{
+	font-size: 35rpx;
+	margin: 0 20rpx 0 0;
+	font-weight: 600;
+}
+
+/* 商品列表 */
+.product{
+	padding: 20rpx 30rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	margin-top: 15rpx;
+	background-color: white;
+}
+.title{
+	padding: 0 20rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+}
+.topic{
+	font-size: 35rpx;
+	font-weight: 600;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+}
+.topic .a{
+	position: relative;
+	font-weight: bold;
+}
+.topic .a::before{
+	content: '';
+	width: 55rpx;
+	height: 6rpx;
+	background-color: #40CCCC;
+	position: absolute;
+	top: 50%;
+	left: -65rpx;
+	-webkit-transform: translateY(-50%);
+	        transform: translateY(-50%);
+}
+.topic text:nth-child(3){
+	font-size: 30rpx;
+	font-weight: normal;
+}
+.num{
+	font-size: 25rpx;
+	font-weight: bold;
+}
+.num text{
+	font-size: 20rpx;
+	font-weight: normal;
+}
+
+/* 专题轮播 */
+.swiper1{
+	width: 100%;
+	margin-bottom: 20rpx;
+}
+.swiper1 image{
+	height: 245rpx;
+	width: 100%;
+	border-radius: 30rpx 30rpx 0 0;
+}
+.swiper1 view{
+	-webkit-box-shadow: 0 0 5rpx 5rpx rgba(0,0,0,0.03);
+	        box-shadow: 0 0 5rpx 5rpx rgba(0,0,0,0.03);
+	border-radius: 30rpx;
+	padding-bottom: 20rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.swiper1 swiper-item{
+	font-size: 30rpx;
+	margin-top: 50rpx;
+}
+.swiper1 .subject{
+	display: block;
+	font-size: 30rpx;
+	margin: 30rpx 20rpx 10rpx;
+	color: #030303;
+	font-weight: 600;
+}
+.swiper1 .intro{
+	font-size: 20rpx;
+	color: #666666;
+	width:100%;
+	text-overflow: -o-ellipsis-lastline; 
+	overflow: hidden;
+	text-overflow: ellipsis; 
+	display: -webkit-box;
+	-webkit-line-clamp: 1;
+	line-clamp: 1; 
+	-webkit-box-orient: vertical;
+	white-space: normal;
+	padding: 0 20rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.list-nav{
+	width: 100%;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: space-around;
+	        justify-content: space-around;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	font-size: 24rpx;
+	color: #999999;
+	padding: 30rpx 0;
+	-webkit-box-shadow: 0 0 5rpx 3rpx rgba(0,0,0,0.1);
+	        box-shadow: 0 0 5rpx 3rpx rgba(0,0,0,0.1);
+}
+.navactive{
+	color: #40CCCB;
+	font-size: 30rpx;
+	font-weight: bold;
+	position: relative;
+}
+.navactive::after{
+	content: '';
+	width: 100%;
+	height: 5rpx;
+	background-color: #40CCCB;
+	position: absolute;
+	left: 0;
+	bottom: -30rpx;
+}
+.list-detail{
+	padding: 0 30rpx 20rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	-webkit-flex-wrap: wrap;
+	        flex-wrap: wrap;
+}
+.list-detail view{
+	width: 48%;
+	-webkit-box-shadow: 0 0 5rpx 3rpx rgba(0,0,0,0.03);
+	        box-shadow: 0 0 5rpx 3rpx rgba(0,0,0,0.03);
+	margin-top: 20rpx;
+	border-radius: 15rpx;
+	padding-bottom: 20rpx;
+}
+.list-detail image{
+	width: 90%;
+	height: 260rpx;
+	display: block;
+	margin: auto;
+}
+.list-detail text{
+	display: block;
+	margin: 0 20rpx;
+}
+.list-detail .name1{
+	font-size: 28rpx;
+	font-weight: bold;
+	color: #030303;
+	font-family: 'pingfang' !important;
+}
+.list-detail .intro1{
+	font-size: 22rpx;
+	color: #666666;
+	margin: 0 20rpx 10rpx;
+}
+.list-detail .price1{
+	font-size: 35rpx;
+	font-weight: 600;
+	display: inline-block;
+}
+

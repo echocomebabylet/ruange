@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<view class="aline"></view>
 		<view class="nav">
 			<view style="width: 40upx;height: 40upx;" @click="back">
 				<image src="../../static/u164.png"></image>
@@ -29,6 +30,7 @@
 				<image src="../../static/ushai.png" style="width: 25upx;height: 30upx;margin-left: 10upx;" v-if="isactive==4"></image>
 			</view>
 		</view>
+		<view style="height: 270upx;"></view>
 		<view style="width: 100%;height: 100%;position: fixed;top: 230upx;left: 0;background-color: rgba(0,0,0,0.5);z-index: 1000;" v-if="islist">
 			<view class="slot-content" style="background-color: #FFFFFF;" v-if="isactive==1">
 				<scroll-view scroll-y="true" style="height: 500rpx;font-size: 30upx;font-weight: bold;padding: 0 40upx;box-sizing: border-box;">
@@ -193,8 +195,16 @@
 </script>
 
 <style>
+.aline{
+	 height: var(--status-bar-height);
+	 width: 100%;
+	 position: fixed;
+	 top: 0;
+	 left: 0;
+	 z-index: 100;
+	 background-color: white;
+}
 page{
-	padding-top: 230upx;
 	box-sizing: border-box;
 }
 .nav{
@@ -207,7 +217,7 @@ page{
 	height: 130upx;
 	width: 100%;
 	position: fixed;
-	top: 0;
+	top: var(--status-bar-height);
 	left: 0;
 	z-index: 1000;
 	background-color: white;

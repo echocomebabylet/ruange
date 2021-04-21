@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<view class="aline"></view>
 		<view class="nav">
 			<image src="../../static/u164.png"></image>
 			<text>创建订单</text>

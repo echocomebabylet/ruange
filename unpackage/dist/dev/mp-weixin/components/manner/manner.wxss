@@ -1,0 +1,21 @@
+
+.style-list{
+	height: 1150rpx;
+	width: 100%;
+	padding: 0 30rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.style-list text{
+	display: block;
+	height: 100rpx;
+	line-height: 100rpx;
+	width: 100%;
+	padding-left: 120rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	font-size: 30rpx;
+	font-weight: bold;
+	border-bottom: 1rpx solid #eeeeee;
+}
+

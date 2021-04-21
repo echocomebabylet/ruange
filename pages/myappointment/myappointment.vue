@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<view class="aline"></view>
 		<view class="nav">
 			<view style="width: 40upx;height: 40upx;" @click="back">
 				<image src="../../static/u164.png"></image>
@@ -7,6 +8,7 @@
 			<text>我的预约</text>
 			<text style="color: white;">返</text>
 		</view>
+		<view style="height: 160upx;"></view>
 		<!-- 等待体验 -->
 		<view class="wait">
 			<text style="font-size: 38upx;font-weight: bold;" v-if="datalist.wait_exper">等待体验({{datalist.wait_exper.length}})</text>
@@ -147,8 +149,16 @@
 </script>
 
 <style>
+.aline{
+	 height: var(--status-bar-height);
+	  width: 100%;
+	  z-index: 100;
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+	  background-color: white;
+}
 page{
-	padding-top: 130upx;
 	box-sizing: border-box;
 	background-color: #F2F2F2;
 }
@@ -162,7 +172,7 @@ page{
 	height: 130upx;
 	width: 100%;
 	position: fixed;
-	top: 0;
+	top: var(--status-bar-height);
 	left: 0;
 	z-index: 1000;
 	background-color: white;

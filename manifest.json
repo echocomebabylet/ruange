@@ -9,9 +9,9 @@
         "nvueCompiler" : "uni-app",
         "runmode" : "liberate",
         "compilerVersion" : 3,
-        "statusbar" : {
-            "immersed" : false
-        },
+        // "statusbar" : {
+        //     "immersed" : false
+        // },
         "modules" : {
             "Maps" : {}
         },

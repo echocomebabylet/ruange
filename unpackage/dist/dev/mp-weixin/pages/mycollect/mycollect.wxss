@@ -1,0 +1,198 @@
+page{
+	background-color: #F2F2F2;
+	padding-top: 220rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.nav{
+	padding: 0 45rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	font-size: 30rpx;
+	height: 130rpx;
+	background-color: white;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 1000;
+}
+.nav image{
+	width: 24rpx;
+	height: 38rpx;
+}
+.collect-nav{
+	width: 100%;
+	padding: 30rpx 190rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	font-size: 25rpx;
+	color: #ababab;
+	position: fixed;
+	top: 130rpx;
+	left: 0;
+	z-index: 1000;
+	background-color: white;
+	border-bottom: 1rpx solid #F7F7F7;
+}
+.active{
+	color: #40CCCB;
+	position: relative;
+}
+.active::before{
+	content: '';
+	width: 100%;
+	height: 5rpx;
+	background-color: #40CCCB;
+	position: absolute;
+	bottom: -30rpx;
+	left: 0;
+}
+/* 商品 */
+.goods-list{
+	background-color: white;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	padding: 40rpx 30rpx 0;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-flex-wrap: wrap;
+	        flex-wrap: wrap;
+	font-size: 20rpx;
+	font-weight: bold;
+}
+.goods-list image{
+	width: 330rpx;
+	height: 330rpx;
+	margin-bottom: 20rpx;
+}
+.goods-list view{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+	margin-bottom: 50rpx;
+}
+/* 品牌 */
+.brand-list{
+	background-color: white;
+	padding: 40rpx 0 0;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.cont{
+	padding: 20rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	border-top: 1rpx solid #F7F7F7;
+	border-bottom: 1rpx solid #F7F7F7;
+	font-size: 20rpx;
+	margin-bottom: 20rpx;
+}
+.cont .kind{
+	width: 50%;
+	height: 170rpx;
+}
+.cont .enter{
+	width: 50rpx;
+	height: 30rpx;
+}
+/* 体验家 */
+.experience-list{
+	padding: 40rpx 0 0;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.cont1{
+	padding: 20rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	border-top: 1rpx solid #F7F7F7;
+	border-bottom: 1rpx solid #F7F7F7;
+	font-size: 22rpx;
+	margin-bottom: 20rpx;
+	background-color: white;
+}
+.cont1 .kind{
+	width: 40%;
+	height: 170rpx;
+}
+.cont1 .head{
+	width: 90rpx;
+	height: 90rpx;
+	border-radius: 50%;
+}
+/* 案例 */
+.case{
+	padding: 20rpx 20rpx 0;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.case-list{
+	width: 100%;
+	margin-bottom: 20rpx;
+}
+.case-list .img{
+	width: 100%;
+	height: 410rpx;
+	border-radius: 20rpx 20rpx 0 0;
+	display: block;
+}
+.case-list view{
+	position: relative;
+	padding: 25rpx 40rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	background-color: white;
+	width: 100%;
+	font-size: 30rpx;
+	border-radius: 0 0 20rpx 20rpx;
+}
+.case-list view image{
+	width: 100rpx;
+	height: 100rpx;
+	position: absolute;
+	top: -70rpx;
+	right: 30rpx;
+}
+

@@ -1,9 +1,19 @@
+.aline{
+	 height: var(--status-bar-height);
+	  width: 100%;
+	  background-color: white;
+	  z-index: 100;
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+}
 page{
 	background-color: #F2F2F2;
 	padding-bottom: 300upx;
 	box-sizing: border-box;
 }
 .nav{
+	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	padding: 50upx;
@@ -11,7 +21,10 @@ page{
 	align-items: center;
 	font-size: 30upx;
 	background-color: white;
-	position: relative;
+	position: fixed;
+	top: var(--status-bar-height);
+	left: 0;
+	z-index: 100;
 }
 .nav::after{
 	content: '';
@@ -32,6 +45,7 @@ page{
 	box-sizing: border-box;
 	background-color: white;
 	margin-bottom: 20upx;
+	margin-top: 180upx;
 }
 .address .add{
 	width: 240upx;

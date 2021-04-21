@@ -20,7 +20,9 @@
         }
         ,{
             "path" : "pages/experience/experience",
-            "style" : {}
+            "style" : {
+				"navigationBarBackgroundColor": "#ffffff"
+			}
         }
         ,{
             "path" : "pages/my/my",
@@ -311,6 +313,10 @@
             "style" : {
 				"background":"transparent"
 			}
+        }
+        ,{
+            "path" : "pages/talk/talk",
+            "style" : {}
         }
     ],
 	"globalStyle": {

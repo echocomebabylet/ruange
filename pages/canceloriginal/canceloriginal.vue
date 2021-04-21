@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<view class="aline"></view>
 		<view class="nav">
 			<image src="../../static/u164.png"></image>
 			<text style="margin-left: 20upx;">选择取消原因</text>
@@ -96,6 +97,11 @@
 </script>
 
 <style>
+.aline{
+	 height: var(--status-bar-height);
+	  width: 100%;
+	  background-color: white;
+}
 page{
 	background-color: #F2F2F2;
 }

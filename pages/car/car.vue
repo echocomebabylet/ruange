@@ -1,10 +1,12 @@
 <template>
 	<view>
+		<view class="aline"></view>
 		<view class="nav">
 			<image src="../../static/u18.png" @click="back"></image>
 			<text>购物车</text>
 			<text style="color: white;">返回</text>
 		</view>
+		<view style="height: 160upx;"></view>
 		<view class="product-list" v-for="(arr,index) in list" :key="index">
 			 <view class="uni-form-item uni-column" style="background-color: white;">
 				<checkbox-group name="checkbox1" >

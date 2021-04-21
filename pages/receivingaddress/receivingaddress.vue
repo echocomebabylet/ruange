@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<view class="aline"></view>
 		<view class="nav">
 			<view style="width: 40upx;height: 40upx;" @click="back">
 				<image src="../../static/u164.png"></image>
@@ -7,6 +8,7 @@
 			<text style="font-weight: bold;margin-left: 30upx;">收货地址</text>
 			<text style="font-size: 20upx;" @click="addaddress">添加新地址</text>
 		</view>
+		<view style="height: 180upx;"></view>
 		<view v-if="isactive==1" class="nothing">
 			<image src="../../static/u721.png"></image>
 			<text>深夜那一抹灯光的温暖，是家的方向</text>
@@ -127,6 +129,15 @@
 </script>
 
 <style>
+.aline{
+	 height: var(--status-bar-height);
+	  width: 100%;
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+	  z-index: 100;
+	  background-color: white;
+}
 .nav{
 	padding: 0 30upx;
 	box-sizing: border-box;
@@ -137,6 +148,11 @@
 	height: 130upx;
 	background-color: white;
 	border-bottom: 1upx solid #F7F7F7;
+	position: fixed;
+	top: var(--status-bar-height) ;
+	left: 0;
+	z-index: 100;
+	width: 100%;
 }
 .nav image{
 	width: 24upx;

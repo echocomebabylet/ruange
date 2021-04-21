@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<view class="aline"></view>
 		<view class="nav">
 			<view style="width: 40upx;height: 40upx;" @click="back">
 				<image src="../../static/u164.png"></image>
@@ -15,7 +16,7 @@
 			<text :class="{'active':isactive==4}" @click="nav(4)">待评价</text>
 		</view>
 		<!-- 全部订单 -->
-		<view style="margin-top: 230upx;" v-if="isactive==1">
+		<view style="margin-top: 260upx;" v-if="isactive==1">
 			<!-- 待付款 -->
 			<view class="pay">
 				<view style="padding: 30upx 45upx;box-sizing: border-box;border-bottom: 1upx solid #F7F7F7;background-color: white;">待付款</view>
