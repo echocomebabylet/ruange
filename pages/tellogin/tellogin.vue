@@ -124,28 +124,21 @@
 					  }else{
 						console.log(this.codedata)
 						  if(this.datas == this.codedata){
-							  uni.showLoading({
-							  	title: '正在加载...'
-							  })
 						  	uni.request({
 						  		url:helper.websiteUrl+"user_phonelogin",
 						  		header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
 						  		method:"post",
 						  		data:{'phone':this.phonedata},
 						  		success: (res) => {
+						  			
 						  			console.log(res.data);
-									// 发送到im系统绑定本人uid
-						  			uni.sendSocketMessage({
-						  			    data: '{"type":"binduid","data":"'+res.data.data.id+'"}'
-						  			});
-									
+						  			
 						  			// 将请求到的数据存放放到data中
 						  			uni.setStorage({
 						  				key:'userinfo',
 						  				data:res.data.data,
 						  				success:()=>{}
 						  			});
-									this.set_alias()
 						  			this.$refs.uToast.show({
 						  				title: '登录成功',
 						  				type: 'default',
@@ -166,17 +159,6 @@
 				
 				
 					
-			},
-			set_alias(){
-				jyJPush.setJYJPushAlias({
-					userAlias: 'testAlias22'
-				}, result => {
-					console.log(JSON.stringify(result));
-					uni.showToast({
-						icon: 'none',
-						title: JSON.stringify(result)
-					})
-				});
 			}
 		}
 	}

@@ -193,7 +193,7 @@
 			}
 		},
 		onLoad(){
-			// this.getRegisterID()
+			this.getRegisterID()
 		},
 		onShow(){
 			
@@ -229,59 +229,12 @@
 				});
 			},
 			getRegisterID() {
-				
-				console.log('设置userAlias');
+				console.log('获取RegisterID');
 				const jyJPush = uni.requireNativePlugin('JY-JPush');
-				jyJPush.setJYJPushAlias({
-				//  按照自己的业务需求来设置
-					userAlias: 'heiheihei'
-					}, result=> {
-						console.log(JSON.stringify(result));
-						//  设置成功或者失败，都会通过这个result回调返回数据；数据格式保持极光返回的安卓/iOS数据一致
-						//  注：若没有返回任何数据，考虑是否初始化完成
-						uni.showToast({
-							icon:'none',
-							title: JSON.stringify(result)
-						})
-						this.search_alias()
-				});
-				// jyJPush.getRegistrationID(result => {
-				// 	console.log(result)
-				// 	uni.showToast({
-				// 		icon: 'none',
-				// 		title: JSON.stringify(result)
-				// 	})
-				// });
-			},
-			giveme(){
-				const jyJPush = uni.requireNativePlugin('JY-JPush');
-				jyJPush.android_addLocalNotification({
-				builderId:"1", // builderId 编号，自己定义，如果不管，可以全部传递1
-				content: "推送内容",
-				title: "推送标题",
-				notificationId: "1", // 消息ID，需要为数字，后续可以通过这个取消,
-				year: "2021-4-1", // 预约发送的时间，若小于当前时间，则立即发送；若大于当前时间，则预约时间，时间到了就发送；但是APP需要在前台
-				month: "12",
-				day: "02",
-				hour: "21",
-				minute: "20",
-				second: "21"
-				},result=> {
-				uni.showToast({
-				icon:'none',
-				title: JSON.stringify(result)
-				})
-				});
-			},
-			search_alias(){
-				const jyJPush = uni.requireNativePlugin('JY-JPush');
-				jyJPush.getJYJPushAlias({
-				//  可以不用传值进去，但是需要配置这项数据
-				}, result=> {
-					
-					console.log(JSON.stringify(result));
+				jyJPush.getRegistrationID(result => {
+					console.log(result)
 					uni.showToast({
-						icon:'none',
+						icon: 'none',
 						title: JSON.stringify(result)
 					})
 				});
@@ -332,7 +285,6 @@
 				});
 			},
 			personaldata(){
-				return this.giveme()()
 				if (this.isinfo==1) {
 					uni.navigateTo({
 					    url: '../login/login'
