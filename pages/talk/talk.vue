@@ -121,15 +121,37 @@
 				   <image src="../../static/u331.png" style="position:absolute;top:10upx;right:20upx;"></image>
 			   </view>
 		</view>
-		<view class="footer" :style="{bottom:isshow==true?'500upx':'0'}">
+		<view class="footer" :style="{bottom:isshow==1||isshow==2?'500upx':'0'}">
 			<input />
-			<image src="../../static/u1171.png"></image>
+			<image src="../../static/u1171.png" @click="look"></image>
 			<image src="../../static/u1191.png" @click="add"></image>
 		</view>
-		<view class="fcontent" v-if="isshow==true">
+		<view class="fcontent" v-if="isshow==1">
 			<view style="display: flex;flex-direction: column;align-items: center;" v-for="(item,index) in 6" :key="index">
 				<image src="../../static/zp.png"></image>
 				<text>我的相册</text>
+			</view>		
+		</view>		
+		<view class="look" v-if="isshow==2" >
+			<view style="display: flex;flex-direction: column;align-items: center;">
+				<image src="../../static/good.png"></image>
+				<text style="margin-top: 20upx;">点赞</text>
+			</view>
+			<view style="display: flex;flex-direction: column;align-items: center;">
+				<image src="../../static/sad.png"></image>
+				<text style="margin-top: 20upx;">悲伤</text>
+			</view>
+			<view style="display: flex;flex-direction: column;align-items: center;">
+				<image src="../../static/haha.png"></image>
+				<text style="margin-top: 20upx;">哈哈哈</text>
+			</view>
+			<view style="display: flex;flex-direction: column;align-items: center;">
+				<image src="../../static/love.png"></image>
+				<text style="margin-top: 20upx;">喜爱</text>
+			</view>
+			<view style="display: flex;flex-direction: column;align-items: center;">
+				<image src="../../static/cheer.png"></image>
+				<text style="margin-top: 20upx;">欢呼</text>
 			</view>
 		</view>
 	</view>
@@ -139,12 +161,15 @@
 	export default {
 		data() {
 			return {
-				isshow:false
+				isshow:0,
 			}
 		},
 		methods: {
 			add(){
-				this.isshow = true
+				this.isshow = 1
+			},
+			look(){
+				this.isshow = 2
 			},
 			nadd(){
 				this.isshow = false
@@ -249,35 +274,39 @@ body{
 		height: 50upx;
 		margin-left: 20upx;
 	}
-	.fcontent{
+	.fcontent,.look{
 		position: fixed;
 		bottom: 0;
 		left: 0;
 		width: 100%;
 		height: 500upx;
 		background: rgb(244,244,246);
-		padding:50upx;
+		padding:0 50upx 50upx;
 		box-sizing: border-box;
 		display: flex;
 		align-items: center;
 		flex-wrap: wrap;
 	}
-	.fcontent image{
+	.fcontent image,
+	.look image{
 		width: 110upx;
 		height: 110upx;
 		display: block;
 		margin: auto;
 		margin-top: 25upx;
 	}
-	.fcontent text{
+	.fcontent text,
+	.look text{
 		margin-top: 20upx;
 		font-size: 25upx;
 		color: #3a3a3a;
 	}
-	.fcontent view{
+	.fcontent view,
+	.look view{
 		margin-right: 60upx;
 	}
-	.fcontent view:nth-child(4n){
+	.fcontent view:nth-child(4n),
+	.look view:nth-child(4n){
 		margin-right: 0;
 	}
     .icon{
