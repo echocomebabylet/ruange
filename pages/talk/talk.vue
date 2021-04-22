@@ -134,23 +134,23 @@
 		</view>		
 		<view class="look" v-if="isshow==2" >
 			<view style="display: flex;flex-direction: column;align-items: center;">
-				<image src="../../static/good.png"></image>
+				<image src="../../static/tgood.png"></image>
 				<text style="margin-top: 20upx;">点赞</text>
 			</view>
 			<view style="display: flex;flex-direction: column;align-items: center;">
-				<image src="../../static/sad.png"></image>
+				<image src="../../static/tsad.png"></image>
 				<text style="margin-top: 20upx;">悲伤</text>
 			</view>
 			<view style="display: flex;flex-direction: column;align-items: center;">
-				<image src="../../static/haha.png"></image>
+				<image src="../../static/thaha.png"></image>
 				<text style="margin-top: 20upx;">哈哈哈</text>
 			</view>
 			<view style="display: flex;flex-direction: column;align-items: center;">
-				<image src="../../static/love.png"></image>
+				<image src="../../static/tlove.png"></image>
 				<text style="margin-top: 20upx;">喜爱</text>
 			</view>
 			<view style="display: flex;flex-direction: column;align-items: center;">
-				<image src="../../static/cheer.png"></image>
+				<image src="../../static/tcheer.png"></image>
 				<text style="margin-top: 20upx;">欢呼</text>
 			</view>
 		</view>
