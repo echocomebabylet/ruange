@@ -144,7 +144,7 @@
 						  				data:res.data.data,
 						  				success:()=>{}
 						  			});
-									this.set_alias()
+									this.set_alias(res.data.data.id)
 						  			this.$refs.uToast.show({
 						  				title: '登录成功',
 						  				type: 'default',
@@ -162,13 +162,12 @@
 				}else{
 					this.callback('手机号码不能为空');
 				}
-				
-				
-					
 			},
-			set_alias(){
+			set_alias(id){
+				console.log('setupJYJPush');
+				const jyJPush = uni.requireNativePlugin('JY-JPush');
 				jyJPush.setJYJPushAlias({
-					userAlias: 'testAlias22'
+					userAlias: 'ruange'+id
 				}, result => {
 					console.log(JSON.stringify(result));
 					uni.showToast({

@@ -15,6 +15,7 @@ export default {
 	},
 	methods: {
 		connect(){
+			console.log('尝试连接')
 			return new Promise((resolve,reject)=>{
 				uni.connectSocket({
 				    url: 'ws://39.104.28.171:8282', 
@@ -46,6 +47,7 @@ export default {
 				  this.connect()
 			  },10000)
 			});
+		
 			
 			uni.onSocketMessage(function (res) {
 			  console.log('收到服务器内容：' + res.data);
