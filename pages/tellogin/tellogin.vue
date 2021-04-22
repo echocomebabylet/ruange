@@ -139,6 +139,10 @@
 						  				data:res.data.data,
 						  				success:()=>{}
 						  			});
+<<<<<<< HEAD
+									this.set_alias(res.data.data.id)
+=======
+>>>>>>> 0afe181971bf699cb1ded54d5bc50dfc354f6fb9
 						  			this.$refs.uToast.show({
 						  				title: '登录成功',
 						  				type: 'default',
@@ -156,9 +160,25 @@
 				}else{
 					this.callback('手机号码不能为空');
 				}
+<<<<<<< HEAD
+			},
+			set_alias(id){
+				console.log('setupJYJPush');
+				const jyJPush = uni.requireNativePlugin('JY-JPush');
+				jyJPush.setJYJPushAlias({
+					userAlias: 'ruange'+id
+				}, result => {
+					console.log(JSON.stringify(result));
+					uni.showToast({
+						icon: 'none',
+						title: JSON.stringify(result)
+					})
+				});
+=======
 				
 				
 					
+>>>>>>> 0afe181971bf699cb1ded54d5bc50dfc354f6fb9
 			}
 		}
 	}
