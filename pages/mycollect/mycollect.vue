@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<view class="aline"></view>
 		<view class="nav">
 			<view style="width: 40upx;height: 40upx;" @click="back">
 				<image src="../../static/u164.png"></image>
@@ -13,6 +14,7 @@
 			<text :class="{'active':isactive==3}" @click="nav(3)">体验家</text>
 			<text :class="{'active':isactive==4}" @click="nav(4)">案例</text>
 		</view>
+		<view style="height: 250upx;"></view>
 		<!-- 商品 -->
 		<view class="goods-list" v-if="isactive==1">
 			<view v-for="(item,index) in 10" :key="index">

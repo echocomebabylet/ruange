@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<view class="aline"></view>
 		<view>
 			<view class="nav">
 				<view class="local">
@@ -86,6 +87,10 @@
 </script>
 
 <style>
+.aline{
+	 height: var(--status-bar-height);
+	  width: 100%;
+}
 .nav{
 	padding: 30upx;
 	display: flex;

@@ -1,10 +1,28 @@
+.bg-img{
+	width: 100%;
+	height: 510upx;
+	background-size: 100% 100%;
+	position: relative;
+}
+.aline{
+	 height: var(--status-bar-height);
+	 width: 100%;
+}
+.saline{
+	height: var(--status-bar-height);
+	width: 100%;
+	z-index: 100;
+	background-color: white;
+	position: fixed;
+	top: 0;
+	left: 0;
+}
 .nav{
 	display: flex;
 	justify-content: space-between;
 	padding: 20upx 40upx;
 	box-sizing: border-box;
 	align-items: center;
-	border-bottom: 1upx solid #F7F7F7;
 }
 .nav view{
 	display: flex;
@@ -17,27 +35,37 @@
 	margin-left: 10upx;
 }
 .nav image{
-	width: 47upx;
-	height: 40upx;
+	width: 57upx;
+	height: 54upx;
 }
 .local{
-	display: flex;
-	justify-content: space-between;
-	padding: 20upx 40upx;
-	box-sizing: border-box;
-	align-items: center;
-	font-size: 28upx;
-	color: #a8a8a8;
+	position: relative;
 }
-.local image{
-	width: 145upx;
-	height: 40upx;
-}
+
 .join{
 	width: 90%;
 	display: block;
 	margin: auto;
 	height: 240upx;
+}
+.local{
+	width: 90%;
+	height: 320upx;
+	background-size: 100% 100%;
+	position: absolute;
+	bottom: 10upx;
+	left: 50%;
+	transform: translateX(-50%);
+	color: white;
+	padding: 30upx 40upx;
+	box-sizing: border-box;
+}
+.bottomimg{
+	width: 100%;
+	height: 60upx;
+	position: absolute;
+	bottom: -10upx;
+	left: 0;
 }
 /* 推荐轮播 */
 .slide-image {
@@ -97,8 +125,11 @@ swiper {
 	position: relative;
 }
 .location image{
-	width: 100%;
+	width: 90%;
 	height: 380upx;
+	display: block;
+	margin: auto;
+	border-radius: 20upx;
 }
 .location view{
 	/* width: 300upx; */
@@ -134,6 +165,7 @@ swiper {
 .info image{
 	width: 80upx;
 	height: 80upx;
+	border-radius: 50%;
 }
 .info text{
 	display: block;

@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<view class="aline"></view>
 		<view class="login">
 			<image src="../../static/u11.png"></image>
 			<text @click="login">手机号登录/注册</text>
@@ -30,7 +31,11 @@
 	}
 </script>
 
-<style>
+<style>.aline{
+	 height: var(--status-bar-height);
+	  width: 100%;
+	  background-color: white;
+}
 page{
 	background-image: url(../../static/u3.png);
 	background-size: 100% 100%;

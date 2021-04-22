@@ -1,256 +1,104 @@
 <template>
 	<view>
+		<view class="aline"></view>
 		<view class="nav">
-			<text>SHOW</text>
-			<image src="../../static/u46.png"></image>
+			<text>用灵感装点您的生活</text>
+			<image src="../../static/gouwuchu_icon@2x.png"></image>
 		</view>
-		<view class="select">
-			<image src="../../static/u48.png"></image>
-			<image src="../../static/u492.png"></image>
-		</view>
-		<!-- 热门设计 -->
-		<view class="hot">
-			<view class="tit">
-				<text style="font-weight: bold;">热门设计</text>
-				<text style="font-size: 23upx;font-weight: bold;">1<text style="font-size: 20upx;font-weight: normal;">/8</text></text>
-			</view>
-			<swiper class="swiper1" next-margin="60rpx" style="height: 550upx;">
-				<swiper-item>
-					<view style="margin-right: 20upx;">
-						<image src="../../static/u512.jpg"></image>
-						<text class="subject">气质与空间并存的空间气质与空间并存的空间气质与空间并存的空间</text>
-						<view class="intro">
-							<view>
-								<image src="../../static/u286.png"></image>
-								<text>2555</text>
-							</view>
-							<view>
-								<image src="../../static/u288.png"></image>
-								<text>2555</text>
-							</view>
-							<view>
-								<image src="../../static/u285.png"></image>
-								<text>2555</text>
-							</view>
-						</view>
-					</view>
-				</swiper-item>
-				<swiper-item>
-					<view style="margin-right: 20upx;">
-						<image src="../../static/u512.jpg"></image>
-						<text class="subject">气质与空间并存的空间气质与空间并存的空间气质与空间并存的空间</text>
-						<view class="intro">
-							<view>
-								<image src="../../static/u286.png"></image>
-								<text>2555</text>
-							</view>
-							<view>
-								<image src="../../static/u288.png"></image>
-								<text>2555</text>
-							</view>
-							<view>
-								<image src="../../static/u285.png"></image>
-								<text>2555</text>
-							</view>
-						</view>
-					</view>
-				</swiper-item>
-				<swiper-item>
-					<view style="margin-right: 20upx;">
-						<image src="../../static/u512.jpg"></image>
-						<text class="subject">气质与空间并存的空间气质与空间并存的空间气质与空间并存的空间</text>
-						<view class="intro">
-							<view>
-								<image src="../../static/u286.png"></image>
-								<text>2555</text>
-							</view>
-							<view>
-								<image src="../../static/u288.png"></image>
-								<text>2555</text>
-							</view>
-							<view>
-								<image src="../../static/u285.png"></image>
-								<text>2555</text>
-							</view>
-						</view>
-					</view>
-				</swiper-item>
-			</swiper>
-		</view>
-		<!-- 精彩案例 -->
-		<view class=" choice">
-			<view class="tit">
-				<text style="font-weight: bold;">精选案例</text>
-				<view>
-					<text style="font-size: 23upx;font-weight: bold;">全部</text>
-					<image src="../../static/u62.png"></image>
-				</view>
-			</view>
-			<view class="list">
-				<image src="../../static/u512.jpg"></image>
-				<text class="cont">气质与空间并存的空间气质与空间并存的空间气质与空间并存的空间</text>
-				<view class="info">
-					<view>
-						<image src="../../static/u286.png"></image>
-						<text>2555</text>
-					</view>
-					<view>
-						<image src="../../static/u288.png"></image>
-						<text>2555</text>
-					</view>
-					<view>
-						<image src="../../static/u285.png"></image>
-						<text>2555</text>
-					</view>
-				</view>
-			</view>
-			<view class="list">
-				<image src="../../static/u512.jpg"></image>
-				<text class="cont">气质与空间并存的空间气质与空间并存的空间气质与空间并存的空间</text>
-				<view class="info">
-					<view>
-						<image src="../../static/u286.png"></image>
-						<text>2555</text>
-					</view>
-					<view>
-						<image src="../../static/u288.png"></image>
-						<text>2555</text>
-					</view>
-					<view>
-						<image src="../../static/u285.png"></image>
-						<text>2555</text>
-					</view>
-				</view>
-			</view>
-			<view class="list">
-				<image src="../../static/u512.jpg"></image>
-				<text class="cont">气质与空间并存的空间气质与空间并存的空间气质与空间并存的空间</text>
-				<view class="info">
-					<view>
-						<image src="../../static/u286.png"></image>
-						<text>2555</text>
-					</view>
-					<view>
-						<image src="../../static/u288.png"></image>
-						<text>2555</text>
-					</view>
-					<view>
-						<image src="../../static/u285.png"></image>
-						<text>2555</text>
-					</view>				</view>
-			</view>
-		</view>
+		<!-- <swiper next-margin="600rpx">
+			<swiper-item style="margin-left: 50upx;" v-for="(item,index) in 8" :key="index" @click="nav(index)">
+				<text :class="isactive==index?'active':''">推荐</text>
+			</swiper-item>
+		</swiper> -->
+		<vgt-tab :list="list"></vgt-tab>
 	</view>
 </template>
 
 <script>
+	import vgtTab from '@/components/vgt-tab/vgt-tab.vue'
 	export default {
 		data() {
 			return {
-				
+				isactive:1,
+				list: [
+						'推荐',
+						'书房',
+						'儿童房',
+						'卧室',
+						'推荐',
+						'书房',
+						'儿童房',
+						'卧室',
+						'推荐',
+						'书房',
+						'儿童房',
+						'卧室',
+					]
 			}
 		},
-		
+		 components: {
+			'vgt-tab': vgtTab
+		},
 		methods: {
-			
+			nav(index){
+				this.isactive = index
+			},
+			 onClickItem(res){
+				 this.current=res.currentIndex;
+			} 
 		}
 	}
 </script>
 
 <style>
+.aline{
+	 height: var(--status-bar-height);
+	  width: 100%;
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+	  z-index: 100;
+	  background-color: white;
+}
 .nav{
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
 	padding: 40upx;
-	box-sizing: border-box;
-	font-size: 32upx;
+	box-sizing:border-box;
+	font-size: 35upx;
 	font-weight: bold;
+	position: fixed;
+	top: var(--status-bar-height);
+	left: 0;
+	width: 100%;
+	background-color: white;
+	z-index: 100;
 }
 .nav image{
-	width: 45upx;
+	width: 50upx;
 	height: 45upx;
 }
-/* 热门设计 */
-.select{
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-	padding: 0 40upx 40upx 40upx;
-	box-sizing: border-box;
-	border-bottom: 1upx solid #F7F7F7;
-}
-.select image{
-	width: 48%;
-	height: 60upx;
-}
-.tit{
-	padding: 30upx 40upx;
-	box-sizing: border-box;
-	display: flex;
-	justify-content: space-between;
-	font-size: 40upx;
-	font-weight: 500;
-	align-items: flex-end;
-}
-.tit image{
-	width: 25upx;
-	height: 25upx;
-	vertical-align: middle;
-	margin-left: 5upx;
-}
-/* 热门设计轮播 */
-.swiper1{
-	margin-bottom: 20upx;
-	margin-left: 40upx;
-}
-.swiper1 image,
-.list image{
-	height: 365upx;
-	width: 100%;
-}
-.swiper1 swiper-item{
+swiper{
 	font-size: 30upx;
-	margin-top: 50upx;
+	font-weight: bold;
+	color: #b9b9b9;
 }
-.swiper1 .subject,
-.cont{
+swiper text{
 	display: block;
-	font-size: 25upx;
-	margin: 30upx 0;
-	width: 80%;
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
+	width: 120upx;
+	height: 60upx;
+	line-height: 60upx;
+	text-align: center;
 }
-.swiper1 .intro,
-.info{
-	font-size: 20upx;
-	color: #484848;
-	display: flex;
-	justify-content: space-around;
-	padding: 0 40upx;
-	align-items: center;
-}
-.swiper1 .intro view,
-.info view{
-	display: flex;
-	align-items: center;
-}
-.swiper1 .intro image,
-.info image{
-	width: 27upx;
-	height: 27upx;
-	margin-right: 10upx;
-}
-.list{
-	padding: 0 40upx 44upx 40upx;
-	box-sizing: border-box;
-	border-bottom: 1upx solid #F7F7F7;
-	margin-bottom: 60upx;
-}
-.list:last-child{
-	border: none;
-	margin-bottom: 0;
+.active{
+	display: block;
+	width: 120upx;
+	height: 60upx;
+	line-height: 60upx;
+	text-align: center;
+	background-color: #40CCCB;
+	border-radius: 50upx;
+	color: white;
 }
 </style>

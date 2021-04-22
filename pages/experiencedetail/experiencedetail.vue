@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<view class="aline"></view>
 		<view class="nav">
 			<view style="width: 50upx;height: 40upx;" @click="back">
 				<image src="../../static/u18.png"></image>
@@ -11,6 +12,7 @@
 				<image src="../../static/u72.png" style="width: 38upx;height: 38upx;"></image>
 			</view>
 		</view>
+		<view style="height: 160upx;"></view>
 		<view class="intro">
 			<image :src="this.common.getimgurl(homelist.headimg)" class="head"></image>
 			<view style="display: flex;flex-direction: column;">

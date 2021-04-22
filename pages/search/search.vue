@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<view class="aline"></view>
 		<view class="search">
 			<image src="../../static/u293.png"></image>
 			<input placeholder="请输入您要搜索的内容" />
@@ -43,6 +44,11 @@
 </script>
 
 <style>
+.aline{
+	 height: var(--status-bar-height);
+	  width: 100%;
+	  background-color: white;
+}
 .search{
 	display: flex;
 	align-items: center;

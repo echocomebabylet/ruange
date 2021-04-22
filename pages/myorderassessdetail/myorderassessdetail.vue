@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<view class="aline"></view>
 		<view class="nav">
 			<view style="width: 40upx;height: 40upx;" @click="back">
 				<image src="../../static/u164.png"></image>
@@ -7,6 +8,7 @@
 			<text>订单详情</text>
 			<text style="color: white;">返</text>
 		</view>
+		<view style="height: 160upx;"></view>
 		<image src="../../static/u1312.png" style="width: 100%;height: 5upx;vertical-align: text-top;display: block;"></image>
 		<view style="padding: 30upx 45upx;box-sizing: border-box;background-color: white;vertical-align: text-top;">
 			<view style="display: flex;align-items: center;justify-content: space-between;font-size: 30upx;">
@@ -98,9 +100,17 @@
 </script>
 
 <style>
+.aline{
+	 height: var(--status-bar-height);
+	  width: 100%;
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+	  z-index: 100;
+	  background-color: white;
+}
 page{
 	background-color: #F2F2F2;
-	padding-top: 130upx;
 	padding-bottom: 130upx;
 	box-sizing: border-box;
 }
@@ -114,7 +124,7 @@ page{
 	height: 130upx;
 	width: 100%;
 	position: fixed;
-	top: 0;
+	top: var(--status-bar-height);
 	left: 0;
 	z-index: 1000;
 	background-color: white;

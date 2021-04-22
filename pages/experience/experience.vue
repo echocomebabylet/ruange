@@ -1,25 +1,34 @@
 <template>
 	<view>
 		<view class="all">
-			<view class="nav">
-				<view>
-					<text>体验</text>
-					<view style="align-items: center;margin-left: 20upx;">
-						<!-- <text style="font-weight: normal;font-size: 30upx;margin-left: 30upx;">长春</text>
-						<image src="../../static/u1149.png"></image> -->
-						<select style="border: none;outline: none;font-size: 30upx;padding-bottom: 10upx;">
-							<option v-for="(item,index) in citylist" :key="item.id" value="item.id">{{item.name}}</option>
-							
-						</select>
+			<view class="bg-img"  :style="{backgroundImage:'url('+bgImg+')'}">
+				<view :class="spage==false?'aline':'saline'"></view>
+				<view class="nav">
+					<view>
+						<text>体验</text>
+						<view style="align-items: center;margin-left: 20upx;">
+							<!-- <text style="font-weight: normal;font-size: 30upx;margin-left: 30upx;">长春</text>
+							<image src="../../static/u1149.png"></image> -->
+							<select style="border: none;outline: none;font-size: 30upx;padding-bottom: 10upx;background-color: #ececee;">
+								<option v-for="(item,index) in citylist" :key="item.id" value="item.id">{{item.name}}</option>
+								
+							</select>
+						</view>
 					</view>
+					<image src="../../static/u144.png"></image>
 				</view>
-				<image src="../../static/u144.png"></image>
+				<view class="local"  :style="{backgroundImage:'url('+bgimg+')'}">
+					<text style="font-size: 24upx;">本地有</text>
+					<text style="font-size: 32upx;margin: 0 5upx;">80</text>
+					<text style="font-size: 24upx;">位体验家</text>
+					<view style="display: flex;justify-content: space-between;margin: 40upx 0;align-items: center;">
+						<text style="font-size: 70upx;font-weight: bold;">体验家</text>
+						<text style="font-size: 30upx;">加入他们 ></text>
+					</view>
+					<text style="font-size: 28upx;">全新的软装购买模式点击了解更多</text>
+				</view>
+				<image src="../../static/bottom.png" class="bottomimg"></image>
 			</view>
-			<view class="local">
-				<text>本地有<text style="color: black;font-weight: bold;">{{this.home_num}}</text>位体验家</text>
-				<image src="../../static/u1164.png"></image>
-			</view>
-			<image src="../../static/u1162.jpg" class="join"></image>
 			<view style="font-size: 33upx;font-weight: bold;margin: 25upx 0 16upx 40upx;">为你推荐</view>
 			<view style="font-size: 26upx;color:#b8b8b8;margin-left: 40upx;">真实体验过，才不会买错</view>
 			<!-- 推荐轮播 -->
@@ -318,6 +327,9 @@
 				pagesize:4,//分页数量
 				experlist:[],//体验家数据
 				up_is:true,//是否允许下拉刷新，避免无数据重复调用接口占用资源
+				bgImg:require("@/static/a10@2x.png"),
+				bgimg:require("@/static/cardbg@2x.png"),
+				spage:false
 				
 				
 				
@@ -344,7 +356,12 @@
 			this.page++
 			this.get_datalist()
 		},
-		
+		onPageScroll(e){
+			if(e.scrollTop>0){
+				this.spage = true
+			}
+			console.log(e)
+		},
 		methods: {
 			get_datalist(){
 				let that = this

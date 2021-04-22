@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<view class="aline"></view>
 		<view class="nav">
 			<view style="width: 40upx;height: 40upx;" @click="back">
 				<image src="../../static/u164.png"></image>
@@ -7,6 +8,7 @@
 			<text v-if="datalist.quart" style="font-weight: bold;">{{datalist.quart.name}}</text>
 			<text style="font-size: 24upx;">重设户型</text>
 		</view>
+		<view style="height: 160upx;"></view>
 		<view style="height: 600upx;background-color: white;position: relative;">
 			<image v-if="datalist.hometype" :src="getimgurl(datalist.hometype.img_url)" style="width: 500upx;height: 370upx;position: absolute;top: 50%;left: 50%;transform: translateX(-50%) translateY(-50%);"></image>
 		</view>
@@ -77,9 +79,17 @@
 </script>
 
 <style>
+.aline{
+	 height: var(--status-bar-height);
+	  width: 100%;
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+	  background-color: white;
+	  z-index: 100;
+}
 page{
 	background-color: #F2F2F2;
-	padding-top: 130upx;
 	box-sizing: border-box;
 }
 .nav{
@@ -93,7 +103,7 @@ page{
 	background-color: white;
 	width: 100%;
 	position: fixed;
-	top: 0;
+	top: var(--status-bar-height);
 	left: 0;
 	z-index: 1000;
 	border-bottom: 1upx solid #F7F7F7;

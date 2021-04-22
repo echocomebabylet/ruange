@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "kind": "/components/kind/kind",
+    "manner": "/components/manner/manner",
+    "space": "/components/space/space"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "u-picker": "/uview-ui/components/u-picker/u-picker",
+    "u-toast": "/uview-ui/components/u-toast/u-toast"
+  }
+}

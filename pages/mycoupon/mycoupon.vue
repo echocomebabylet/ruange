@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<view class="aline"></view>
 		<view class="nav">
 			<view style="width: 40upx;height: 40upx;" @click="back">
 				<image src="../../static/u164.png"></image>
@@ -14,6 +15,7 @@
 			<text :class="{'active':isactive==2}" @click="nav(2)">已使用</text>
 			<text :class="{'active':isactive==3}" @click="nav(3)">已过期</text>
 		</view>
+		<view style="height: 220upx;"></view>
 		<!-- 未使用 -->
 		<view class="disuse" v-if="isactive==1">
 			<view class="exchange">

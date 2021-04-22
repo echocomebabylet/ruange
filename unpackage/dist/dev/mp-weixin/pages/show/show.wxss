@@ -1,0 +1,128 @@
+
+.nav{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	padding: 40rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	font-size: 32rpx;
+	font-weight: bold;
+}
+.nav image{
+	width: 45rpx;
+	height: 45rpx;
+}
+/* 热门设计 */
+.select{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	padding: 0 40rpx 40rpx 40rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	border-bottom: 1rpx solid #F7F7F7;
+}
+.select image{
+	width: 48%;
+	height: 60rpx;
+}
+.tit{
+	padding: 30rpx 40rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	font-size: 40rpx;
+	font-weight: 500;
+	-webkit-box-align: end;
+	-webkit-align-items: flex-end;
+	        align-items: flex-end;
+}
+.tit image{
+	width: 25rpx;
+	height: 25rpx;
+	vertical-align: middle;
+	margin-left: 5rpx;
+}
+/* 热门设计轮播 */
+.swiper1{
+	margin-bottom: 20rpx;
+	margin-left: 40rpx;
+}
+.swiper1 image,
+.list image{
+	height: 365rpx;
+	width: 100%;
+}
+.swiper1 swiper-item{
+	font-size: 30rpx;
+	margin-top: 50rpx;
+}
+.swiper1 .subject,
+.cont{
+	display: block;
+	font-size: 25rpx;
+	margin: 30rpx 0;
+	width: 80%;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.swiper1 .intro,
+.info{
+	font-size: 20rpx;
+	color: #484848;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-justify-content: space-around;
+	        justify-content: space-around;
+	padding: 0 40rpx;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+}
+.swiper1 .intro view,
+.info view{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+}
+.swiper1 .intro image,
+.info image{
+	width: 27rpx;
+	height: 27rpx;
+	margin-right: 10rpx;
+}
+.list{
+	padding: 0 40rpx 44rpx 40rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	border-bottom: 1rpx solid #F7F7F7;
+	margin-bottom: 60rpx;
+}
+.list:last-child{
+	border: none;
+	margin-bottom: 0;
+}
+

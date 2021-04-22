@@ -1,7 +1,6 @@
 <script>
 export default {
 	onLaunch: function() {
-		this.websocket()
 		console.log('App Launch');
 	},
 	onShow: function() {
@@ -9,6 +8,7 @@ export default {
 	},
 	onHide: function() {
 		console.log('App Hide');
+<<<<<<< HEAD
 	},
 	onLoad:function(){
 		console.log('APP load')
@@ -56,6 +56,8 @@ export default {
 			// console.log('连接远程服务器')
 		}
 		
+=======
+>>>>>>> 0afe181971bf699cb1ded54d5bc50dfc354f6fb9
 	}
 };
 </script>

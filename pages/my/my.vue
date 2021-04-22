@@ -1,87 +1,88 @@
 <template>
-	<view>0
+	<view>
+		<view class="aline"></view>
 		<view class="nav">
-			<image src="../../static/u2179.png"></image>
+			<image src="../../static/saoyisao1_icon@2x.png"></image>
 			<text :class="{'active':isactive}">我的</text>
 			<view>
-				<image src="../../static/u2173.png" @click="setup"></image>
+				<image src="../../static/shezhi_icon@2x.png" @click="setup"></image>
 				<view style="position: relative;margin-left: 40upx;">
-					<image src="../../static/u2174.png"></image>
+					<image src="../../static/tongzhi_icon_nor@2x.png" style="width: 40upx;"></image>
 					<text class="info-dot"></text>
 				</view>
 			</view>
 		</view>
-		<!-- 用户信息.登录 -->
-		<view class="user">
-			<view class="info" @click="personaldata">
-				<view style="display: flex;">
-					<view class="head">
-						<image :src="headurl" v-if="isinfo==2"></image>
-						<image src="../../static/u2316.png" v-if="isinfo==1"></image>
-					</view>
-					<view style="margin-left: 30upx;">
-						<view style="margin-bottom: 30upx;">
-							<text v-if="isinfo==2">{{username}}</text>
-							<text v-if="isinfo==1">点击登录账号</text>
+		<view class="bg-img" :style="{backgroundImage:'url('+bgImg+')'}">
+			
+			<!-- 用户信息.登录 -->
+			<view class="user">
+				<view class="info" @click="personaldata">
+					<view style="display: flex;">
+						<view class="head">
+							<image :src="headurl" v-if="isinfo==2"></image>
+							<image src="../../static/u2316.png" v-if="isinfo==1"></image>
 						</view>
-						<view>
-							<text style="color: #b6b6b6;font-weight: normal;font-size: 28upx;width: 4·00upx;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;display: block;" v-if="isinfo==2">{{autograph}}</text>
-							<text style="color: #b6b6b6;font-weight: normal;font-size: 28upx;" v-if="isinfo==1">登录后，收藏的内容就不会丢了</text>
+						<view style="margin-left: 30upx;">
+							<view style="margin-bottom: 30upx;">
+								<text v-if="isinfo==2">{{username}}</text>
+								<text v-if="isinfo==1">点击登录账号</text>
+							</view>
+							<view>
+								<text style="color: #d0fffd;font-weight: normal;font-size: 28upx;width: 4·00upx;text-overflow: ellipsis;white-space: nowrap;overflow: hidden;display: block;" v-if="isinfo==2">{{autograph}}</text>
+								<text style="color: #d0fffd;font-weight: normal;font-size: 28upx;" v-if="isinfo==1">登录后，收藏的内容就不会丢了</text>
+							</view>
 						</view>
 					</view>
+					<image src="../../static/right_icon@2x.png" class="enter"></image>
 				</view>
-				<image src="../../static/u85.png" class="enter"></image>
-			</view>
-			<view class="handle">
-				<view @click="follow">
-					<text>31</text>
-					<text style="font-size: 20upx;margin-top: 20upx;color: #c9c9c9;font-weight: normal;">关注</text>
+				<view class="handle">
+					<view @click="follow">
+						<text>31</text>
+						<text style="font-size: 20upx;margin-top: 20upx;color: #d0fffd;font-weight: normal;">关注</text>
+					</view>
+					<view @click="collect">
+						<text>31</text>
+						<text style="font-size: 20upx;margin-top: 20upx;color: #d0fffd;font-weight: normal;">收藏</text>
+					</view>
+					<view @click="coupon">
+						<text>31</text>
+						<text style="font-size: 20upx;margin-top: 20upx;color: #d0fffd;font-weight: normal;">优惠券</text>
+					</view>
+					<view>
+						<text>31</text>
+						<text style="font-size: 20upx;margin-top: 20upx;color: #d0fffd;font-weight: normal;">分享返利</text>
+					</view>
 				</view>
-				<view @click="collect">
-					<text>31</text>
-					<text style="font-size: 20upx;margin-top: 20upx;color: #c9c9c9;font-weight: normal;">收藏</text>
-				</view>
-				<view @click="coupon">
-					<text>31</text>
-					<text style="font-size: 20upx;margin-top: 20upx;color: #c9c9c9;font-weight: normal;">优惠券</text>
-				</view>
-				<image src="../../static/u2325.png"></image>
 			</view>
 		</view>
-		<view style="display: flex;justify-content: space-between;align-items: center;padding: 20upx 30upx;border-top: 1upx solid #F7F7F7;background-color: white;box-sizing: border-box;">
-			<text>我的奖励</text>
-			<view style="display: flex;align-items: center;">
-				<text style="color: #c46160;margin-right: 20upx;">快去赢奖励</text>
-				<image src="../../static/u85.png" style="width: 15upx;height: 26upx;"></image>
-			</view>
-		</view>
+		
 		<!-- 我的订单 -->
 		<view class="order">
 			<view class="tit">
-				<text>我的订单</text>
+				<text style="font-weight: bold;">我的订单</text>
 				<view style="display: flex;align-items: center;" @click="order">
-					<text style="color: #b0b0b0;">全部订单</text>
-					<image src="../../static/u85.png"></image>
+					<text style="color: #b0b0b0;font-size: 25upx;">全部订单</text>
+					<image src="../../static/right.png" style="height: 17upx;"></image>
 				</view>
 			</view>
 			<view class="statue">
 				<view>
-					<image src="../../static/u2330.png" style="height: 50upx;"></image>
+					<image src="../../static/daifukuan_icon@2x.png" style="height: 50upx;"></image>
 					<text>待付款</text>
 					<text class="num">1</text>
 				</view>
 				<view>
-					<image src="../../static/u2332.png" style="height: 50upx;"></image>
+					<image src="../../static/daifahuo_icon@2x.png" style="height: 50upx;"></image>
 					<text>待收货</text>
 					<text class="num">1</text>
 				</view>
 				<view>
-					<image src="../../static/u2334.png" style="width: 70upx;"></image>
+					<image src="../../static/daipingjia_icon@2x.png"></image>
 					<text>待评价</text>
 					<text class="num">1</text>
 				</view>
 				<view>
-					<image src="../../static/u2082.png"></image>
+					<image src="../../static/shouhou_icon@2x.png"></image>
 					<text>售后</text>
 					<text class="num">1</text>
 				</view>
@@ -156,15 +157,16 @@
 				</view>
 				<image src="../../static/u85.png" class="entry"></image>
 			</view>
+			<view style="padding: 30upx 40upx;box-sizing: border-box;justify-content: space-between;border-bottom: 1upx solid #F7F7F7;" @click="contactus">
+				<view>
+					<image src="../../static/u53.png" style="margin-right: 20upx;"></image>
+					<text>联系我们</text>
+				</view>
+				<image src="../../static/u85.png" class="entry"></image>
+			</view>
 		</view>
 		<!-- 联系我们 -->
-		<view class="settled" @click="contactus">
-			<view>
-				<image src="../../static/u53.png" style="margin-right: 20upx;"></image>
-				<text>联系我们</text>
-			</view>
-			<image src="../../static/u85.png" class="entry"></image>
-		</view>
+		
 	</view>
 </template>
 
@@ -178,7 +180,9 @@
 				username:'',
 				headurl:'',
 				autograph:'',
-				user_id:''
+				user_id:'',
+				bgImg:require("@/static/bg@2x.png"),
+				bgimg:require("@/static/topimg.png")
 			}
 		},
 		onPageScroll(Object){
@@ -189,7 +193,7 @@
 			}
 		},
 		onLoad(){
-			// this.getRegisterID()
+			this.getRegisterID()
 		},
 		onShow(){
 			
@@ -225,59 +229,12 @@
 				});
 			},
 			getRegisterID() {
-				
-				console.log('设置userAlias');
+				console.log('获取RegisterID');
 				const jyJPush = uni.requireNativePlugin('JY-JPush');
-				jyJPush.setJYJPushAlias({
-				//  按照自己的业务需求来设置
-					userAlias: 'heiheihei'
-					}, result=> {
-						console.log(JSON.stringify(result));
-						//  设置成功或者失败，都会通过这个result回调返回数据；数据格式保持极光返回的安卓/iOS数据一致
-						//  注：若没有返回任何数据，考虑是否初始化完成
-						uni.showToast({
-							icon:'none',
-							title: JSON.stringify(result)
-						})
-						this.search_alias()
-				});
-				// jyJPush.getRegistrationID(result => {
-				// 	console.log(result)
-				// 	uni.showToast({
-				// 		icon: 'none',
-				// 		title: JSON.stringify(result)
-				// 	})
-				// });
-			},
-			giveme(){
-				const jyJPush = uni.requireNativePlugin('JY-JPush');
-				jyJPush.android_addLocalNotification({
-				builderId:"1", // builderId 编号，自己定义，如果不管，可以全部传递1
-				content: "推送内容",
-				title: "推送标题",
-				notificationId: "1", // 消息ID，需要为数字，后续可以通过这个取消,
-				year: "2021-4-1", // 预约发送的时间，若小于当前时间，则立即发送；若大于当前时间，则预约时间，时间到了就发送；但是APP需要在前台
-				month: "12",
-				day: "02",
-				hour: "21",
-				minute: "20",
-				second: "21"
-				},result=> {
-				uni.showToast({
-				icon:'none',
-				title: JSON.stringify(result)
-				})
-				});
-			},
-			search_alias(){
-				const jyJPush = uni.requireNativePlugin('JY-JPush');
-				jyJPush.getJYJPushAlias({
-				//  可以不用传值进去，但是需要配置这项数据
-				}, result=> {
-					
-					console.log(JSON.stringify(result));
+				jyJPush.getRegistrationID(result => {
+					console.log(result)
 					uni.showToast({
-						icon:'none',
+						icon: 'none',
 						title: JSON.stringify(result)
 					})
 				});
@@ -328,7 +285,6 @@
 				});
 			},
 			personaldata(){
-				return this.giveme()()
 				if (this.isinfo==1) {
 					uni.navigateTo({
 					    url: '../login/login'

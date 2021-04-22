@@ -1,6 +1,7 @@
 <template>
 	<view>
 		<view class="a">
+			<view class="aline"></view>
 			<view class="nav">
 				<view style="width: 50upx;height: 50upx;" @click="back">
 					<image src="../../static/u18.png"></image>

@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<view class="aline"></view>
 		<view class="nav">
 			<view style="width: 50upx;height: 40upx;" @click="back">
 				<image src="../../static/u18.png"></image>
@@ -7,6 +8,7 @@
 			<text>预约体验家</text>
 			<text style="color: white;">返</text>
 		</view>
+		<view style="height: 160upx;"></view>
 		<view style="padding: 45upx 30upx;box-sizing: border-box;border-bottom: 1upx solid #F7F7F7;">
 			<text style="font-size: 28upx;margin: 0 0 45upx;display: block;">确认位置</text>
 			<text style="font-size: 24upx;display: block;color: #bbbbbb;">{{datalist.address}}</text>
@@ -317,8 +319,16 @@
 </script>
 
 <style>
+.aline{
+	 height: var(--status-bar-height);
+	  width: 100%;
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+	  z-index: 100;
+	  background-color: white;
+}
 page{
-	padding-top: 130upx;
 	box-sizing: border-box;
 }
 .nav{
@@ -333,7 +343,7 @@ page{
 	background-color: white;
 	width: 100%;
 	position: fixed;
-	top: 0;
+	top: var(--status-bar-height);
 	left: 0;
 	z-index: 1000;
 	border-bottom: 1upx solid #F7F7F7;

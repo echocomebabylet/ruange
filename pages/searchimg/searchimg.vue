@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<view class="aline"></view>
 		<view class="nav">
 			<view style="width: 40upx;height: 40upx;" @click="back">
 				<image src="../../static/u164.png"></image>
@@ -10,6 +11,7 @@
 			</view>
 			<text style="color: white;">返</text>
 		</view>
+		<view style="height: 160upx;"></view>
 		<view style="display: flex;flex-wrap: wrap;justify-content: space-between;padding: 0 30upx;">
 			<view  style="width: 330upx;margin-bottom: 20upx;" v-for="(index,item) in 10" :key="index">
 				<image src="../../static/u25.png" style="width: 100%;height: 330upx;"></image>
@@ -39,8 +41,16 @@
 </script>
 
 <style>
+.aline{
+	 height: var(--status-bar-height);
+	  width: 100%;
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+	  background-color: white;
+	  z-index: 100;
+}
 page{
-	padding-top: 130upx;
 	box-sizing: border-box;
 }
 .nav{
@@ -53,7 +63,7 @@ page{
 	height: 130upx;
 	width: 100%;
 	position: fixed;
-	top: 0;
+	top: var(--status-bar-height);
 	left: 0;
 	z-index: 1000;
 	background-color: white;

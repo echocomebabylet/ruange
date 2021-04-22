@@ -1,5 +1,6 @@
 <template>
 	<view style="display: flex;flex-direction: column;height: 100%;">
+		<view class="aline"></view>
 		<view class="nav">
 			<view class="nav-list">
 				<image src="../../static/saoyisao_icon@2x.png"></image>
@@ -251,6 +252,10 @@
 <style>
 	page{
 		height: 100%;
+	}
+	.aline{
+		 height: var(--status-bar-height);
+		  width: 100%;
 	}
 	.nav{
 		width: 100%;

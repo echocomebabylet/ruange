@@ -1,0 +1,210 @@
+page{
+	background-color: #f2f2f2;
+	padding-top: 130rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.nav{
+	width: 100%;
+	height: 130rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	position: fixed;
+	top: 0;
+	left: 0;
+	padding: 0 40rpx;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	-webkit-box-pack: justify;
+	-webkit-justify-content: space-between;
+	        justify-content: space-between;
+	font-size: 30rpx;
+	background-color: white;
+	z-index: 100;
+}
+.nav image{
+	width: 50rpx;
+	height: 50rpx;
+}
+.share image{
+	width: 36rpx;
+	height: 36rpx;
+}
+.ad{
+	width: 100%;
+	height: 220rpx;
+	display: block;
+}
+.info{
+	position: relative;
+	padding: 10rpx 30rpx 30rpx 30rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	background-color: white;
+}
+.info .head{
+	width: 150rpx;
+	height: 150rpx;
+	position: absolute;
+	top: -75rpx;
+	left: 30rpx;
+}
+.brand-name{
+	margin-top: 110rpx;
+	display: block;
+	font-size: 30rpx;
+	font-weight: bold;
+}
+.brand-intro{
+	display: block;
+	padding: 30rpx 0;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	border-bottom: 1rpx dashed  #F7F7F7;
+	font-size: 24rpx;
+	line-height: 36rpx;
+	color: #9c9c9c;
+}
+.address{
+	margin: 30rpx 0;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+}
+.address image{
+	width: 22rpx;
+	height: 26rpx;
+	margin-right: 20rpx;
+}
+.address text{
+	font-size: 26rpx;
+	color: #5480b1;
+}
+.message{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+}
+.message image{
+	width: 24rpx;
+	height: 24rpx;
+	margin-right: 20rpx;
+}
+.message text{
+	font-size: 26rpx;
+}
+.message .word{
+	color: #b2b2b2;
+	display: block;
+	width: 70%;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.brand-list{
+	margin-top: 20rpx;
+	background-color: white;
+}
+.bnav{
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-align-content: center;
+	        align-content: center;
+	-webkit-justify-content: space-around;
+	        justify-content: space-around;
+	font-size: 28rpx;
+	font-weight: bold;
+	padding: 35rpx 0;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+	border-bottom: 1rpx solid #F7F7F7;
+}
+.active{
+	color: #40CCCC;
+	position: relative;
+}
+.active::before{
+	content: '';
+	width: 100%;
+	height: 5rpx;
+	background-color: #40CCCC;
+	position: absolute;
+	bottom: -35rpx;
+	left: 0;
+}
+.brand-cont{
+	background-color: white;
+	padding: 40rpx;
+	-webkit-box-sizing: border-box;
+	        box-sizing: border-box;
+}
+.brand-cont text{
+	font-size: 20rpx;
+	display: block;
+	margin-bottom: 10rpx;
+	color: #b1b1b1;
+}
+.brand-cont view{
+	float: left;
+	width: 48%;
+	margin-bottom: 20rpx;
+}
+.brand-cont view:nth-child(2n-1){
+	margin-right: 20rpx;
+}
+.brand-cont image{
+	width: 100%;
+	height: 340rpx;
+	margin-bottom: 10rpx;
+}
+/* 收藏弹框 */
+.collect,.uncollect{
+	width: 280rpx;
+	height: 280rpx;
+	background-color: white;
+	border: 1rpx solid #F7F7F7;
+	border-radius: 10rpx;
+	z-index: 1000;
+	display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	opacity: 0;
+	-webkit-transition: opacity 1s;
+	transition: opacity 1s;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	        flex-direction: column;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	        align-items: center;
+	font-size: 26rpx;
+	position: fixed;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translateX(-50%) translateY(-50%);
+	        transform: translateX(-50%) translateY(-50%);
+}
+.collecting,.uncollecting{
+	opacity: 1;
+	-webkit-transition: opacity 1s;
+	transition: opacity 1s;
+}
+.collect image,
+.uncollect image{
+	width: 66rpx;
+	height: 66rpx;
+	margin: 60rpx 0 40rpx 0;
+}
+

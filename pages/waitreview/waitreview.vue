@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<view class="aline"></view>
 		<view class="nav">
 			<view style="width: 40upx;height: 40upx;" @click="back">
 				<image src="../../static/u164.png"></image>
@@ -312,6 +313,10 @@
 </script>
 
 <style>
+	.aline{
+		 height: var(--status-bar-height);
+		  width: 100%;
+	}
 	.star{
 		width: 100%;
 		height: 100%;

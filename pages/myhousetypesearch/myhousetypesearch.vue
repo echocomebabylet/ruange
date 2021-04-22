@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<view class="aline"></view>
 		<view class="nav">
 			<view style="width: 40upx;height: 40upx;" @click="back">
 				<image src="../../static/u164.png"></image>
@@ -7,6 +8,7 @@
 			<text>搜索户型</text>
 			<text style="color: white;">返</text>
 		</view>
+		<view style="height: 160upx;"></view>
 		<view class="search">
 			<image src="../../static/u293.png"></image>
 			<input placeholder="请输入您要搜索的内容" @confirm="searchresult" :value="result"/>
@@ -63,8 +65,16 @@
 </script>
 
 <style>
+.aline{
+	 height: var(--status-bar-height);
+	  width: 100%;
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+	  z-index: 100;
+	  background-color: white;
+}
 page{
-	padding-top: 130upx;
 	box-sizing: border-box;
 }
 .nav{
@@ -79,7 +89,7 @@ page{
 	background-color: white;
 	width: 100%;
 	position: fixed;
-	top: 0;
+	top: var(--status-bar-height);
 	left: 0;
 	z-index: 1000;
 }

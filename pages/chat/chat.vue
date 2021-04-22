@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<view class="aline"></view>
 		<view class="nav">
 			<view style="width: 40upx;height: 40upx;" @click="back">
 				<image src="../../static/u164.png"></image>
@@ -8,6 +9,7 @@
 			<text style="color: white;" v-if="isactive==1">返</text>
 			<text v-if="isactive==2" style="font-size: 20upx;">全部已读</text>
 		</view>
+		<view style="height: 130upx;"></view>
 		<view style="display: flex;justify-content: center;font-size: 23upx;padding: 20upx 0;box-sizing: border-box;border-bottom: 1upx solid #F7F7F7;background-color: white;color: #c2c2c2;">
 			<view :class="{'active':isactive==1}" @click="nav(1)">聊天</view>
 			<view :class="{'active':isactive==2}" style="margin-left: 40upx;" @click="nav(2)">通知</view>
@@ -59,9 +61,17 @@
 </script>
 
 <style>
+.aline{
+	 height: var(--status-bar-height);
+	  width: 100%;
+	  background-color: white;
+	  z-index: 100;
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+}
 page{
 	background-color: #F2F2F2;
-	padding-top: 130upx;
 	box-sizing: border-box;
 }
 .nav{
@@ -74,7 +84,7 @@ page{
 	height: 130upx;
 	width: 100%;
 	position: fixed;
-	top: 0;
+	top: var(--status-bar-height);
 	left: 0;
 	z-index: 1000;
 	background-color: white;

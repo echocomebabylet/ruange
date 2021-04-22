@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<view class="aline"></view>
 		<view class="nav">
 			<view style="width: 45upx;height: 45upx;margin-right: 20rpx;" @click="back">
 				<image src="../../static/u18.png"></image>
@@ -123,28 +124,25 @@
 					  }else{
 						console.log(this.codedata)
 						  if(this.datas == this.codedata){
-							  uni.showLoading({
-							  	title: '正在加载...'
-							  })
 						  	uni.request({
 						  		url:helper.websiteUrl+"user_phonelogin",
 						  		header:{"user-token":"6a109faf305513d443337ddb1ad4cb9b"},
 						  		method:"post",
 						  		data:{'phone':this.phonedata},
 						  		success: (res) => {
+						  			
 						  			console.log(res.data);
-									// 发送到im系统绑定本人uid
-						  			uni.sendSocketMessage({
-						  			    data: '{"type":"binduid","data":"'+res.data.data.id+'"}'
-						  			});
-									
+						  			
 						  			// 将请求到的数据存放放到data中
 						  			uni.setStorage({
 						  				key:'userinfo',
 						  				data:res.data.data,
 						  				success:()=>{}
 						  			});
+<<<<<<< HEAD
 									this.set_alias(res.data.data.id)
+=======
+>>>>>>> 0afe181971bf699cb1ded54d5bc50dfc354f6fb9
 						  			this.$refs.uToast.show({
 						  				title: '登录成功',
 						  				type: 'default',
@@ -162,6 +160,7 @@
 				}else{
 					this.callback('手机号码不能为空');
 				}
+<<<<<<< HEAD
 			},
 			set_alias(id){
 				console.log('setupJYJPush');
@@ -175,12 +174,21 @@
 						title: JSON.stringify(result)
 					})
 				});
+=======
+				
+				
+					
+>>>>>>> 0afe181971bf699cb1ded54d5bc50dfc354f6fb9
 			}
 		}
 	}
 </script>
 
 <style>
+.aline{
+	 height: var(--status-bar-height);
+	  width: 100%;
+}
 .nav{
 	display: flex;
 	align-items: center;

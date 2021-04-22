@@ -1,6 +1,14 @@
+.aline{
+	 height: var(--status-bar-height);
+	  width: 100%;
+	  background-color: white;
+	  position: fixed;
+	  top: 0;
+	  left: 0;
+	  z-index: 100;
+}
 page{
 	background-color: #f2f2f2;
-	padding-top: 130upx;
 	box-sizing: border-box;
 }
 .nav{
@@ -8,7 +16,7 @@ page{
 	height: 130upx;
 	box-sizing: border-box;
 	position: fixed;
-	top: 0;
+	top: var(--status-bar-height);
 	left: 0;
 	padding: 0 40upx;
 	display: flex;
@@ -30,6 +38,7 @@ page{
 	width: 100%;
 	height: 220upx;
 	display: block;
+	margin-top: 130upx;
 }
 .info{
 	position: relative;
