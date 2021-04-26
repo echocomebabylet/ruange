@@ -3,6 +3,29 @@
 	height: 510upx;
 	background-size: 100% 100%;
 	position: relative;
+	background-image: url(~@/static/a10@2x.png);
+}
+.line-active{
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: white;
+	width: 100%;
+	height: var(--status-bar-height);
+	opacity: 0;
+	transition: opacity 1s; 
+	z-index: 1000;
+}
+.line-active1{
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: white;
+	width: 100%;
+	height: var(--status-bar-height);
+	opacity: 1;
+	transition: opacity 1s; 
+	z-index: 1000;
 }
 .aline{
 	 height: var(--status-bar-height);
@@ -40,6 +63,7 @@
 }
 .local{
 	position: relative;
+	background-image: url(~@/static/cardbg@2x.png);
 }
 
 .join{

@@ -9,11 +9,17 @@ page{
 	 left: 0;
 	 z-index: 100;
 }
+.aline1{
+	 height: var(--status-bar-height);
+	 width: 100%;
+	 background-color: white;
+}
 .bg-img{
 	width: 100%;
 	background-size: 100% 100%;
 	height: 650upx;
 	color: white;
+	background-image: url(~@/static/bg@2x.png);
 }
 .nav .active{
 	opacity: 1;
@@ -36,14 +42,6 @@ page{
 	z-index: 100;
 	background-size: 100% 100%;
 }
-.nav text{
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translateX(-50%) translateY(-50%);
-	opacity: 0;
-	transition: opacity 1s;
-}
 .nav image{
 	width: 50upx;
 	height: 50upx;
@@ -57,12 +55,82 @@ page{
 	height: 18upx;
 	border-radius: 50%;
 	position: absolute;
-	top: 10upx;
-	left: 35upx;
+	top: 0;
+	left: 25upx;
 	opacity: 1;
 	background-color: #ff6162;
 }
-
+.nav-active{
+	position: fixed;
+	width: 100%;
+	height: 160upx;
+	background-color: white;
+	top: 0;
+	left: 0;
+	z-index: 10000;
+	opacity: 0;
+	transition: opacity 1s;
+}
+.navactive{
+	width: 100%;
+	height: auto;
+	background-color: white;
+	padding: 30upx 40upx;
+	box-sizing: border-box;
+	display: flex;
+	justify-content: space-between;
+	position: relative;
+}
+.nav-active image,
+.nav-active1 image{
+	width: 50upx;
+	height: 50upx;
+}
+.nav-active view,
+.nav-active1 view{
+	display: flex;
+}
+.myname{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translateX(-50%) translateY(-50%);
+	font-weight: bold;
+	font-size: 40upx;
+}
+.nav-active .info-dot{
+	display: block;
+	width: 18upx;
+	height: 18upx;
+	border-radius: 50%;
+	position: absolute;
+	top: 0;
+	left: 25upx;
+	opacity: 1;
+	background-color: #ff6162;
+}
+.nav-active1 .info-dot{
+	display: block;
+	width: 18upx;
+	height: 18upx;
+	border-radius: 50%;
+	position: absolute;
+	top: 0;
+	left: 25upx;
+	opacity: 1;
+	background-color: #ff6162;
+}
+.nav-active1{
+	position: fixed;
+	width: 100%;
+	height: 160upx;
+	background-color: white;
+	top: 0;
+	left: 0;
+	z-index: 10000;
+	opacity: 1;
+	transition: opacity 1s;
+}
 /* 用户信息,登录 */
 .user{
 	padding: 30upx 40upx;
@@ -85,7 +153,7 @@ page{
 	width: 15upx;
 	height: 24upx;
 	align-self: flex-end;
-	margin-bottom: 40upx;
+	margin-bottom: 45upx;
 }
 .handle{
 	display: flex;

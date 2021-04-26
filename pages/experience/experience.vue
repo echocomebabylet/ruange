@@ -1,8 +1,9 @@
 <template>
 	<view>
 		<view class="all">
-			<view class="bg-img"  :style="{backgroundImage:'url('+bgImg+')'}">
-				<view :class="spage==false?'aline':'saline'"></view>
+			<view :class="isactive==true?'line-active1':'line-active'"></view>
+			<view class="bg-img">
+				<view class="aline"></view>
 				<view class="nav">
 					<view>
 						<text>体验</text>
@@ -17,7 +18,7 @@
 					</view>
 					<image src="../../static/u144.png"></image>
 				</view>
-				<view class="local"  :style="{backgroundImage:'url('+bgimg+')'}">
+				<view class="local">
 					<text style="font-size: 24upx;">本地有</text>
 					<text style="font-size: 32upx;margin: 0 5upx;">80</text>
 					<text style="font-size: 24upx;">位体验家</text>
@@ -329,8 +330,7 @@
 				up_is:true,//是否允许下拉刷新，避免无数据重复调用接口占用资源
 				bgImg:require("@/static/a10@2x.png"),
 				bgimg:require("@/static/cardbg@2x.png"),
-				spage:false
-				
+				isactive:false
 				
 				
 				
@@ -351,16 +351,9 @@
 			this.style()
 			// this.getdatalist()
 		},
-		
 		onReachBottom() {
 			this.page++
 			this.get_datalist()
-		},
-		onPageScroll(e){
-			if(e.scrollTop>0){
-				this.spage = true
-			}
-			console.log(e)
 		},
 		methods: {
 			get_datalist(){
@@ -621,6 +614,11 @@
 				this.sh = true
 			}else if(Object.scrollTop < this.h){
 				this.sh = false
+			}
+			if(Object.scrollTop > 0){
+				this.isactive = true
+			}else if(Object.scrollTop == 0){
+				this.isactive = false
 			}
 		},
 	}

@@ -3,7 +3,6 @@
 		<view class="aline"></view>
 		<view class="nav">
 			<image src="../../static/saoyisao1_icon@2x.png"></image>
-			<text :class="{'active':isactive}">我的</text>
 			<view>
 				<image src="../../static/shezhi_icon@2x.png" @click="setup"></image>
 				<view style="position: relative;margin-left: 40upx;">
@@ -12,7 +11,22 @@
 				</view>
 			</view>
 		</view>
-		<view class="bg-img" :style="{backgroundImage:'url('+bgImg+')'}">
+		<view :class="isactive==true?'nav-active1':'nav-active'">
+			<view class="aline1"></view>
+			<view  class="navactive">
+				<image src="../../static/u2316.png" style="border-radius: 50%;"></image>
+				<text class="myname">我的</text>
+				<view>
+					<image src="../../static/u2173.png" @click="setup"></image>
+					<view style="position: relative;margin-left: 40upx;">
+						<image src="../../static/u2174.png" style="width: 40upx;"></image>
+						<text class="info-dot"></text>
+					</view>
+				</view>
+			</view>
+		</view>
+		<view class="bg-img">
+
 			
 			<!-- 用户信息.登录 -->
 			<view class="user">
@@ -180,9 +194,7 @@
 				username:'',
 				headurl:'',
 				autograph:'',
-				user_id:'',
-				bgImg:require("@/static/bg@2x.png"),
-				bgimg:require("@/static/topimg.png")
+				user_id:''
 			}
 		},
 		onPageScroll(Object){
