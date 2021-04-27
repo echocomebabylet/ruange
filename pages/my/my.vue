@@ -19,7 +19,7 @@
 				<view>
 					<image src="../../static/u2173.png" @click="setup"></image>
 					<view style="position: relative;margin-left: 40upx;">
-						<image src="../../static/u2174.png" style="width: 40upx;"></image>
+						<image src="../../static/u2174.png" style="width: 50upx;"></image>
 						<text class="info-dot"></text>
 					</view>
 				</view>
