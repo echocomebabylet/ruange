@@ -122,15 +122,55 @@
 			   </view>
 		</view>
 		<view class="footer" :style="{bottom:isshow==1||isshow==2?'500upx':'0'}">
-			<input />
-			<image src="../../static/u1171.png" @click="look"></image>
-			<image src="../../static/u1191.png" @click="add"></image>
+			<input @input="sendmessage" placeholder="输入消息...."/>
+			<image src="../../static/smile.png" @click="look" v-if="isselect==true"></image>
+			<image src="../../static/key.png" v-if="isselect==false"></image>
+			<image src="../../static/addimage.png" @click="add" v-if="issend==true"></image>
+			<image src="../../static/send.png" v-if="issend==false"></image>
 		</view>
 		<view class="fcontent" v-if="isshow==1">
-			<view style="display: flex;flex-direction: column;align-items: center;" v-for="(item,index) in 6" :key="index">
-				<image src="../../static/zp.png"></image>
-				<text>我的相册</text>
-			</view>		
+			<view style="display: flex;flex-direction: column;align-items: center;margin-right: 50upx;">
+				<view class="bor-sel">
+					<image src="../../static/shoppingcar.png"></image>
+				</view>
+				<text>购物车商品</text>
+			</view>
+			<view style="display: flex;flex-direction: column;align-items: center;margin-right: 50upx;">
+				<view class="bor-sel">
+					<image src="../../static/collecticon.png"></image>
+				</view>
+				<text>已购买商品</text>
+			</view>
+			<view style="display: flex;flex-direction: column;align-items: center;margin-right: 50upx;">
+				<view class="bor-sel">
+					<image src="../../static/likeicon.png"></image>
+				</view>
+				<text>我的收藏</text>
+			</view>
+			<view style="display: flex;flex-direction: column;align-items: center;">
+				<view class="bor-sel">
+					<image src="../../static/food.png"></image>
+				</view>
+				<text>浏览足迹</text>
+			</view>
+			<view style="display: flex;flex-direction: column;align-items: center;margin-right: 50upx;">
+				<view class="bor-sel">
+					<image src="../../static/position.png" style="width: 50upx;height: 60upx;"></image>
+				</view>
+				<text>位置</text>
+			</view>
+			<view style="display: flex;flex-direction: column;align-items: center;margin-right: 50upx;">
+				<view class="bor-sel">
+					<image src="../../static/image.png"></image>
+				</view>
+				<text>图片</text>
+			</view>
+			<view style="display: flex;flex-direction: column;align-items: center;margin-right: 50upx;">
+				<view class="bor-sel">
+					<image src="../../static/video.png" style="height: 50upx;width: 80upx;"></image>
+				</view>
+				<text>视频体验家</text>
+			</view>
 		</view>		
 		<view class="look" v-if="isshow==2" >
 			<view style="display: flex;flex-direction: column;align-items: center;">
@@ -162,17 +202,30 @@
 		data() {
 			return {
 				isshow:0,
+				issend:true,
+				isselect:true
 			}
 		},
 		methods: {
 			add(){
 				this.isshow = 1
+				this.isselect = false
 			},
 			look(){
 				this.isshow = 2
+				this.isselect = false
 			},
 			nadd(){
 				this.isshow = false
+				this.isselect = true
+			},
+			sendmessage(e){
+				if(e.detail.value != ''){
+					this.issend = false
+				}else{
+					this.issend = true
+				}
+				console.log(e.detail.value)
 			}
 		}
 	}
@@ -287,27 +340,29 @@ body{
 		align-items: center;
 		flex-wrap: wrap;
 	}
-	.fcontent image,
+	.look view{
+		margin-right: 60upx;
+	}
+	.look view:nth-child(4n){
+		margin-right: 0;
+	}
 	.look image{
 		width: 110upx;
 		height: 110upx;
 		display: block;
 		margin: auto;
-		margin-top: 25upx;
+	}
+	.fcontent image{
+		width: 60upx;
+		height: 60upx;
+		display: block;
+		margin: auto;
 	}
 	.fcontent text,
 	.look text{
 		margin-top: 20upx;
 		font-size: 25upx;
 		color: #3a3a3a;
-	}
-	.fcontent view,
-	.look view{
-		margin-right: 60upx;
-	}
-	.fcontent view:nth-child(4n),
-	.look view:nth-child(4n){
-		margin-right: 0;
 	}
     .icon{
       width: 1.5rem;
@@ -424,4 +479,12 @@ body{
       width:100%;
       height: 100%;
     }
+	.bor-sel{
+		width: 120upx;
+		height: 120upx;
+		background-color: #D3D3D3;
+		border-radius: 15upx;
+		display: flex;
+		align-items: center;
+	}
 </style>

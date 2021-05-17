@@ -318,6 +318,7 @@
             "path" : "pages/talk/talk",
             "style" : {}
         }
+        
     ],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
